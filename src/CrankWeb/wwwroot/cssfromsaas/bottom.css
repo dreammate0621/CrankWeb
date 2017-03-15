@@ -1,0 +1,37 @@
+﻿/*@import 'normlize';*/
+/*@import 'fonts';
+@import 'components/events';
+@import 'components/event';
+@import 'components/_artists';
+@import 'components/_tabs';*/
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 10px 10px 5px;
+  background: #fff;
+  max-width: 960px; }
+  @media screen and (max-width: 705px) {
+    .bottom {
+      padding-left: 10px;
+      flex-direction: column; } }
+  .bottom__left {
+    position: relative;
+    flex: 1 0 394px;
+    margin-right: 11px;
+    max-width: 650px;
+    overflow: hidden; }
+    @media screen and (max-width: 705px) {
+      .bottom__left {
+        max-width: 100%;
+        flex-basis: 0%;
+        order: 1;
+        margin-top: 10px; } }
+  .bottom__right {
+    position: relative;
+    z-index: 1;
+    width: 284px;
+    align-content: flex-start;
+    background: #fff; }
+
+/*@import 'components/messenger/_dialogs';*/
+

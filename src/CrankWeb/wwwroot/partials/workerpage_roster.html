@@ -1,0 +1,160 @@
+ <div class="">
+    <ul class="account__controls">
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--underscore" ng-click="cancel()"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--clone"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--close popup__close" ng-click="cancel()"></a>
+        </li>
+    </ul>
+</div>
+ <div class="account__main_wpteam">    
+
+    
+        <!-- begin In network search -->
+        <div class="account__search search">
+
+            <input type="search" class="search__field" ng-model="searchInNetworkRosterText">
+            <span class="search__icon-search"><i class="fa fa-search"></i></span>
+        </div>
+        <!--end In network search -->
+
+        <div class="account__frames" ng-sortable="sortableRosterConfig">
+           
+            <!-- begin in network team member frame -->
+            <div class="frame__workpageteam" ng-class="{'frame--active' : inNetworkRoster.isApproved}" ng-repeat="inNetworkRoster in InNetworkRosters  | filter:{ title: searchInNetworkRosterText } ">
+                <ul class="frame__controls-left-side">
+                    <li class="frame__control-item" >
+                        <input color-picker class="frame__icon color__picker__field__style" color-me="true" ng-model="inNetworkRoster.colorValueInline" />
+
+                    </li>
+                    <li class="frame__control-item" >
+                        <a href="javascript:void(0)" mwl-confirm class="frame__icon member-add-remove-icon add-icon"
+                           confirm-title="Confirm"
+                           message="YOU ARE CLAIMING THIS ARTIST AS YOUR OWN, NOTE THE MANAGER OF THIS ARTIST WILL BE NOTIFIED THRU CRANK AND THEY WILL NOT BE ADDED UNTIL APPROVED BY ARTIST MANAGEMENT"
+                           on-confirm="inNetworkRoster.isApproved = true "
+                           confirm-button-type="gunMetalBlue"
+                           confirm-text="Yes <i class='glyphicon glyphicon-ok'></i>"
+                           cancel-text="No <i class='glyphicon glyphicon-remove'></i>"
+                           ng-show="!inNetworkRoster.isApproved"><i class="fa fa-user-plus"></i></a>
+                        <a href="" uib-tooltip="REMOVE ARTIST FROM YOUR OWN ARTISTS"
+                   tooltip-animation="false"
+                   tooltip-append-to-body="true" ng-click="inNetworkRoster.isApproved = false" ng-show="inNetworkRoster.isApproved" class="frame__icon member-add-remove-icon remove-icon"><i class="fa fa-user-times"></i></a>
+                    </li>
+                </ul>
+                <ul class="frame__controls">
+                    <li class="frame__control-item">
+                        <a href="" class="frame__control-btn frame__control-btn--underscore"></a>
+                    </li>
+                    <li class="frame__control-item">
+                        <a href="" class="frame__control-btn frame__control-btn--clone"><i class="fa fa-clone"></i></a>
+                    </li>
+                    <li class="frame__control-item">
+                        <a  href="" uib-tooltip="REMOVE ARTIST FROM NETWORK"
+                   tooltip-animation="false"
+                   tooltip-append-to-body="true" ng-click="moveUserOutOfRoster(inNetworkRoster.id)"  class="frame__control-btn frame__control-btn--remove"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="frame__tabs tabs">
+                    <ul class="tabs__controls">
+                        <li class="tabs__control-item tabs__control-item--active">
+                            <a class="tabs__control-link">
+                                <img ng-src="{{inNetworkRoster.imageUrl}}" alt="" class="frame__pic">
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tabs__content">
+                        <div id="" class="tabs__content-item tabs__content-item--active">
+                            <div class="frame__info">
+                                <div class="frame__title">{{inNetworkRoster.title| uppercase }}</div>
+                                <div class="frame__executor">{{inNetworkRoster.name }}</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              
+            </div>
+            <!-- end in network roster frame -->
+        </div>
+     <!--<ul class="account__actions">
+         <li class="account__action-item">
+             <a href="" class="account__action-link">
+                 <i class="fa fa-share"></i>
+             </a>
+         </li>
+         <li class="account__action-item">
+             <a href="" class="account__action-link">
+                 <i class="fa fa-print"></i>
+             </a>
+         </li>
+         <li class="account__action-item">
+             <a href="" class="account__action-link" ng-click="saveInNetworkRoster()"><i class="fa fa-save"></i></a>
+         </li>
+         <li class="account__action-item">
+             <a href="" class="account__action-link">
+                 <i class="fa fa-share-alt"></i>
+             </a>
+         </li>
+     </ul>-->
+
+
+        <div id="cloned_items"></div>
+    </div>
+
+    <div class="account__side_wpteam account__side_wpteam--right">
+        <!-- begin out of network search -->
+        <div class="account__search search">
+            <input type="search" class="search__field_rightside" ng-model="$parent.searchedOutOfNetworkRoster" uib-typeahead="address.title for address in getSearchedRoster($viewValue)"
+                   typeahead-on-select="addSearchRosterToDiv($scope, $item, $model, $label)" typeahead-loading="loadingLocations" typeahead-no-results="noResults">
+            <span class="search__icon-search"><i class="fa fa-search"></i></span>
+        </div>
+        <!-- end out of network search -->
+        <div class="account__frames account__frames_wpteam--side" ng-sortable="sortableRosterConfig">
+            <!-- begin out of network roster frame -->
+            <div class="frame__workpageteam  right-side-frame" ng-class="{'frame--gray' : !outOfNetworkRoster.isApproved}"
+                 ng-repeat="outOfNetworkRoster in OutOfNetworkRosters  ">
+               
+                <ul class="frame__controls">
+                    <li class="frame__control-item">
+                        <a href="" class="frame__control-btn frame__control-btn--underscore"></a>
+                    </li>
+                    <li class="frame__control-item">
+                        <a href="" class="frame__control-btn frame__control-btn--clone"><i class="fa fa-clone"></i></a>
+                    </li>
+                </ul>
+                <div class="frame__tabs tabs">
+                    <ul class="tabs__controls">
+                        <li class="tabs__control-item tabs__control-item--active">
+                            <a class="tabs__control-link">
+                                <img ng-src="{{outOfNetworkRoster.imageUrl}}" alt="" class="frame__pic">
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tabs__content">
+                        <div id="" class="tabs__content-item tabs__content-item--active">
+                            <div class="frame__info">
+                                <div class="frame__title">{{outOfNetworkRoster.title| uppercase }}</div>
+                                <div class="frame__executor">{{outOfNetworkRoster.name }}</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<img ng-src="{{outOfNetworkRoster.imageUrl}}" alt="" class="frame__pic">
+                <div class="frame_right">
+                    <span>{{outOfNetworkRoster.title}}</span>
+                    <span>{{outOfNetworkRoster.name}}</span>
+                </div>-->
+            </div>
+            <!-- end out of network roster frame -->
+        </div>
+    </div>
+
+
+    

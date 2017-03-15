@@ -1,0 +1,35 @@
+<div class="auth">
+    <h1 class="auth__brand">Crank</h1>
+    <div class="auth__content">
+        <h2 class="auth__title">sign in</h2>
+        <form id="login-form" name="$parent.login" data-result=".login-result" data-refresh="/" ng-submit="submitLogin(login.$valid)">
+            <div class="auth__field-wrap">
+                <label for="username" class="auth__label">Username</label>
+                <input type="email" required="required" autofocus="" tabindex="1" placeholder="User Name" class="auth__field" name="username" id="username" ng-model="$parent.login_username">
+            </div>
+            <div class="auth__field-wrap">
+                <label for="password" class="auth__label">Password</label>
+                <input type="password" required="required" tabindex="2" placeholder="Password" class="auth__field" name="password" id="password" ng-model="$parent.login_password">
+            </div>
+            <div class="auth__cols">
+                <div class="auth__col">
+                    <button type="submit" tabindex="3" class="auth__btn"><i class="fa fa-spinner fa-spin fa-fw fa-lg" ng-class="{'login-progress':$parent.login_progress}"></i>Sign In</button>
+                </div>
+
+                <div class="auth__col">
+                    <label for="remember" class="auth__remember">
+                        <input id="remember" type="checkbox" tabindex="4" class="auth__remember-checkbox">
+                        <span class="auth__remember-indicator"></span>
+                        Remember me
+                    </label>
+                </div>
+            </div>
+            <a href="#recover" class="auth__forgot">Forgot your password?</a>
+        </form>
+    </div>
+</div>
+
+
+
+
+

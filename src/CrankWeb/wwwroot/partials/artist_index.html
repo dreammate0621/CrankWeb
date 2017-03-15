@@ -1,0 +1,432 @@
+<!-- $scope artistCtrl -->
+
+
+<div class="artist-scope">
+    <div ng-controller="navBarCtrl" ng-include="'partials/crank_navbar.html'"></div>
+
+    <div class="main-wrapper artist">
+        <!-- add view-animate, removed for performance -->
+        <div ng-include="current_view_template" class="viewport"></div>
+        <div class="bottom-bar">
+            <div class="row" style="margin-left:10px;">
+                <div class="col-md-6">
+                    <div class="artists row">
+                        <div id="roster_artist_scroller" class="col-md-8 artist-scroller grabcursor" ng-if="(userType=='artist_manager' || userType=='label')" ng-iscroll="roster_artist_scroller" ng-iscroll-delay="500">
+
+                            <ul class="artists__tiles artists__tiles--left roster-panel-item-wrapper">
+                                <li ng-click="!artist.isDummy && selectArtist(artist)" ng-repeat="artist in artists" class="artists__tile-item" ng-class="{'dummy-Item':artist.isDummy,'artists__tile-item--active': artist.selected}">
+                                    <a href="" class="artists__tile-link item-info">
+                                        <div>
+                                            <img ng-src="{{artist.artistImg}}" alt="" ng-show="!artist.isDummy">
+                                            <i class="fa fa-user fa-5x" ng-show="artist.isDummy" aria-hidden="true"></i>
+                                        </div>
+                                        <span ng-attr-title="{{artist.title}}" class="artists__tile-title">{{artist.title}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div id="roster_stations_scroller" class="col-md-8 artist-scroller grabcursor" ng-iscroll="roster_stations_scroller" ng-iscroll-delay="500" ng-if="userType=='radio_manager'">
+                            <ul class="artists__tiles artists__tiles--left roster-panel-item-wrapper">
+                                <li ng-click="!station.isDummy && selectStation(station)" ng-repeat="station in stations" class="artists__tile-item" ng-class="{'dummy-Item':station.isDummy,'artists__tile-item--active': station.selected}">
+                                    <a href="" class="artists__tile-link item-info">
+                                        <div>
+                                            <img class="radio_logo" ng-src="{{station.imageUrl}}" alt="" ng-show="!station.isDummy">
+                                            <i class="fa fa-headphones fa-5x" ng-show="station.isDummy" aria-hidden="true"></i>
+                                        </div>
+                                        <span ng-attr-title="{{station.callcode}}" class="artists__tile-title">{{station.callcode}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-8 artist-scroller grabcursor" id="roster_veunes_scroller" ng-iscroll="roster_veunes_scroller" ng-if="userType=='promoter'">
+                            <ul class="artists__tiles artists__tiles--left roster-panel-item-wrapper">
+                                <li ng-repeat="venue in venues" class="artists__tile-item" ng-class="{'artists__tile-item--active': venue.selected,'dummy-Item':venue.isDummy}">
+
+                                    <a href="" class="artists__tile-link">
+                                        <i class="fa fa-lock" ng-show="!venue.isOccupied &&!venue.isDummy" mwl-confirm
+                                           title="Confirm"
+                                           message="YOU ARE CLAIMING RESPONSIBILITY FOR THIS VENUE YOU MUST HAVE THE AUTHORITY OR WILL BE SUBJECT TO ACTION BY THE OWNER OF THIS FACILITY, WOULD YOU LIKE TO CONTINUE"
+                                           on-confirm="venue.isOccupied = true"
+                                           confirm-button-type="gunMetalBlue"
+                                           confirm-text="Yes <i class='glyphicon glyphicon-ok'></i>"
+                                           cancel-text="No <i class='glyphicon glyphicon-remove'></i>"
+                                           style="margin-left:100px"></i>
+                                        <i class="fa fa-unlock" ng-show="venue.isOccupied" ng-click="venue.isOccupied=false" style="margin-left:100px"></i>
+                                        <div uib-tooltip-html="venue.info" ng-click="!venue.isDummy && selectVenue(venue)"
+                                             tooltip-animation="false"
+                                             tooltip-popup-delay="600"
+                                             tooltip-popup-close-delay="400"
+                                             tooltip-append-to-body="true">
+                                            <img ng-src="{{venue.imageUrl}}" alt="" ng-show="venue.isDefaultImage" ng-error="venue.isDefaultImage=false" />
+                                            <i class="fa fa-picture-o fa-5x" ng-show="!venue.isDefaultImage" aria-hidden="true"></i>
+                                        </div>
+                                        <span ng-attr-title="{{venue.name}}" class="artists__tile-title">{{venue.name}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 artist-scroller-right">
+                            <ul class="artists__tiles artists__tiles--right">
+                                <li ng-click="resetSelection()" class="artists__tile-item" title="Reset current selection"><a href="" class="artists__tile-link"></a></li>
+                                <li class="artists__tile-item"><a href="" class="artists__tile-link"></a></li>
+                                <li class="artists__tile-item"><a href="" class="artists__tile-link"></a></li>
+                                <li class="artists__tile-item"><a href="" class="artists__tile-link"></a></li>
+                                <li class="artists__tile-item"><a href="" class="artists__tile-link"></a></li>
+                                <li class="artists__tile-item"><a href="" class="artists__tile-link"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" ng-cloak>
+                    <div class="animate-fade ng-hide-animate" ng-show="showSourcePanel">
+                        <div class="source-panel">
+                            <div class="source-panel__img-wrap">
+                                <div uib-tooltip="{{current_artist.title}}"
+                                     tooltip-animation="false"
+                                     tooltip-popup-delay="600"
+                                     tooltip-popup-close-delay="400"
+                                     tooltip-append-to-body="true">
+                                    <img src="" alt="" class="source-panel__img" ng-src="{{current_artist.artistImgHuge}}" ng-click="showModule=true;">
+                                </div>
+                            </div>
+
+                            <div class="source-panel__content source-panel__content--main" ng-class="{'hide-main-source-panel': sourcePanelVisibleTab!='main'}" data-source-panel="main">
+
+                                <ul class="source-panel__members">
+                                    <li class="source-panel__member-item source-panel__member-item--agent" ng-click="sourcePanelVisibleTab='agent'">
+                                        <a href="" class="source-panel__member-link" data-source-panel="agent">
+
+                                            <span class="source-panel__member-title">Agent</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--label" ng-click="sourcePanelVisibleTab='label'">
+                                        <a href="" class="source-panel__member-link" data-source-panel="label">
+
+                                            <span class="source-panel__member-title">Label</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--sponsor" ng-click="sourcePanelVisibleTab='sponsor'">
+                                        <a href="" class="source-panel__member-link" data-source-panel="sponsor">
+
+                                            <span class="source-panel__member-title">Sponsor</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--grey">
+                                        <a href="" class="source-panel__member-link">
+
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--yellow">
+                                        <a href="" class="source-panel__member-link">
+
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--promoter" ng-click="sourcePanelVisibleTab='promoter'">
+                                        <a href="" class="source-panel__member-link" data-source-panel="promoter">
+
+                                            <span class="source-panel__member-title">Promoter</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--manager" ng-click="sourcePanelVisibleTab='artist_manager'">
+                                        <a href="" class="source-panel__member-link" data-source-panel="manager">
+
+                                            <span class="source-panel__member-title">Manager</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--orange">
+                                        <a href="" class="source-panel__member-link">
+
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--brown">
+                                        <a href="" class="source-panel__member-link">
+
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--black">
+                                        <a href="" class="source-panel__member-link">
+
+                                        </a>
+                                    </li>
+
+                                </ul>
+                                <!--(current_login_user.userType!='radio_manager')||-->
+                                <a href="" class="source-panel__label source-panel__label--data" ng-click="(current_login_user.userType!='radio_manager')&&(sourcePanelVisibleTab='digital')  ">
+                                    <span class="source-panel__member-title">Digital</span>
+                                </a>
+                                <a href="" class="source-panel__label source-panel__label--main"></a>
+                            </div>
+
+                            <div id="agent" class="source-panel__content" ng-class="{'active-source-panel-tab': sourcePanelVisibleTab=='agent'}">
+                                <ul class="source-panel__members">
+                                    <li class="source-panel__member-item fade {{'agent-'+ agent.id}}" ng-class="{'source-panel__member-item--active' : agent.isSelected}" ng-repeat="agent in sourcePanelAgents">
+                                        <a href="" ng-attr-title="{{agent.firstName}} {{agent.lastName}}" class="source-panel__member-link" ng-click="toggleSourcePanelItem(agent,'agent')">
+                                            <div ng-if="!agent.isDummy">
+                                                <img ng-src={{agent.imageUrl}} alt="" ng-show="agent.hasImage" ng-error="agent.hasImage=false" class="source-panel__member-pic">
+                                                <div class="tile-avatar-circle" ng-show="!agent.hasImage && agent.firstName !=''">
+                                                    <span class="tile-initials">{{agent.firstName[0] |uppercase}}{{agent.lastName[0] |uppercase}}</span>
+                                                </div>
+                                            </div>
+                                            <div ng-if="agent.isDummy">
+                                                <i class="fa fa-user-circle source-panel__member-pic dummy-icon"></i>
+                                            </div>
+                                            <span class="source-panel__member-title capitalize">{{agent.firstName}} {{agent.lastName}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="source-panel__label source-panel__label--agent source-panel__collapse cursor-pointer" uib-tooltip="Go Back"
+                                     tooltip-animation="false"
+                                     tooltip-placement="top"
+                                     tooltip-popup-delay="0"
+                                     tooltip-popup-close-delay="400"
+                                     tooltip-append-to-body="true" ng-click="sourcePanelVisibleTab='main'">
+                                    <img class="source-panel__label-pic" src="images/ic-person.png" alt="agent">
+                                    <span class="source-panel__label-title">Agent</span>
+                                </div>
+                                <a href="" class="source-panel__label source-panel__label--main source-panel__collapse" ng-click="sourcePanelVisibleTab='main'"></a>
+                                <!--ng-click="saveEventExtras('agent')"-->
+                            </div>
+
+                            <div id="label" class="source-panel__content" ng-class="{'active-source-panel-tab': sourcePanelVisibleTab=='label'}">
+                                <ul class="source-panel__members">
+                                    <li class="source-panel__member-item fade  {{'label-'+ label.id}}" ng-class="{'source-panel__member-item--active' : label.isSelected}" ng-repeat="label in sourcePanelLabels">
+                                        <a href="" ng-attr-title="{{label.firstName}} {{label.lastName}}" class="source-panel__member-link" ng-click="toggleSourcePanelItem(label,'label')">
+                                            <div ng-if="!label.isDummy">
+                                                <!--<img ng-src={{label.imageUrl}} alt="" class="source-panel__member-pic">-->
+                                                <img ng-src={{label.imageUrl}} alt="" ng-show="label.hasImage" ng-error="label.hasImage=false" class="source-panel__member-pic" />
+                                                <div class="tile-avatar-circle" ng-show="!label.hasImage && label.firstName !=''">
+                                                    <span class="tile-initials">{{label.firstName[0] |uppercase}}{{label.lastName[0] |uppercase}}</span>
+                                                </div>
+                                            </div>
+                                            <div ng-if="label.isDummy">
+                                                <i class="fa fa-user-circle source-panel__member-pic dummy-icon"></i>
+                                            </div>
+                                            <span class="source-panel__member-title capitalize">{{label.firstName}} {{label.lastName}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="source-panel__label source-panel__label--label source-panel__collapse cursor-pointer" uib-tooltip="Go Back"
+                                     tooltip-animation="false"
+                                     tooltip-placement="top"
+                                     tooltip-popup-delay="0"
+                                     tooltip-popup-close-delay="400"
+                                     tooltip-append-to-body="true" ng-click="sourcePanelVisibleTab='main'">
+                                    <img class="source-panel__label-pic" src="images/ic-person.png" alt="label">
+                                    <span class="source-panel__label-title">Label</span>
+                                </div>
+
+                                <a href="" class="source-panel__label source-panel__label--main source-panel__collapse" ng-click="sourcePanelVisibleTab='main'"></a>
+                                <!--ng-click="saveEventExtras('label')"-->
+
+                            </div>
+
+                            <div id="sponsor" class="source-panel__content" ng-class="{'active-source-panel-tab': sourcePanelVisibleTab=='sponsor'}">
+
+                                <ul class="source-panel__members">
+
+                                    <li class="source-panel__member-item fade {{'sponsor-'+ sponsor.id}}" ng-class="{'source-panel__member-item--active' : sponsor.isSelected}" ng-repeat="sponsor in sourcePanelSponsors">
+                                        <a href="" ng-attr-title="{{sponsor.firstName}} {{sponsor.lastName}}" class="source-panel__member-link" ng-click="toggleSourcePanelItem(sponsor,'sponsor')">
+                                            <div ng-if="!sponsor.isDummy">
+                                                <!--<img ng-src={{sponsor.imageUrl}} alt="" class="source-panel__member-pic">-->
+                                                <img ng-src={{sponsor.imageUrl}} alt="" ng-show="sponsor.hasImage" ng-error="sponsor.hasImage=false" class="source-panel__member-pic" />
+                                                <div class="tile-avatar-circle" ng-show="!sponsor.hasImage && sponsor.firstName !=''">
+                                                    <span class="tile-initials">{{sponsor.firstName[0] |uppercase}}{{sponsor.lastName[0] |uppercase}}</span>
+                                                </div>
+                                            </div>
+                                            <div ng-if="sponsor.isDummy">
+                                                <i class="fa fa-user-circle source-panel__member-pic dummy-icon"></i>
+                                            </div>
+                                            <span class="source-panel__member-title capitalize">{{sponsor.firstName}} {{sponsor.lastName}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="source-panel__label source-panel__label--sponsor source-panel__collapse cursor-pointer" uib-tooltip="Go Back"
+                                     tooltip-animation="false"
+                                     tooltip-placement="top"
+                                     tooltip-popup-delay="0"
+                                     tooltip-popup-close-delay="400"
+                                     tooltip-append-to-body="true" ng-click="sourcePanelVisibleTab='main'">
+                                    <img class="source-panel__label-pic" src="images/ic-person.png" alt="sponsor">
+                                    <span class="source-panel__label-title">Sponsor</span>
+                                </div>
+
+                                <a href="" class="source-panel__label source-panel__label--main source-panel__collapse" ng-click="sourcePanelVisibleTab='main'"></a>
+                                <!--ng-click="saveEventExtras('sponsor')"-->
+                            </div>
+
+                            <div id="promoter" class="source-panel__content" ng-class="{'active-source-panel-tab': sourcePanelVisibleTab=='promoter'}">
+                                <div id="source_panel_promoter_scroller" ng-iscroll="source_panel_promoter_scroller" ng-iscroll-delay="500">
+                                    <ul class="source-panel__members">
+                                        <li class="source-panel__member-item fade {{'promoter-'+ promoter.id}}" ng-class="{'source-panel__member-item--active' : promoter.isSelected}" ng-repeat="promoter in sourcePanelPromoters">
+                                            <a href="" ng-attr-title="{{promoter.firstName}} {{promoter.lastName}}" class="source-panel__member-link" ng-click="toggleSourcePanelItem(promoter,'promoter')">
+                                                <div ng-if="!promoter.isDummy">
+                                                    <!--<img ng-src={{promoter.imageUrl}} alt="" class="source-panel__member-pic">-->
+                                                    <img ng-src={{promoter.imageUrl}} alt="" ng-show="promoter.hasImage" ng-error="promoter.hasImage=false" class="source-panel__member-pic" />
+                                                    <div class="tile-avatar-circle" ng-show="!promoter.hasImage  && promoter.firstName !=''">
+                                                        <span class="tile-initials">{{promoter.firstName[0] |uppercase}}{{promoter.lastName[0] |uppercase}}</span>
+                                                    </div>
+                                                </div>
+                                                <div ng-if="promoter.isDummy">
+                                                    <i class="fa fa-user-circle source-panel__member-pic dummy-icon"></i>
+                                                </div>
+                                                <span class="source-panel__member-title capitalize">{{promoter.firstName}} {{promoter.lastName}}</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="source-panel__label source-panel__label--promoter source-panel__collapse cursor-pointer" uib-tooltip="Go Back" ng-click="sourcePanelVisibleTab='main'"
+                                     tooltip-animation="false"
+                                     tooltip-placement="top"
+                                     tooltip-popup-delay="0"
+                                     tooltip-popup-close-delay="400"
+                                     tooltip-append-to-body="true">
+                                    <img class="source-panel__label-pic" src="images/ic-person.png" alt="promoter">
+                                    <span class="source-panel__label-title">Promoter</span>
+                                </div>
+
+                                <a href="" class="source-panel__label source-panel__label--main source-panel__collapse" ng-click="sourcePanelVisibleTab='main'"></a>
+                                <!--ng-click="saveEventExtras('promoter')"-->
+                            </div>
+
+                            <div id="manager" class="source-panel__content" ng-class="{'active-source-panel-tab': sourcePanelVisibleTab=='artist_manager'}">
+                                <ul class="source-panel__members">
+
+                                    <li class="source-panel__member-item fade {{'artist_manager-'+ manager.id}}" ng-class="{'source-panel__member-item--active' : manager.isSelected}" ng-repeat="manager in sourcePanelArtistManagers">
+                                        <a href="" ng-attr-title="{{manager.firstName}} {{manager.lastName}}" class="source-panel__member-link" ng-click="toggleSourcePanelItem(manager,'artist_manager')">
+                                            <div class="source-panel__member-pic" ng-if="!manager.isDummy">
+                                                <img ng-src={{manager.imageUrl}} alt="" ng-show="manager.hasImage" ng-error="manager.hasImage=false" />
+                                                <div class="tile-avatar-circle" ng-show="!manager.hasImage && manager.firstName !=''">
+                                                    <span class="tile-initials">{{manager.firstName[0] |uppercase}}{{manager.lastName[0] |uppercase}}</span>
+                                                </div>
+                                            </div>
+                                            <div ng-if="manager.isDummy">
+                                                <i class="fa  fa-user-circle source-panel__member-pic dummy-icon"></i>
+                                            </div>
+                                            <span class="source-panel__member-title capitalize">{{manager.firstName}} {{manager.lastName}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="source-panel__label source-panel__label--manager source-panel__collapse cursor-pointer" uib-tooltip="Go Back"
+                                     tooltip-animation="false"
+                                     tooltip-placement="top"
+                                     tooltip-popup-delay="0"
+                                     tooltip-popup-close-delay="400"
+                                     tooltip-append-to-body="true" ng-click="sourcePanelVisibleTab='main'">
+                                    <img class="source-panel__label-pic" src="images/ic-person.png" alt="manager">
+                                    <span class="source-panel__label-title">Manager</span>
+                                </div>
+                                <a href="" class="source-panel__label source-panel__label--main source-panel__collapse" ng-click="sourcePanelVisibleTab='main'"></a>
+                            </div>
+
+                            <div id="source_panel_digitals_scroller" ng-iscroll="source_panel_digitals_scroller" ng-iscroll-delay="500" class="source-panel__content source-panel__content--digital" ng-class="{'active-source-panel-tab': sourcePanelVisibleTab=='digital'}">
+
+                                <ul class="source-panel__members">
+
+                                    <li class="source-panel__member-item fade  {{'digital-'+ digital.id}}" ng-class="{'source-panel__member-item--active' : digital.isSelected}" ng-repeat="digital in sourcePanelDigitals">
+
+                                        <a href="" class="source-panel__member-link" uib-tooltip="Digital not available for event"
+                                           tooltip-animation="false"
+                                           tooltip-enable="!digital.isAvailableForEvent"
+                                           tooltip-placement="top"
+                                           tooltip-popup-delay="0"
+                                           tooltip-popup-close-delay="0"
+                                           tooltip-append-to-body="true" ng-click="digital.isAvailableForEvent && toggleSourcePanelItem(digital,'digital')">
+                                            <div ng-class="{'disable-digital':!digital.isAvailableForEvent}" ng-if="!digital.isDummy">
+                                                <img ng-src={{digital.imageUrl}} alt="" ng-show="digital.hasImage" ng-error="digital.hasImage=false" class="source-panel__member-pic">
+                                                <div class="tile-avatar-circle" ng-show="!digital.hasImage && digital.firstName !=''">
+                                                    <span class="tile-initials"><i class="fa fa-headphones"></i></span>
+                                                </div>
+                                            </div>
+                                            <div ng-if="digital.isDummy">
+                                                <i class="fa fa-headphones source-panel__member-pic dummy-icon"></i>
+                                            </div>
+                                            <span class="source-panel__member-title capitalize">{{digital.name}}</span>
+
+                                        </a>
+
+                                        <!--ng-attr-title="{{digital.name}}-->
+
+                                    </li>
+                                </ul>
+                                <div class="source-panel__label source-panel__label--data source-panel__collapse cursor-pointer" uib-tooltip="Go Back"
+                                     tooltip-animation="false"
+                                     tooltip-placement="top"
+                                     tooltip-popup-delay="0"
+                                     tooltip-popup-close-delay="400"
+                                     tooltip-append-to-body="true" ng-click="sourcePanelVisibleTab='main'">
+                                    <span class="source-panel__member-title">Digital</span>
+                                </div>
+
+                                <a href="" class="source-panel__label source-panel__label--main source-panel__collapse" ng-click="sourcePanelVisibleTab='main'"></a>
+                                <!--ng-click="saveEventExtras('digital')"-->
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/ng-template" id="removePromo.html">
+            <div class="modal-header">
+                <span>Remove Promotion?</span>
+                <a class="modal-close" ng-click="cancel()" href="">&#10005;</a>
+            </div>
+            <div class="modal-body">
+                <span>
+                    Are you sure you would like to remove this promotion?
+                </span>
+                <span class="confirm-button" ng-click="removePromotion()">
+                    <i class="fa fa-thumbs-o-up"></i>
+                    YES
+                </span>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="promoDetails.html">
+            <div class="promo-detail">
+                <div ng-repeat="promoInstance in promotion.promoInstances">
+                    <span class="promo-company" uib-tooltip="{{promoInstance.companyName || promoInstance.userFullName}}"
+                          tooltip-animation="false"
+                          tooltip-popup-delay="100"
+                          tooltip-placement="left"
+                          tooltip-is-open="(promoInstance.companyName || promoInstance.userFullName).length>23"
+                          tooltip-enable="(promoInstance.companyName || promoInstance.userFullName).length>23"
+                          tooltip-append-to-body="true">
+                        {{ (promoInstance.companyName || promoInstance.userFullName) | limitTo: 23 }}{{(promoInstance.companyName || promoInstance.userFullName).length>23 ?'...':'' }}
+                    </span>
+                    <span class="promo-count">
+                        {{promoInstance.typeCount}}
+                    </span>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="promoCount.html">
+            <div class="promo-detail">
+                <div ng-repeat="promoInstance in promotion.promoInstances">
+                    <span class="promo-count">
+                        {{promoInstance.typeCount}}
+                    </span>
+                </div>
+            </div>
+        </script>
+    </div>
+
+</div>

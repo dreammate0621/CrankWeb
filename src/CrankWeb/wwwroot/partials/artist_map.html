@@ -1,0 +1,928 @@
+
+    <div ng-leaflet="$parent.map" map-options="$parent.map_options" id="artistmap" ng-click="hideAllPanels();">
+    </div>
+    <div id="events" class="events" ng-class="{'events-minimize': !isEventsPanelMaximized, 'events-tours-visible': showTourDateScroller}" ng-click="maximizeEvents($event)">
+        <div id="events-scroller-wrapper" class="events-scroller-wrapper watch-scrolling" ng-iscroll="events_wrapper" ng-iscroll-delay="500">
+            <div id="events__scroller" class="events__scroller grabcursor">
+                <div class="events__item event" event-item-size ng-class="{'event__active' : artistEvent.isSelected}" ng-if="artistEvent.isDisplay" ng-repeat="artistEvent in artistEvents | filter:{$:showsFilter} | orderBy:'eventDate'">
+                    <ul class="event__controls">
+                        <li class="event__control-item">
+                            <a href="" class="event__control-btn">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <h2 class="event__title">{{artistEvent.artistName}}</h2>
+                    <img class="event__pic" ng-src={{artistEvent.artistImage}} alt="" ng-click="selectEventArtist($event, artistEvent)">
+                    <div class="event__body">
+                        <div class="event__date">{{artistEvent.eventDate |  date:'MM/dd/yyyy' : 'UTC'}}</div>
+                        <div class="event__place">{{artistEvent.venue}} </div>
+                        <div class="event__location">{{artistEvent.city}} </div>
+                        <ul class="event__actions">
+                            <li class="event__action-item">
+                                <a href="" class="event__action-link" ng-class="{'promotion__link--active':artistEvent.hasTicket}">
+                                    <i class="fa fa-ticket"></i>
+                                </a>
+                            </li>
+                            <li class="event__action-item">
+                                <a href="" class="event__action-link" ng-class="{'promotion__link--active':artistEvent.hasMeetNGreet}">
+                                    <i class="fa fa-camera"></i>
+                                </a>
+                            </li>
+                            <li class="event__action-item">
+                                <a href="" class="event__action-link" ng-class="{'promotion__link--active':artistEvent.hasInterview}">
+                                    <i class="fa fa-microphone"></i>
+                                </a>
+                            </li>
+                            <li class="event__action-item">
+                                <a href="" class="event__action-link" ng-class="{'promotion__link--active':artistEvent.hasAppearnce}"><i class="fa fa-eye"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div style="clear:both"></div>
+    </div>
+<!--div to hold them on the side one bellow the other-->
+
+<div class="tommy-holder-test">
+    <!--promotion panel-->
+    <div ng-if="user_Has_Promotion_Module" id="user_Has_Promotion_Module" module-wrapper class="fade"  ng-show="activePanel('promotion')" ng-include="current_promotion_template"></div>
+   
+    <div class="messenger-wrapper fade" module-wrapper id="user_Has_Messaging_Module" ng-if="user_Has_Messaging_Module" ng-show="activePanel('messenger')" ng-include="'partials/promo_messenger.html'" ng-class="{'module-active': isMessengerModuleMaximized}" ng-click="maximizeMessenger()">
+    </div>
+    <div class="charting-wrapper fade" module-wrapper id="user_Has_Charting_Module" ng-if="user_Has_Charting_Module" ng-show="activePanel('charting')" ng-class="{'module-active': isChartingModuleMaximized}" ng-click="maximizeCharting()">
+        <div class="promotion promotion--charting" id="charting">
+
+            <ul class="promotion__controls">
+                <li class="promotion__control-item" ng-click="minimizeCharting($event)">
+                    <a href="" class="promotion__control-btn promotion__control-btn--underscore"></a>
+                </li>
+                <li class="promotion__control-item">
+                    <a href="" class="promotion__control-btn promotion__control-btn--clone"></a>
+                </li>
+                <li class="promotion__control-item">
+                    <a href="" class="promotion__control-btn promotion__control-btn--close"></a>
+                </li>
+            </ul>
+
+            <div class="promotion__side js-sort-links">
+                <a class="promotion__link promotion__link--active" href="" data-sort-value="global" data-title="">
+                    <i class="fa fa-globe promotion__icon promotion__icon--global"></i>
+                    global
+                </a>
+                <a class="promotion__link" href="" data-sort-value="continent" data-title="Africa">
+                    <i class="fa fa-globe promotion__icon promotion__icon--continent"></i>
+                    continent
+                </a>
+                <a class="promotion__link" href="" data-sort-value="region" data-title="Africa, South Africa">
+                    <i class="fa fa-globe promotion__icon promotion__icon--region"></i>
+                    region
+                </a>
+                <a class="promotion__link" href="" data-sort-value="local" data-title="Africa, South Africa, Johannesburg">
+                    <i class="fa fa-globe promotion__icon promotion__icon--local"></i>
+                    local
+                </a>
+            </div>
+
+            <div class="promotion__main">
+                <div class="promotion__header">
+                    <!--<div class="promotion__title-wrap">
+                        <h2 class="promotion__title"></h2>
+                    </div>
+
+                    <div class="promotion__search search search--add">
+                        <input type="search" class="search__field">
+                        <span class="search__icon-search"><i class="fa fa-search"></i></span>
+                        <a href="" class="search__btn"><i class="fa fa-plus"></i></a>
+                    </div>
+
+                    <div class="promotion__places">
+                        <div class="promotion__place">
+                            JOHANNESBURG
+                            <a href="" class="promotion__btn-close"><i class="fa fa-close"></i></a>
+                        </div>
+                        <div class="promotion__place">
+                            Cape town
+                            <a href="" class="promotion__btn-close"><i class="fa fa-close"></i></a>
+                        </div>
+                    </div>-->
+                    <h2 class="promotion__area">{{selectedEvent.venue || 'Select an Event'}}</h2>
+                    <!--<input class="promotion__title" value="CHICAGO, IL, USA">-->
+                    <span class="promotion__title" ng-click="selectMainMarket()">{{selectedEvent.market}}</span>
+
+                    <div class="promotion__field-add">
+
+                        <input type="text" class="promotion__search__field__top"
+                               placeholder="Search Markets"
+                               ng-model="$parent.$parent.$parent.subMarketSearch"
+                               uib-typeahead="resMarket.name + ', ' + (resMarket.state ?  resMarket.state + ', ' : '') + resMarket.country for resMarket in searchMarkets($viewValue) | limitTo:20"
+                               typeahead-loading="loadingMarkets"
+                               ypeahead-wait-ms="400"
+                               typeahead-on-select="addSubMarketsToEvent($item, $model, $label)"
+                               typeahead-no-results="noMarketsFound"
+                               ng-disabled="!selectedEvent">
+                        <span class="search__icon-search_top-editable"><i class="fa fa-search"></i></span>
+                        <!--<a href="" class="promotion__btn-add"><i class="fa fa-plus"></i></a>-->
+
+                    </div>
+
+                    <div class="promotion__places">
+                        <div class="promotion__place fade" ng-class="{'active': subMarket.selected} " ng-repeat="subMarket in selectedEvent.subMarkets.subMarketList" ng-click="selectSubMarket(subMarket)">
+                            {{subMarket.name}}
+                            <a class="promotion__btn-close"><i class="fa fa-close" ng-click="removeSubMarket(subMarket,$index)"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="promotion__track-list track-list" ng-iscroll="charts_scroller_wrapper" ng-iscroll-delay="500">
+
+                    <div class="track-list__inner grabcursor" id="charts_scroller_wrapper"><!--charts scroller -->
+                        <div class="track-list__row" chart-detail>
+
+                            <div class="track-list__counter">
+                                <div class="track-list__count">1</div>
+                            </div>
+
+                            <div class="track-list__track track"
+                                    data-global-rank="1" data-continent-rank="2" data-region-rank="3" data-local-rank="4">
+
+                                <div class="track__artist">SIA</div>
+
+                                <div class="track__label">RCA</div>
+
+                                <div class="track__song-name">Cheap Thrills</div>
+
+                                <div class="track__info track__info--wks">
+                                    <div class="track__info-heading">wks</div>
+                                    <div class="track__info-text">52</div>
+                                </div>
+
+                                <div class="track__info track__info--tw">
+                                    <div class="track__info-heading">tw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--lw">
+                                    <div class="track__info-heading">lw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--spins">
+                                    <div class="track__info-heading">spins</div>
+                                    <div class="track__info-text">69377</div>
+                                </div>
+
+                                <div class="track__info track__info--move">
+                                    <div class="track__info-heading">move</div>
+                                    <div class="track__info-text">4</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="track-list__row" chart-detail>
+
+                            <div class="track-list__counter">
+                                <div class="track-list__count">2</div>
+                            </div>
+
+                            <div class="track-list__track track"
+                                    data-global-rank="2" data-continent-rank="3" data-region-rank="4" data-local-rank="5">
+
+                                <div class="track__artist">HARRIS, CALVIN</div>
+
+                                <div class="track__label">f/Rihanna	Columbia</div>
+
+                                <div class="track__song-name">This Is What You... f/Rihanna</div>
+
+                                <div class="track__info track__info--wks">
+                                    <div class="track__info-heading">wks</div>
+                                    <div class="track__info-text">34</div>
+                                </div>
+
+                                <div class="track__info track__info--tw">
+                                    <div class="track__info-heading">tw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--lw">
+                                    <div class="track__info-heading">lw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--spins">
+                                    <div class="track__info-heading">spins</div>
+                                    <div class="track__info-text">69377</div>
+                                </div>
+
+                                <div class="track__info track__info--move">
+                                    <div class="track__info-heading">move</div>
+                                    <div class="track__info-text">3</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="track-list__row" chart-detail>
+
+                            <div class="track-list__counter">
+                                <div class="track-list__count">3</div>
+                            </div>
+
+                            <div class="track-list__track track"
+                                    data-global-rank="3" data-continent-rank="5" data-region-rank="1" data-local-rank="2">
+
+                                <div class="track__artist">TWENTY ONE PILOTS</div>
+
+                                <div class="track__label">Fueled By Ramen/RRP</div>
+
+                                <div class="track__song-name">Ride</div>
+
+                                <div class="track__info track__info--wks">
+                                    <div class="track__info-heading">wks</div>
+                                    <div class="track__info-text">52</div>
+                                </div>
+
+                                <div class="track__info track__info--tw">
+                                    <div class="track__info-heading">tw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--lw">
+                                    <div class="track__info-heading">lw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--spins">
+                                    <div class="track__info-heading">spins</div>
+                                    <div class="track__info-text">69377</div>
+                                </div>
+
+                                <div class="track__info track__info--move">
+                                    <div class="track__info-heading">move</div>
+                                    <div class="track__info-text">4</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="track-list__row" chart-detail>
+
+                            <div class="track-list__counter">
+                                <div class="track-list__count">4</div>
+                            </div>
+
+                            <div class="track-list__track track"
+                                    data-global-rank="4" data-continent-rank="4" data-region-rank="5" data-local-rank="1">
+
+                                <div class="track__artist">THE CHAINSMOKERS</div>
+
+                                <div class="track__label">Disruptor / Columbia</div>
+
+                                <div class="track__song-name">Don't Let Me Down f/Daya</div>
+
+                                <div class="track__info track__info--wks">
+                                    <div class="track__info-heading">wks</div>
+                                    <div class="track__info-text">54</div>
+                                </div>
+
+                                <div class="track__info track__info--tw">
+                                    <div class="track__info-heading">tw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--lw">
+                                    <div class="track__info-heading">lw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--spins">
+                                    <div class="track__info-heading">spins</div>
+                                    <div class="track__info-text">69377</div>
+                                </div>
+
+                                <div class="track__info track__info--move">
+                                    <div class="track__info-heading">move</div>
+                                    <div class="track__info-text">7</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="track-list__row" chart-detail>
+
+                            <div class="track-list__counter">
+                                <div class="track-list__count">5</div>
+                            </div>
+
+                            <div class="track-list__track track"
+                                    data-global-rank="5" data-continent-rank="5" data-region-rank="1" data-local-rank="2">
+
+                                <div class="track__artist">DRAKE</div>
+
+                                <div class="track__label">YMCMB / Republic</div>
+
+                                <div class="track__song-name">One Dance f/Wizkid & Kyla</div>
+
+                                <div class="track__info track__info--wks">
+                                    <div class="track__info-heading">wks</div>
+                                    <div class="track__info-text">52</div>
+                                </div>
+
+                                <div class="track__info track__info--tw">
+                                    <div class="track__info-heading">tw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--lw">
+                                    <div class="track__info-heading">lw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--spins">
+                                    <div class="track__info-heading">spins</div>
+                                    <div class="track__info-text">69377</div>
+                                </div>
+
+                                <div class="track__info track__info--move">
+                                    <div class="track__info-heading">move</div>
+                                    <div class="track__info-text">4</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="track-list__row" chart-detail>
+
+                            <div class="track-list__counter">
+                                <div class="track-list__count">6</div>
+                            </div>
+
+                            <div class="track-list__track track"
+                                    data-global-rank="6" data-continent-rank="6" data-region-rank="5" data-local-rank="1">
+
+                                <div class="track__artist">ADELE</div>
+
+                                <div class="track__label">XL/Columbia</div>
+
+                                <div class="track__song-name">Send My Love (To Your New...</div>
+
+                                <div class="track__info track__info--wks">
+                                    <div class="track__info-heading">wks</div>
+                                    <div class="track__info-text">562</div>
+                                </div>
+
+                                <div class="track__info track__info--tw">
+                                    <div class="track__info-heading">tw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--lw">
+                                    <div class="track__info-heading">lw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--spins">
+                                    <div class="track__info-heading">spins</div>
+                                    <div class="track__info-text">69377</div>
+                                </div>
+
+                                <div class="track__info track__info--move">
+                                    <div class="track__info-heading">move</div>
+                                    <div class="track__info-text">5</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="track-list__row" chart-detail>
+
+                            <div class="track-list__counter">
+                                <div class="track-list__count">7</div>
+                            </div>
+                            <div class="track-list__track track"
+                                    data-global-rank="7" data-continent-rank="1" data-region-rank="2" data-local-rank="3">
+
+                                <div class="track__artist">TIMBERLAKE, JUSTIN</div>
+
+                                <div class="track__label">RCA</div>
+
+                                <div class="track__song-name">Can't Stop The Feeling</div>
+
+                                <div class="track__info track__info--wks">
+                                    <div class="track__info-heading">wks</div>
+                                    <div class="track__info-text">1</div>
+                                </div>
+
+                                <div class="track__info track__info--tw">
+                                    <div class="track__info-heading">tw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--lw">
+                                    <div class="track__info-heading">lw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--spins">
+                                    <div class="track__info-heading">spins</div>
+                                    <div class="track__info-text">69377</div>
+                                </div>
+
+                                <div class="track__info track__info--move">
+                                    <div class="track__info-heading">move</div>
+                                    <div class="track__info-text">1</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="track-list__row" chart-detail>
+
+                            <div class="track-list__counter">
+                                <div class="track-list__count">8</div>
+                            </div>
+
+                            <div class="track-list__track track"
+                                    data-global-rank="8" data-continent-rank="4" data-region-rank="5" data-local-rank="1">
+
+                                <div class="track__artist">MAJOR LAZER</div>
+
+                                <div class="track__label">Def Jam</div>
+
+                                <div class="track__song-name">Cold Water f/Justin Bieber, MØ</div>
+
+                                <div class="track__info track__info--wks">
+                                    <div class="track__info-heading">wks</div>
+                                    <div class="track__info-text">54</div>
+                                </div>
+
+                                <div class="track__info track__info--tw">
+                                    <div class="track__info-heading">tw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--lw">
+                                    <div class="track__info-heading">lw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--spins">
+                                    <div class="track__info-heading">spins</div>
+                                    <div class="track__info-text">69377</div>
+                                </div>
+
+                                <div class="track__info track__info--move">
+                                    <div class="track__info-heading">move</div>
+                                    <div class="track__info-text">7</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="track-list__row" chart-detail>
+
+                            <div class="track-list__counter">
+                                <div class="track-list__count">9</div>
+                            </div>
+
+                            <div class="track-list__track track"
+                                    data-global-rank="8" data-continent-rank="4" data-region-rank="5" data-local-rank="1">
+
+                                <div class="track__artist">MAJOR LAZER</div>
+
+                                <div class="track__label">Def Jam</div>
+
+                                <div class="track__song-name">Cold Water f/Justin Bieber, MØ</div>
+
+                                <div class="track__info track__info--wks">
+                                    <div class="track__info-heading">wks</div>
+                                    <div class="track__info-text">54</div>
+                                </div>
+
+                                <div class="track__info track__info--tw">
+                                    <div class="track__info-heading">tw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--lw">
+                                    <div class="track__info-heading">lw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--spins">
+                                    <div class="track__info-heading">spins</div>
+                                    <div class="track__info-text">69377</div>
+                                </div>
+
+                                <div class="track__info track__info--move">
+                                    <div class="track__info-heading">move</div>
+                                    <div class="track__info-text">7</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="track-list__row" chart-detail ng-repeat="i in totalCharts">
+
+                            <div class="track-list__counter">
+                                <div class="track-list__count">{{i}}</div>
+                            </div>
+
+                            <div class="track-list__track track"
+                                 data-global-rank="8" data-continent-rank="4" data-region-rank="5" data-local-rank="1">
+
+                                <div class="track__artist">MAJOR LAZER</div>
+
+                                <div class="track__label">Def Jam</div>
+
+                                <div class="track__song-name">Cold Water f/Justin Bieber, MØ</div>
+
+                                <div class="track__info track__info--wks">
+                                    <div class="track__info-heading">wks</div>
+                                    <div class="track__info-text">54</div>
+                                </div>
+
+                                <div class="track__info track__info--tw">
+                                    <div class="track__info-heading">tw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--lw">
+                                    <div class="track__info-heading">lw</div>
+                                    <div class="track__info-text">R</div>
+                                </div>
+
+                                <div class="track__info track__info--spins">
+                                    <div class="track__info-heading">spins</div>
+                                    <div class="track__info-text">69377</div>
+                                </div>
+
+                                <div class="track__info track__info--move">
+                                    <div class="track__info-heading">move</div>
+                                    <div class="track__info-text">7</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div><!---charts scroller-->
+                    <div style="clear:both"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="treemap-wrapper fade" module-wrapper id="user_Has_Treemap_Module" ng-if="user_Has_Treemap_Module" ng-show="activePanel('treemap')" ng-class="{'module-active': isTreemapModuleMaximized}" ng-click="maximizeTreemap()">
+        <div class="promotion promotion--treemap" id="treemap">
+
+            <ul class="promotion__controls">
+                <li class="promotion__control-item">
+                    <a href="" class="promotion__control-btn promotion__control-btn--underscore" ng-click="minimizeTreemap($event)"></a>
+                </li>
+                <li class="promotion__control-item">
+                    <a href="" class="promotion__control-btn promotion__control-btn--clone"></a>
+                </li>
+                <li class="promotion__control-item">
+                    <a href="" class="promotion__control-btn promotion__control-btn--close"></a>
+                </li>
+            </ul>
+
+            <!-- begin flayout -->
+            <div class="promotion__flayout flayout">
+            </div>
+            <!-- end flayout -->
+
+            <div class="promotion__side">
+                <a class="promotion__link promotion__link--side promotion__link--active" href="">
+                    <i class="fa fa-ticket"></i>
+                </a>
+                <a class="promotion__link promotion__link--side" href=""><i class="fa fa-camera"></i></a>
+                <a class="promotion__link promotion__link--side" href=""><i class="fa fa-microphone"></i></a>
+                <a class="promotion__link promotion__link--side" href=""><i class="fa fa-eye"></i></a>
+            </div>
+            <div class="promotion__main">
+                <div class="promotion__header">
+                    <h2 class="promotion__area">{{selectedEvent.venue || 'Select an Event'}}</h2>
+                    <span class="promotion__title" ng-click="selectMainMarket()">{{selectedEvent.market}}</span>
+                    <div class="promotion__field-add">
+                        <input type="text" class="promotion__search__field__top"
+                               placeholder="Search Markets"
+                               ng-model="$parent.$parent.$parent.subMarketSearch"
+                               uib-typeahead="resMarket.name + ', ' + (resMarket.state ?  resMarket.state + ', ' : '') + resMarket.country for resMarket in searchMarkets($viewValue) | limitTo:20"
+                               typeahead-loading="loadingMarkets"
+                               ypeahead-wait-ms="400"
+                               typeahead-on-select="addSubMarketsToEvent($item, $model, $label)"
+                               typeahead-no-results="noMarketsFound"
+                               ng-disabled="!selectedEvent">
+                        <span class="search__icon-search_top-editable"><i class="fa fa-search"></i></span>
+                    </div>
+                    <div class="promotion__places">
+                        <div class="promotion__place fade" ng-class="{'active': subMarket.selected} " ng-repeat="subMarket in selectedEvent.subMarkets.subMarketList" ng-click="selectSubMarket(subMarket)">
+                            {{subMarket.name}}
+                            <a class="promotion__btn-close"><i class="fa fa-close" ng-click="removeSubMarket(subMarket,$index)"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="promotion__treemap treemap"></div>
+
+                <div class="promotion__footer"></div>
+            </div>
+
+            <!--TODO: This is temporary  solution  for tree map will create directive for this-->
+            <script type="text/javascript">
+                try {
+                    creatTreeMap();
+                }
+                catch (e) { }
+            </script>
+        </div>
+    </div>
+  
+
+</div>
+
+<div class="row  map-pan-toggle-btn pull-righ" ng-class="{'events-tours-visible':showTourDateScroller}">
+    <ul class="tg-list">
+        <li class="tg-list-item">
+            <input class="tgl tgl-skewed" ng-change="toggleAutoMapZoom()" ng-model="isAutoZoomOnMap" id="map-toggle" type="checkbox" />
+            <label class="tgl-btn" data-tg-off="MAP PAN OFF" data-tg-on="MAP PAN ON" for="map-toggle"></label>
+        </li>
+    </ul>
+</div>
+
+
+
+    <div class="dates row animate-fade ng-hide-animate  ng-cloak" ng-show="showTourDateScroller">
+        <div id="dates_scroller" iscroll="$parent.dates_scroller" iscroll-opt="dates_scroller_opt" class="dates-wrapper">
+            <ul>
+                <li ng-repeat="date in dates" class="date" ng-class="{open: date.booked, closed: !date.booked, even: $even, openselected: date.booked && date.isSelected, event__active: date.event.isSelected}"
+                    ng-click="selectEventArtist($event, date.event)">
+                    <div class="info dragme" data-index="{{date.index}}" ng-dblclick="toggleOpen(date);">
+                        <span>{{date.day}}</span>
+                        <div class="btn-group dropup" ng-if="date.moreEventsOnSameDate">
+                            <i class="fa fa-list-ol dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" aria-hidden="true"></i>
+                            <ul class="dropdown-menu morevents">
+                                <li class="dropdown-header">{{date.moreEvents.length}} more {{date.moreEvents.length >1 ?'events':'event'}} </li>
+                                <li class="divider"></li>
+                                <li ng-repeat="event in date.moreEvents" ng-click="selectEventArtist($event, event.event,$parent.$index)"><a href="">{{ event.artistName }}</a></li>
+                            </ul>
+                        </div>
+
+                        <!--<span ng-if="date.moreEventsOnSameDate"><i  uib-popover-template="'moreEventsForSameDate.html'"
+                                           popover-trigger="'mouseenter'"
+                                           popover-placement="auto top"
+                                           popover-popup-close-delay="3000"
+                                           popover-append-to-body="true"
+                                           popover-animation="false"
+                                           popover-title="{{date.moreEvents.length}} More Events"
+                                           popover-class="promo-detail" class="fa fa-clone" aria-hidden="true"></i></span>-->
+                    </div>
+                    <div class="actions">
+                        <ul>
+                            <li>
+                                <a ng-show="date.artistName" class="animate-fade" href="">{{ date.artistName }}</a>
+                            </li>
+                            <li>
+                                <a ng-show="date.city" ng-click="confirmMarket(date.city)" class="animate-fade" href="">{{ date.city }}</a>
+                            </li>
+                            <li>
+                                <a ng-show="date.venue" ng-if="date.venue.length<=40" class="animate-fade" href="">{{ date.venue || 'Venue' }}</a>
+                                <a ng-show="date.venue" ng-if="date.venue.length>40" style="font-size:11.5px" class="animate-fade" href="">{{ date.venue || 'Venue' }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+<script type="text/ng-template" id="moreEventsForSameDate.html">
+    <ul class="morevents">
+        <li ng-repeat="event in date.moreEvents" ng-click="selectEventArtist($event, event.event,$parent.$index)"><a href="">{{ event.artistName }}</a></li>
+    </ul>
+
+</script>
+
+<script type="text/javascript">
+
+    //Charting related code - Should be moved to angular controller later
+    var sortGroup = null;
+    var sideLinks = $('.js-sort-links .promotion__link');
+
+    var chartingWrapper = document.querySelector('#charting');
+    var promotionTitleWrap = chartingWrapper.querySelector('.promotion__title-wrap');
+    try{
+        var promotionTitle = promotionTitleWrap.querySelector('.promotion__title');
+    }
+    catch(e)
+    {}
+
+    sideLinks.on('click', function (e) {
+        e.preventDefault();
+        sideLinks.removeClass('promotion__link--active');
+        $(this).addClass('promotion__link--active');
+
+        var sortValue = $(this).attr('data-sort-value');
+        sortGroup.isotope({ sortBy: sortValue });
+
+
+        promotionTitle.innerHTML = this.dataset.title;
+
+        if ($(window).width() >= 960) {
+            promotionTitle.style.width = 0;
+
+            $(promotionTitle).stop().animate({
+                width: '100%'
+            }, 700);
+        }
+    });
+
+
+    sortGroup = $('.track-list').isotope({
+        itemSelector: '.track',
+        layoutMode: 'fitRows',
+        transitionDuration: '0.7s',
+        getSortData: {
+            global: '[data-global-rank]',
+            continent: '[data-continent-rank]',
+            region: '[data-region-rank]',
+            local: '[data-local-rank]'
+        }
+    });
+
+
+    var tracks = $('.track');
+    tracks.on('click', function () {
+        tracks.removeClass('track--active');
+        $(this).addClass('track--active');
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    function creatTreeMap() {
+
+        //Treemap related code
+        var treemapdiv = document.querySelector('#treemap');
+        var treemapTitle = treemapdiv.querySelector('.promotion__title');
+        var treemapArea = treemapdiv.querySelector('.promotion__area');
+
+        // treemap
+        var flayout = $(".flayout");
+
+        var w = 800,
+          h = 310,
+          x = d3.scale.linear().range([0, w]),
+          y = d3.scale.linear().range([0, h]),
+          color = d3.scale.category20c(),
+          root,
+          node;
+
+        var treemap = d3.layout.treemap()
+        .round(false)
+        .size([w, h])
+        .sticky(true)
+        .value(function (d) { return d.size; });
+
+        var svg = d3.select(".promotion__treemap")
+        .style("width", w + "px")
+        .style("height", h + "px")
+        .append("svg:svg")
+        .attr("width", w)
+        .attr("height", h)
+        .append("svg:g")
+        .attr("transform", "translate(.5,.5)");
+
+        d3.json("data/treemap_data.json", function (data) {
+            node = root = data;
+
+            var nodes = treemap.nodes(root)
+            .filter(function (d) { return !d.children; });
+
+            var cell = svg.selectAll("g")
+            .data(nodes)
+            .enter().append("svg:g")
+            .attr("class", "cell")
+            .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
+            .on("click", function (d) {
+                var eventInfo = $('.promotion__event-info');
+                eventInfo.html(' ');
+
+                if (d.city) {
+                    treemapTitle.innerHTML = d.city;
+                }
+
+                if (d.clubName) {
+                    treemapArea.innerHTML = d.clubName;
+                }
+
+                //if (d.data) { createEventInfoItem(d) }
+                //flayout.css('display', 'none');
+                //flayout.fadeIn(300);
+                //promotion.classList.add('promotion--expanded');
+
+                return zoom(node == d.parent ? root : d.parent);
+            })
+            cell.append("svg:rect")
+            .attr("width", function (d) { return d.dx - 1; })
+            .attr("height", function (d) { return d.dy - 1; })
+            .style("fill", function (d) { return color(d.parent.name); });
+
+            d3.select("select").on("change", function () {
+                treemap.value(this.value == "size" ? size : count).nodes(root);
+                zoom(node);
+            });
+        });
+
+
+        //$(window).on('click', function ()
+        //{
+        //    flayout.css('display', '');
+        //    promotion.classList.remove('promotion--expanded');
+        //});
+
+        function size(d) {
+            return d.size;
+        }
+
+        function count(d) {
+            return 1;
+        }
+
+        function zoom(d) {
+            var kx = w / d.dx, ky = h / d.dy;
+            x.domain([d.x, d.x + d.dx]);
+            y.domain([d.y, d.y + d.dy]);
+
+            var t = svg.selectAll("g.cell").transition()
+            .duration(d3.event.altKey ? 7500 : 750)
+            .attr("transform", function (d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
+
+            t.select("rect")
+            .attr("width", function (d) { return kx * d.dx - 1; })
+            .attr("height", function (d) { return ky * d.dy - 1; })
+
+            t.select("text")
+            .attr("x", function (d) { return kx * d.dx / 2; })
+            .attr("y", function (d) { return ky * d.dy / 2; })
+            .style("opacity", function (d) { return kx * d.dx > d.w ? 1 : 0; });
+
+            node = d;
+            d3.event.stopPropagation();
+        }
+
+        //function createEventInfoItem(d) {
+        //  var eventInfo = $('.flayout__event-info');
+        //
+        //  for (var i = 0; i < d.data.length; i++) {
+        //    var data = d.data[i];
+        //
+        //    var eventInfoItem = $('<div class="event-info__item">');
+        //
+        //    var colLeft =
+        //      $('<div class="flayout__col flayout__col--column">' +
+        //          '<div class="event-info__level">' + data.level + '</div>' +
+        //        '</div>');
+        //
+        //    var colRight =
+        //      $('<div class="flayout__col">' +
+        //          '<div class="flayout__col">' +
+        //            '<div class="event-info__total">' + data.total + '</div>' +
+        //          '</div>' +
+        //          '<div class="flayout__col">' +
+        //            '<div class="event-info__cost">' + data.cost + '</div>' +
+        //          '</div>' +
+        //        '</div>');
+        //
+        //    for (var j = 0; j < data.type.length; j++) {
+        //      var type = $('<div class="event-info__type">' + data.type[j] + '</div>')
+        //      colLeft.append(type);
+        //    }
+        //
+        //    eventInfoItem.append(colLeft, colRight);
+        //    eventInfo.append(eventInfoItem);
+        //  }
+        //}
+
+        // scalable
+        //promotion.addEventListener('click', function ()
+        //{
+        //    this.classList.add('promotion--active');
+        //}, true);
+
+        //promotion.querySelector('.promotion__control-btn--underscore').addEventListener('click', function ()
+        //{
+        //    promotion.classList.remove('promotion--active');
+        //    return false;
+        //});
+    }
+</script>

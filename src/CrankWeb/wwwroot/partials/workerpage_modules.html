@@ -1,0 +1,184 @@
+<div class="">
+    <ul class="account__controls">
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--underscore" ng-click="cancel()"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--clone"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--close popup__close" ng-click="cancel()"></a>
+        </li>
+    </ul>
+</div>
+<div class="account__main_wpteam">
+
+    <!-- begin In network search -->
+    <div class="account__search search">
+        <input type="search" class="search__field" ng-model="searchInNetworkModuleText">
+        <span class="search__icon-search"><i class="fa fa-search"></i></span>
+    </div>
+    <!--end In network search -->
+
+    <div class="account__frames" ng-sortable="sortableModuleConfig">
+        <!-- begin in network team member frame -->
+        <div class="frame__workpageteam" ng-class="{'frame--active' : inNetworkModule.isActive}" ng-repeat="inNetworkModule in InNetworkModulesList  | filter:searchInNetworkModuleText ">
+            <input color-picker class="frame__icon color__picker__field__style" color-me="true" ng-model="inNetworkModule.colorValueInline" />
+
+              <ul class="frame__controls">
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--underscore"></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--clone"><i class="fa fa-clone"></i></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="" uib-tooltip="CLICK TO REMOVE MODULE"
+                   tooltip-animation="false"
+                   tooltip-append-to-body="true" ng-click="moveModuleOutFormUserNetwork(inNetworkModule.id)"  class="frame__control-btn frame__control-btn--remove"><i class="fa fa-close"></i></a>
+                </li>
+               
+            </ul>
+            <div class="frame__tabs tabs">
+                <ul class="tabs__controls">
+                    <li class="tabs__control-item tabs__control-item--active">
+                        <a class="tabs__control-link">
+                            <img ng-src="{{inNetworkModule.imageUrl}}" alt="" class="frame__pic">
+
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="tabs__content">
+                    <div class="tabs__content-item tabs__content-item--active">
+                        <div class="frame__info">
+                            <div class="frame__title">{{inNetworkModule.name| uppercase }} </div>
+
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li>{{inNetworkModule.name| uppercase }}</li>
+
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{inNetworkModule.name | uppercase }} </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tabs__content-item">
+                        <div class="frame__info">
+                            <div class="frame__title">{{inNetworkModule.name | uppercase }}</div>
+
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li>{{inNetworkModule.name| uppercase }}</li>
+
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{inNetworkModule.name | uppercase }} </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end in network Module frame -->
+    </div>
+    <!--<ul class="account__actions">
+        <li class="account__action-item">
+            <a href="" class="account__action-link">
+                <i class="fa fa-share"></i>
+            </a>
+        </li>
+        <li class="account__action-item">
+            <a href="" class="account__action-link">
+                <i class="fa fa-print"></i>
+            </a>
+        </li>
+        <li class="account__action-item">
+            <a href="" class="account__action-link" ng-click="saveInNetworkModule()"><i class="fa fa-save"></i></a>
+        </li>
+        <li class="account__action-item">
+            <a href="" class="account__action-link">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+    </ul>-->
+    <div id="cloned_items"></div>
+</div>
+
+<div class="account__side_wpteam account__side_wpteam--right">
+    <!-- begin out of network search -->
+    <div class="account__search search">
+        <input type="search" class="search__field_rightside" ng-model="searchedOutOfNetworkModule">
+        <span class="search__icon-search"><i class="fa fa-search"></i></span>
+    </div>
+    <!-- end out of network search -->
+    <div class="account__frames account__frames_wpteam--side" ng-sortable="sortableModuleConfig">
+        <!-- begin out of network Module frame -->
+        <div class="frame__workpageteam right-side-frame" ng-class="{'frame__gray' : !outOfNetworkModule.isActive }" ng-repeat="outOfNetworkModule in OutOfNetworkModules  | filter:searchedOutOfNetworkModule ">
+            <ul class="frame__controls">
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--underscore"></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--clone"><i class="fa fa-clone"></i></a>
+                </li>
+            </ul>
+
+            <div class="frame__tabs tabs">
+                <ul class="tabs__controls">
+                    <li class="tabs__control-item tabs__control-item--active">
+                        <a class="tabs__control-link">
+                            <img ng-src="{{outOfNetworkModule.imageUrl}}" alt="" class="frame__pic" >
+                            
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="tabs__content">
+                    <div class="tabs__content-item tabs__content-item--active">
+                        <div class="frame__info">
+                            <div class="frame__title">{{outOfNetworkModule.name| uppercase }} </div>
+                            
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li>{{outOfNetworkModule.name| uppercase }}</li>
+                             
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{outOfNetworkModule.name | uppercase }} </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tabs__content-item">
+                        <div class="frame__info">
+                            <div class="frame__title">{{outOfNetworkModule.name | uppercase }}</div>
+                          
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li>{{outOfNetworkModule.name| uppercase }}</li>
+                                
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{outOfNetworkModule.name | uppercase }} </li>
+                              
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<img ng-src="{{outOfNetworkModule.imageUrl}}" alt="" class="frame__pic">
+            <div class="frame_right">
+                <span>{{outOfNetworkModule.name}}</span>
+            </div>-->
+        </div>
+        <!-- end out of network Module frame -->
+    </div>
+</div>

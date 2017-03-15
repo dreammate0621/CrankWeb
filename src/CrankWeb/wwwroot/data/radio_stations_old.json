@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1390, 
+        "call_code": "KDGE-FM", 
+        "market": "Dallas, TX, USA", 
+        "logo": "http://getcrank.s3.amazonaws.com/station_logos/1394653296.01.png"
+    },
+    {
+        "id": 1004, 
+        "call_code": "KDMX-FM", 
+        "market": "Dallas, TX, USA", 
+        "logo": "http://getcrank.s3.amazonaws.com/station_logos/1394653302.25.png"
+    },
+    {
+        "id": 1561, 
+        "call_code": "KEGL-FM", 
+        "market": "Dallas, TX, USA", 
+        "logo": "http://getcrank.s3.amazonaws.com/station_logos/1394653250.42.png"
+    },
+    {
+        "id": 1100, 
+        "call_code": "KHKS-FM", 
+        "market": "Dallas, TX, USA", 
+        "logo": "http://getcrank.s3.amazonaws.com/station_logos/1394653309.51.png"
+    }
+]
+

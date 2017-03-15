@@ -1,0 +1,224 @@
+.source-panel {
+    display: flex;
+    max-width: 950px;
+    padding: 10px 0;
+    align-items: flex-start;
+    overflow: hidden;
+
+    @media screen and (max-width: 949px) {
+        flex-direction: column;
+    }
+
+    &__img-wrap {
+        display: flex;
+        flex: 1;
+        z-index: 1;
+        background: #fff;
+        justify-content: center;
+        align-items: center;
+        align-self: stretch;
+        margin-right: 4px;
+
+        @media screen and (max-width: 949px) {
+            align-self: flex-start;
+            margin-bottom: 10px;
+        }
+    }
+
+    &__img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    &__content {
+        display: none;
+        flex-wrap: wrap;
+        align-self: stretch;
+        transform: translateZ(0);
+        min-height: 130px;
+
+        &--main {
+            display: flex;
+        }
+    }
+
+    &__members {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        align-content: flex-start;
+        width: 465px;
+        margin: -2px;
+        padding: 0;
+        list-style-type: none;
+
+        @media screen and (max-width: 721px) {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+
+    &__member-item {
+        display: flex;
+        width: 93px;
+        height: 67px;
+        padding: 2px;
+    }
+
+    &__member-link {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        text-decoration: none;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: $color-dark;
+        border: 1px solid #e3e4e5;
+        padding: 11px 4px 4px;
+        transition: box-shadow 0.2s;
+        text-align: center;
+
+        &:empty {
+            border: none;
+        }
+
+        &:hover {
+            box-shadow: $box-shadow;
+        }
+
+        .source-panel__content--main & {
+            border: none;
+            color: #fff;
+        }
+
+        .source-panel__member-item--agent & {
+            background: $color-agent;
+        }
+
+        .source-panel__member-item--label & {
+            background: $color-label;
+        }
+
+        .source-panel__member-item--sponsor & {
+            background: $color-sponsor;
+        }
+
+        .source-panel__member-item--promoter & {
+            background: $color-promoter;
+        }
+
+        .source-panel__member-item--manager & {
+            background: $color-manager;
+        }
+
+        .source-panel__member-item--grey & {
+            background: #6d6f71;
+        }
+
+        .source-panel__member-item--yellow & {
+            background: #c5bc32;
+        }
+
+        .source-panel__member-item--orange & {
+            background: #c25a28;
+        }
+
+        .source-panel__member-item--brown & {
+            background: #c49a6b;
+        }
+
+        .source-panel__member-item--black & {
+            background: #090a0b;
+        }
+
+        .source-panel__member-item--active &:before {
+            content: '';
+            position: absolute;
+            z-index: 1;
+            top: -1px;
+            left: -1px;
+            width: calc(100% + 2px);
+            height: 7px;
+            background: $color-active;
+        }
+    }
+
+    &__member-pic {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    &__member-title {
+        margin-top: 5px;
+    }
+
+    &__label {
+        display: flex;
+        align-self: stretch;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        width: 175px;
+        margin-left: 4px;
+        text-align: center;
+        color: #fff;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-decoration: none;
+        min-height: 130px;
+
+
+        @media screen and (max-width: 721px) {
+            margin-left: 0;
+        }
+
+        &--label {
+            background: #c6be31;
+        }
+
+        &--agent {
+            background: $color-agent;
+        }
+
+        &--sponsor {
+            background: $color-sponsor;
+        }
+
+        &--manager {
+            background: $color-manager;
+        }
+
+        &--promoter {
+            background: $color-promoter;
+        }
+
+        &--data {
+            background: #223f9a url('../img/ic-data.png') 50% 50% no-repeat;
+        }
+        
+        &--main {
+            background: #6c7fa0;
+            width: 78px;
+            margin-left: 4px;
+        }
+    }
+
+    &__label-pic {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 5px;
+    }
+
+    &__label-title {
+        font-size: 14px;
+    }
+
+}

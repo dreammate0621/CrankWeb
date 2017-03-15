@@ -1,0 +1,244 @@
+﻿<div class="">
+    <ul class="account__controls">
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--underscore" ng-click="cancel()"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--clone"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--close popup__close" ng-click="cancel()"></a>
+        </li>
+    </ul>
+</div>
+<div class="account__main_wpteam">
+
+    <!-- begin In network search -->
+    <div class="account__search search">
+        <input type="search" class="search__field" ng-model="searchInNetworkNonDigitalStationText">
+        <span class="search__icon-search"><i class="fa fa-search"></i></span>
+    </div>
+    <!--end In network search -->
+
+    <div class="account__frames" ng-sortable="sortableStationConfig">
+        <!-- begin in network team member frame -->
+        <div class="frame__workpageteam" ng-class="{'frame--active' : inNetworkStation.isActive == true}" ng-repeat="inNetworkStation in InNetworkNonDigitalStations  | filter:searchInNetworkNonDigitalStationText ">
+            <ul class="frame__controls-left-side">
+                <li class="frame__control-item">
+                    <input color-picker class="frame__icon color__picker__field__style" color-me="true" ng-model="inNetworkStation.colorValueInline" />
+
+                </li>
+                <li class="frame__control-item">
+                    <a href="javascript:void(0)" mwl-confirm class="frame__icon member-add-remove-icon add-icon"
+                       confirm-title="Confirm"
+                       message="YOU ARE CLAIMING THIS STATION AS YOUR OWN, NOTE THE OWNER OF THIS STATION WILL BE NOTIFIED THRU CRANK AND IT WILL NOT BE ADDED UNTIL THEY RESPOND TO YOUR REQUEST"
+                       on-confirm="inNetworkStation.isActive = true "
+                       confirm-button-type="gunMetalBlue"
+                       confirm-text="Yes <i class='glyphicon glyphicon-ok'></i>"
+                       cancel-text="No <i class='glyphicon glyphicon-remove'></i>"
+                       ng-show="!inNetworkStation.isActive"><i class="fa fa-calendar-plus-o"></i></a>
+                    <a href=""  uib-tooltip="REMOVE STATION FROM YOUR OWN STATIONS"
+                   tooltip-animation="false"
+                   tooltip-append-to-body="true" ng-click="inNetworkStation.isActive= false" ng-show="inNetworkStation.isActive" class="frame__icon member-add-remove-icon remove-icon"><i class="fa fa-calendar-times-o"></i></a>
+
+                </li>
+            </ul>
+              <ul class="frame__controls">
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--underscore"></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--clone"><i class="fa fa-clone"></i></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="" uib-tooltip="REMOVE RADIO FROM NETWORK"
+                   tooltip-animation="false"
+                   tooltip-append-to-body="true" ng-click="moveUserOutOfNonDigitalStation(inNetworkStation.id)" class="frame__control-btn frame__control-btn--remove"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="frame__tabs tabs">
+                <ul class="tabs__controls">
+                    <li class="tabs__control-item tabs__control-item--active">
+                        <a class="tabs__control-link">
+                            <img ng-src="{{inNetworkStation.imageUrl}}" alt="" class="frame__pic">
+                        </a>
+                    </li>
+                </ul>
+                <div class="tabs__content">
+                    <div class="tabs__content-item tabs__content-item--active">
+                        <div class="frame__info">
+                            <div class="frame__title">{{inNetworkStation.name | uppercase }}</div>
+                            <div class="frame__executor capitalize">
+                               
+                                {{inNetworkStation.format}}
+                            </div>
+                            <div class="frame__executor">{{inNetworkStation.market}}</div>
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li><div class="frame__title">{{inNetworkStation.name | uppercase }}</div></li>
+                                <li class="capitalize">{{inNetworkStation.format}}</li>
+                                <li>{{inNetworkStation.market}}</li>
+
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{inNetworkStation.name | uppercase }}</li>
+                                <li class="capitalize">{{inNetworkStation.format}}</li>
+                                <li>{{inNetworkStation.market}}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tabs__content-item">
+                        <div class="frame__info">
+                            <div class="frame__title">{{inNetworkStation.name | uppercase }}</div>
+                            <div class="frame__executor capitalize">{{inNetworkStation.format}}</div>
+                            <div class="frame__executor">{{inNetworkStation.market}}</div>
+
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li>{{inNetworkStation.name | uppercase }}</li>
+                                <li class="capitalize">{{inNetworkStation.format}}</li>
+                                <li>{{InNetworkVenue.market}}</li>
+
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{inNetworkStation.name | uppercase }}</li>
+                                <li class="capitalize">{{inNetworkStation.format}}</li>
+                                <li>{{inNetworkStation.market}}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<img ng-src="{{inNetworkStation.imageUrl}}" alt="#" class="frame__pic">
+            <div class="frame_right">
+                <span>{{inNetworkStation.name}}</span>
+                <span>{{inNetworkStation.market}}</span>
+            </div>-->
+        </div>
+        <!-- end in network Station frame -->
+    </div>
+    <!--<ul class="account__actions">
+        <li class="account__action-item">
+            <a href="#" class="account__action-link">
+                <i class="fa fa-share"></i>
+            </a>
+        </li>
+        <li class="account__action-item">
+            <a href="#" class="account__action-link">
+                <i class="fa fa-print"></i>
+            </a>
+        </li>
+        <li class="account__action-item">
+            <a href="" class="account__action-link" ng-click="saveInNetworkNonDigitalStations()"><i class="fa fa-save"></i></a>
+        </li>
+        <li class="account__action-item">
+            <a href="#" class="account__action-link">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+    </ul>-->
+    <div id="cloned_items"></div>
+</div>
+
+<div class="account__side_wpteam account__side_wpteam--right">
+    <!-- begin out of network search -->
+    <div class="account__search search">
+        <input type="search" class="search__field_rightside"
+               ng-model="$parent.searchedOutOfNetworkNonDigitalStation"
+               placeholder="Search Stations"
+               uib-typeahead="station.name for station in searchNonDigitalStaions($viewValue)"
+               typeahead-loading="loadingStations"
+               typeahead-wait-ms="400"
+               typeahead-on-select="addSearchNonDigitalStationToDiv($item, $model, $label)"
+               typeahead-no-results="noResults">
+        <span class="search__icon-search"><i class="fa fa-search"></i></span>
+    </div>
+    <!-- end out of network search -->
+    <div class="account__frames account__frames_wpteam--side" ng-sortable="sortableStationConfig">
+        <!-- begin out of network Module frame -->
+        <div class="frame__workpageteam  right-side-frame" 
+             ng-repeat="outOfNetworkStation in OutOfNetworkNonDigitalStations ">
+            <ul class="frame__controls">
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--underscore"></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--clone"><i class="fa fa-clone"></i></a>
+                </li>
+            </ul>
+            <div class="frame__tabs tabs">
+                <ul class="tabs__controls">
+                    <li class="tabs__control-item tabs__control-item--active">
+                        <a class="tabs__control-link">
+                            <img ng-src="{{outOfNetworkStation.imageUrl}}" alt="" class="frame__pic">
+                        </a>
+                    </li>
+                </ul>
+                <div class="tabs__content">
+                    <div class="tabs__content-item tabs__content-item--active">
+                        <div class="frame__info">
+                            <div class="frame__title">{{outOfNetworkStation.name | uppercase }}</div>
+                            <div class="frame__executor capitalize">
+
+                                {{outOfNetworkStation.format}}
+                            </div>
+                            <div class="frame__executor">{{outOfNetworkStation.market}}</div>
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li><div class="frame__title">{{outOfNetworkStation.name | uppercase }}</div></li>
+                                <li class="capitalize">{{outOfNetworkStation.format}}</li>
+                                <li>{{outOfNetworkStation.market}}</li>
+
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{outOfNetworkStation.name | uppercase }}</li>
+                                <li class="capitalize">{{outOfNetworkStation.format}}</li>
+                                <li>{{outOfNetworkStation.market}}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tabs__content-item">
+                        <div class="frame__info">
+                            <div class="frame__title">{{outOfNetworkStation.name | uppercase }}</div>
+                            <div class="frame__executor capitalize">{{outOfNetworkStation.format}}</div>
+                            <div class="frame__executor">{{outOfNetworkStation.market}}</div>
+
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li>{{outOfNetworkStation.name | uppercase }}</li>
+                                <li class="capitalize">{{outOfNetworkStation.format}}</li>
+                                <li>{{outOfNetworkStation.market}}</li>
+
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{outOfNetworkStation.name | uppercase }}</li>
+                                <li class="capitalize">{{outOfNetworkStation.format}}</li>
+                                <li>{{outOfNetworkStation.market}}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--<img ng-src="{{outOfNetworkStation.imageUrl}}" alt="#" class="frame__pic">
+            <div class="frame_right">
+                <span>{{outOfNetworkStation.name}}</span>
+                <span>{{outOfNetworkStation.market}}</span>
+            </div>-->
+        </div>
+        <!-- end out of network Module frame -->
+    </div>
+</div>
+
+
+
+
+

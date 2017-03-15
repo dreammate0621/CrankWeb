@@ -1,0 +1,774 @@
+<!-- $scope radioCtrl -->
+
+<style type="text/css">
+
+</style>
+<div class="artist-scope">
+    <div ng-controller="navBarCtrl" ng-include="'partials/crank_navbar.html'"></div>
+
+    <div class="main-wrapper artist">
+        <!-- add view-animate, removed for performance -->
+        <div ng-include="current_view_template" class="view-animate viewport">    </div>
+
+
+        <div class="bottom-bar">
+            <div class="row" style="margin-left:10px;">
+                <div class="col-md-6">
+                    <div class="artists row">
+                        <div id="artist-scroller" class="col-md-8 artist-scroller grabcursor" iscroll-animated="artist_scroller" iscroll-opt="artist_scroller_opt">
+                                <ul class="artists__tiles artists__tiles--left " style="display:inline-block">
+                                    <li ng-click="selectStation(station)" ng-repeat="station in stations" class="artists__tile-item" ng-class="{'artists__tile-item--active': station.selected}">
+                                        <a href="" class="artists__tile-link">
+                                            <div>
+                                                <img ng-src="{{station.logo}}" alt="">
+                                            </div>
+                                            <span class="artists__tile-title">{{station.call_code}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                        </div>
+                       
+                        <div class="col-md-4 artist-scroller-right">
+                            <ul class="artists__tiles artists__tiles--right">
+                                <li ng-click="resetSelection()" class="artists__tile-item"  title="Reset current selection"><a href="" class="artists__tile-link"></a></li>
+                                <li class="artists__tile-item"><a href="" class="artists__tile-link"></a></li>
+                                <li class="artists__tile-item"><a href="" class="artists__tile-link"></a></li>
+                                <li class="artists__tile-item"><a href="" class="artists__tile-link"></a></li>
+                                <li class="artists__tile-item"><a href="" class="artists__tile-link"></a></li>
+                                <li class="artists__tile-item"><a href="" class="artists__tile-link"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 fade">
+                    <div class="animate-fade" ng-show="showSourcePanel">
+                        <div class="source-panel" >
+
+                            <div class="source-panel__img-wrap">
+                                <div>
+                                    <img src="" alt="" class="source-panel__img" ng-src="{{selectedEvent.picture}}">
+                                </div>
+                            </div>
+
+                            <div class="source-panel__content source-panel__content--main" data-source-panel="main">
+
+                                <ul class="source-panel__members">
+
+                                    <li class="source-panel__member-item source-panel__member-item--agent">
+                                        <a href="#" class="source-panel__member-link" data-source-panel="agent">
+                                            <span class="source-panel__member-title">Agent</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--label">
+                                        <a href="#" class="source-panel__member-link" data-source-panel="label">
+                                            <span class="source-panel__member-title">Label</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--sponsor">
+                                        <a href="#" class="source-panel__member-link" data-source-panel="sponsor">
+                                            
+                                            <span class="source-panel__member-title">Sponsor</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--grey">
+                                        <a href="#" class="source-panel__member-link">
+                                           
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--yellow">
+                                        <a href="#" class="source-panel__member-link">
+                                            
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--promoter">
+                                        <a href="#" class="source-panel__member-link" data-source-panel="promoter">
+                                            
+                                            <span class="source-panel__member-title">Promoter</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--manager">
+                                        <a href="#" class="source-panel__member-link" data-source-panel="manager">
+                                            
+                                            <span class="source-panel__member-title">Manager</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--orange">
+                                        <a href="#" class="source-panel__member-link">
+                                            
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--brown">
+                                        <a href="#" class="source-panel__member-link">
+                                            
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item source-panel__member-item--black">
+                                        <a href="#" class="source-panel__member-link">
+                                           
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                                <a href="#" class="source-panel__label source-panel__label--data">
+                                    <span class="source-panel__member-title">Digital</span>
+                                </a>
+
+                                <a href="#" class="source-panel__label source-panel__label--main"></a>
+
+                            </div>
+
+                            <div id="agent" class="source-panel__content">
+
+                                <ul class="source-panel__members">
+
+                                    <li class="source-panel__member-item">
+                                        <a href="" class="source-panel__member-link">
+                                            <img src="images/users/male.png" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="" class="source-panel__member-link">
+                                            <img src="images/users/female.png" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="" class="source-panel__member-link">
+                                            <img src="images/users/female2.png" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="" class="source-panel__member-link">
+                                            <img src="images/users/female3.png" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="" class="source-panel__member-link">
+                                            <img src="images/users/male2.png" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="" class="source-panel__member-link">
+                                            <img src="images/users/male3.png" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="" class="source-panel__member-link">
+                                            <img src="images/users/female4.png" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="" class="source-panel__member-link">
+                                            <img src="images/users/male4.png" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="" class="source-panel__member-link">
+                                            <!--<img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                            <span class="source-panel__member-title">First last</span>-->
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="" class="source-panel__member-link">
+                                            <!--<img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                            <span class="source-panel__member-title">First last</span>-->
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                                <div class="source-panel__label source-panel__label--agent">
+                                    
+                                    <span class="source-panel__label-title">Agent</span>
+                                </div>
+
+                                <a href="#" class="source-panel__label source-panel__label--main"></a>
+
+                            </div>
+
+                            <div id="label" class="source-panel__content">
+
+                                <ul class="source-panel__members">
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                                <div class="source-panel__label source-panel__label--label">
+                                   
+                                    <span class="source-panel__label-title">Label</span>
+                                </div>
+
+                                <a href="#" class="source-panel__label source-panel__label--main"></a>
+
+                            </div>
+
+                            <div id="sponsor" class="source-panel__content">
+
+                                <ul class="source-panel__members">
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                                <div class="source-panel__label source-panel__label--sponsor">
+                                    
+                                    <span class="source-panel__label-title">Sponsor</span>
+                                </div>
+
+                                <a href="#" class="source-panel__label source-panel__label--main"></a>
+
+                            </div>
+
+                            <div id="promoter" class="source-panel__content">
+
+                                <ul class="source-panel__members">
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                                <div class="source-panel__label source-panel__label--promoter">
+                                   
+                                    <span class="source-panel__label-title">Promoter</span>
+                                </div>
+
+                                <a href="#" class="source-panel__label source-panel__label--main"></a>
+
+                            </div>
+
+                            <div id="manager" class="source-panel__content">
+
+                                <ul class="source-panel__members">
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="http://placehold.it/32x26" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">First last</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                                <div class="source-panel__label source-panel__label--manager">
+                                    
+                                    <span class="source-panel__label-title">Manager</span>
+                                </div>
+
+                                <a href="#" class="source-panel__label source-panel__label--main"></a>
+
+                            </div>
+
+                            <div id="digital" class="source-panel__content source-panel__content--digital">
+
+                                <ul class="source-panel__members">
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="images/digital/spotify.png" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">Spotify</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="images/digital/google_play.png" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">Play</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="images/digital/pandora.png" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">Pandora</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="images/digital/itunes.png" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">Apple</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link">
+                                            <img src="images/digital/x1.png" alt="" class="source-panel__member-pic">
+                                            <span class="source-panel__member-title">X1</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link"></a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link"></a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link"></a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link"></a>
+                                    </li>
+
+                                    <li class="source-panel__member-item">
+                                        <a href="#" class="source-panel__member-link"></a>
+                                    </li>
+
+                                </ul>
+
+                                <div class="source-panel__label source-panel__label--data">
+                                    <span class="source-panel__member-title">Digital</span>
+                                </div>
+
+                                <a href="#" class="source-panel__label source-panel__label--main"></a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- preferencesModal Modal -->
+    <script type="text/ng-template" id="preferencesModal.html">
+        <div class="modal-header">
+            <a class="modal-close" ng-click="cancel()" href="">&#10005;</a>
+        </div>
+
+        <div class="modal-body">
+            <div class="row section">
+                <div class="section-title col-sm-2">
+                    ARTIST
+                </div>
+                <div class="col-sm-10">
+                    <input ng-keyup="fetchArtist()" type="text" class="form-control" id="new-station" placeholder="Search..." ng-model="$parent.artist_name" />
+                    <br />
+                    <div ng-show="is_loading">
+                        <div class="found-stations">
+                            <div class="station-tile" ng-repeat="found_artist in found_artists | limitTo:8 " ng-class="{active: found_artist == selected_artist}">
+                                <a href="" ng-click="selectArtist(found_artist)">
+                                    <img ng-src="{{found_artist.thumbnail}}" /><br /><span>{{found_artist.title}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row section">
+                <div class="section-title col-sm-2">
+                    PASSWORD
+                </div>
+                <div class="col-sm-10">
+                    <input type="password" name="password" id="password" required="required" placeholder="New Password" class="form-control" /><br />
+                    <input type="password" name="verifyPassword" id="verifyPassword" required="required" placeholder="Re-type Password" class="form-control" />
+                </div>
+            </div>
+
+            <div class="row section">
+                <div class="section-title col-sm-2">
+                    SAVE
+                </div>
+                <div class="col-sm-10">
+                    <button class="btn btn-black" ng-click="ok()">SAVE PREFERENCES</button>
+                </div>
+            </div>
+
+
+
+
+            <!--<form class="form-horizontal" role="form">
+                <div class="row">
+                    <label for="current-station" class="col-sm-2 control-label"></label>
+                    <div class="col-sm-2">
+                        <img ng-src="{{current_station.logo}}" alt="" />
+                    </div>
+                    <div class="col-sm-4">
+                        <p>{{current_station.name}}</p>
+                        <input type="file" accept="image/gif, image/jpeg"></input>
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn">Save Logo</button>
+                    </div>
+                </div>
+            </form>-->
+        </div>
+
+
+    </script>
+
+    <script type="text/ng-template" id="workpage.html">
+        <div class="modal-header">
+            <a class="modal-close" ng-click="cancel()" href="">&#10005;</a>
+        </div>
+
+
+        <div class="modal-body">
+            <div class="row section">
+                <div class="section-title col-sm-4 brand">
+                    {{current_user.first_name}}  {{current_user.last_name}}
+                </div>
+            </div>
+            <div class="row section">
+                <div class="section-title col-sm-4">
+                    Change Password
+                </div>
+            </div>
+            <div class="row section">
+                <div class="section-title col-sm-4">
+                    ACCOUNT INFO
+                </div>
+            </div>
+            <div class="row section">
+                <div class="section-title col-sm-4">
+                    Roster
+                </div>
+            </div>
+            <div class="row section">
+                <div class="section-title col-sm-4">
+                    Shows
+                </div>
+            </div>
+            <div class="row section">
+                <div class="section-title col-sm-4">
+                    Team
+                </div>
+            </div>
+            <div class="row section">
+                <div class="section-title col-sm-4">
+                    Digitals
+                </div>
+            </div>
+            <div class="row section">
+                <div class="section-title col-sm-4">
+                    Modules
+                </div>
+            </div>
+            <div class="row section">
+                <div class="section-title col-sm-2">
+
+                </div>
+            </div>
+            <div class="row section">
+                <div class="section-title col-sm-2">
+
+                </div>
+            </div>
+            <div class="row section">
+                <div class="section-title col-sm-2">
+
+                </div>
+            </div>
+            <div class="row section">
+                <div class="section-title col-sm-2">
+
+                </div>
+            </div>
+            <div class="row section">
+                <div class="section-title col-sm-2">
+
+                </div>
+            </div>
+        </div>
+    </script>
+</div>
+

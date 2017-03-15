@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1390,
+    "venue_name": "Citizens Bank Park",
+    "market": "Philadelphia, PA, USA",
+    "logo": "images/venues/Citizens-Bank-Park.png"
+  },
+  {
+    "id": 1004,
+    "venue_name": "Flyers Skate Zone",
+    "market": "Philadelphia, PA, USA",
+    "logo": "images/venues/Flyers-Skate-Zone.png"
+  },
+  {
+    "id": 1561,
+    "venue_name": "The Liacouras Center",
+    "market": "Philadelphia, PA, USA",
+    "logo": "images/venues/Liacouras-Center.png"
+  },
+  {
+    "id": 1100,
+    "venue_name": "Wells Fargo Center",
+    "market": "Philadelphia, PA, USA",
+    "logo": "images/venues/Wells-Fargo-Center.png"
+  },
+  {
+    "id": 1461,
+    "venue_name": "Xfinity Live",
+    "market": "Philadelphia, PA, USA",
+    "logo": "images/venues/Xfinity-Live.png"
+  }
+]
+

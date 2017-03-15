@@ -1,0 +1,15 @@
+{
+  "name": "leaflet-div-heatmap",
+  "homepage": "https://github.com/dpiccone/leaflet-div-heatmap",
+  "version": "1.0.0",
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.0",
+    "commit": "db45c411978f7171da27192431fdd01f8c9f2e19"
+  },
+  "_source": "https://github.com/dpiccone/leaflet-div-heatmap.git",
+  "_target": "1.0.0",
+  "_originalSource": "leaflet-div-heatmap",
+  "_direct": true
+}

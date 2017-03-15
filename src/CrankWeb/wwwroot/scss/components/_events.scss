@@ -1,0 +1,23 @@
+.events {
+    position: relative;
+    max-width: 708px;
+    height: 464px;
+    overflow: hidden;
+
+    &__wrapper {
+        position: absolute;
+        z-index: 1;
+    }
+
+    &__scroller {
+        display: inline-flex;
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    &__item {
+        flex: none;
+        margin: 10px;
+        user-select: none;
+    }
+}

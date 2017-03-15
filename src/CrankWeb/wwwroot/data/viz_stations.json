@@ -1,0 +1,290 @@
+[
+    {
+        "image":"data/logos/spotify.png",
+        "id": 21,
+        "name":"Spotify",
+        "station_data":{
+            "format": "Gospel",
+            "program_director": "Maxwell Jones",
+            "music_director": "Jerome Thomas",
+            "phone_number": "214-330-5553"   
+        },
+        "tickets":[
+            {"name":"Jim Owen", "type": "Winner", "value":"3"},
+            {"name":"Alisa Hashimoto", "type": "Winner", "value":"2"},
+            {"name":"Dave Shakes", "type": "Staff", "value":"4"},
+            {"name":"Steve Douglas", "type": "Staff", "value":"2"},
+            {"name":"Mat Mitchell", "type": "Winner", "value":"3"},
+            {"name":"Owen Phillips", "type": "Winner", "value":"3"},
+            {"name":"Mat Hashimoto", "type": "Winner", "value":"1"}
+        ],
+        "meetngreet":[
+            {"name":"Steve McFeelie", "type": "Winner", "value":"4"},
+            {"name":"Larry Douglas", "type": "Winner", "value":"8"},
+            {"name":"Paul Hashimoto", "type": "Winner", "value":"2"},
+
+            {"name":"Steve Mitchell", "type": "Staff", "value":"1"},
+            {"name":"Dave Shakes", "type": "Staff", "value":"1"},
+            {"name":"Ron Price", "type": "Winner", "value":"2"}
+        ],
+        "interview":[
+            {"name":"Jim Owen", "type": "Winner", "value":"3"},
+            {"name":"Alisa Hashimoto", "type": "Winner", "value":"2"},
+            {"name":"Dave Shakes", "type": "Staff", "value":"4"},
+            {"name":"Steve Douglas", "type": "Staff", "value":"2"},
+            {"name":"Mat Mitchell", "type": "Winner", "value":"3"},
+            {"name":"Owen Phillips", "type": "Winner", "value":"3"},
+            {"name":"Mat Hashimoto", "type": "Winner", "value":"1"}
+        ],
+        "appearance":[
+            {"name":"Steve McFeelie", "type": "Winner", "value":"4"},
+            {"name":"Larry Douglas", "type": "Winner", "value":"8"},
+            {"name":"Paul Hashimoto", "type": "Winner", "value":"2"},
+            {"name":"Steve Mitchell", "type": "Staff", "value":"1"},
+            {"name":"Dave Shakes", "type": "Staff", "value":"1"},
+            {"name":"Ron Price", "type": "Winner", "value":"2"}
+        ]
+    },
+    {
+        "image":"data/logos/rdio.png",
+        "id": 22,
+        "name":"Rdio",
+        "station_data":{
+            "format": "Gospel",
+            "program_director": "Maxwell Jones",
+            "music_director": "Jerome Thomas",
+            "phone_number": "214-330-5553"   
+        },
+        "tickets":[
+            {"name":"Eric Douglas", "type": "Winner", "value":"5"},
+            {"name":"Maynard Mitchell", "type": "Winner", "value":"0"},
+            {"name":"Kent Phillips", "type": "Winner", "value":"4"},
+            {"name":"Steve Shakes", "type": "Winner", "value":"1"}
+
+        ],
+        "meetngreet":[
+            {"name":"Larry McFeelie", "type": "Winner", "value":"7"},
+            {"name":"Paul Phillips", "type": "Winner", "value":"2"},
+            {"name":"Mat Mitchell", "type": "Winner", "value":"1"},
+            {"name":"Steve Douglas", "type": "Staff", "value":"1"},
+            {"name":"Philip Marshall", "type": "Winner", "value":"0"},
+            {"name":"Mat Mitchell", "type": "Winner", "value":"3"},
+            {"name":"Dave Shakes", "type": "Staff", "value":"1"},
+            {"name":"Ron Dave", "type": "Winner", "value":"2"}
+        ]
+    },
+    {
+        "image":"data/logos/Cadena100.png", 
+        "id": 2,
+        "name":"Cadena 100 Barcelona",
+        "station_data":{
+            "format": "Alternative",
+            "program_director": "Eddie Fennell",
+            "music_director": "Patrick Davis",
+            "phone_number": "214-866-8000"   
+        },
+        "tickets":[
+            {"name":"Ron Price", "type": "Winner", "value":"3"},
+            {"name":"Jim Owen", "type": "Winner", "value":"3"},
+            {"name":"Alisa Hashimoto", "type": "Winner", "value":"2"},
+            {"name":"Dave Shakes", "type": "Staff", "value":"1"},
+            {"name":"Steve Douglas", "type": "Staff", "value":"1"}
+        ],
+        "meetngreet":[
+            {"name":"Mikee Mike", "type": "Staff", "value":"2"},
+            {"name":"Carol Handley", "type": "Staff", "value":"4"},
+            {"name":"Kent Phillips", "type": "Winner", "value":"2"}
+        ]
+    },
+    {
+        "image":"data/logos/Cardenadial.jpg", 
+        "id":3,
+        "name":"Cadena Dial Barcelona",
+        "station_data":{
+            "format": "Hot AC",
+            "program_director": "Mark Razz",
+            "music_director": "Jay Michaels",
+            "phone_number": "214-866-8000" 
+        },
+        "tickets":[
+            {"name":"Dave Shakes", "type": "Winner", "value":"3"},
+            {"name":"Carol Handley", "type": "Winner", "value":"3"},
+            {"name":"Larry McFeelie", "type": "Winner", "value":"0"},
+            {"name":"Mikee Mike", "type": "Staff", "value":"2"},
+            {"name":"Kent Phillips", "type": "Winner", "value":"2"},
+            {"name":"Ricky Villa", "type": "Staff", "value":"2"}
+        ],
+        "meetngreet":[
+            {"name":"Ricky Villa", "type": "Staff", "value":"2"},
+            {"name":"Karen Wild", "type": "Staff", "value":"1"},
+            {"name":"Kent Phillips", "type": "Winner", "value":"2"},
+            {"name":"Ron Price", "type": "Winner", "value":"3"}
+        ]
+    },
+    {
+        "image":"data/logos/Cadenaser.jpg", 
+        "id":4, 
+        "name":"Cadena Ser",
+        "station_data":{
+            "format": "Rock",
+            "program_director": "Dan Reed",
+            "music_director": "Don Davis",
+            "phone_number": "214-866-8000" 
+        }
+    },
+    {
+        "image":"data/logos/Canal Fiesta.jpg",
+        "id":5,
+        "name":"Canal Fiesta Radio",
+        "station_data":{
+            "format": "Rhytmic",
+            "program_director": "Sean `The Rabbi` Tyszler",
+            "music_director": "Claudia Talamantez",
+            "phone_number": "-"  
+        }
+    },
+    {
+        "image":"data/logos/Catalunya.png",
+        "id":5,
+        "name":"Catalunya Musica",
+        "station_data":{
+            "format": "Top 40",
+            "program_director": "Nancy Palumbo",
+            "music_director": "Patrick Davis",
+            "phone_number": "214-866-8000"  
+        }
+    },
+    {
+        "image":"data/logos/europa fm (barcelona) - 94.9 fm.png",
+        "id":5,
+        "name":"Europa FM Barcelona",
+        "station_data":{
+            "format": "Adult Hits",
+            "program_director": "Juan Varleta",
+            "music_director": "Ron Harrell",
+            "phone_number": "214-525-7000"  
+        }
+    },
+    {
+        "image":"data/logos/logo_gaztea.png",
+        "id":5,
+        "name":"Euskadi Gaztea",
+        "station_data":{
+            "format": "Rhythmic",
+            "program_director": "Rich DeSisto",
+            "music_director": "Mark McCray",
+            "phone_number": "972-331-5400"  
+        }
+    },
+    {
+        "image":"data/logos/radionervion.jpg",
+        "id":6,
+        "name":"Radio Nervion",
+        "station_data":{
+            "format": "Classic Hits",
+            "program_director": "Zorina Beneby",
+            "music_director": "Ron  Harrell",
+            "phone_number": "214-525-7000"  
+        }
+    },
+    {
+        "image":"data/logos/flaix fm - 105.7 fm.png",
+        "id":7,
+        "name":"Flaix FM",
+        "station_data":{
+            "format": "Top 40",
+            "program_director": "Tommy McCarthy",
+            "music_director": "Maurice Devoe",
+            "phone_number": "214-526-7400"  
+        }
+    },
+    {
+        "image":"data/logos/flaix eivissa - 92.4 fm.png",
+        "id":8,
+        "name":"Flaixbac",
+        "station_data":{
+            "format": "Urban",
+            "program_director": "CeCe McGhee",
+            "music_director": "George (Geo) Cook",
+            "phone_number": "972-647-5000"  
+        }
+    },
+    {
+        "image":"data/logos/HItfm.jpg",
+        "id":9,
+        "name":"Hit FM",
+        "station_data":{
+            "format": "AC",
+            "program_director": "Buster Satterfield",
+            "music_director": "Byron Ron Harrell",
+            "phone_number": "214-525-7000"  
+        }
+    },
+    {
+        "image":"data/logos/IB3_radio_logo.jpg",
+        "id":10,
+        "name":"IB3 Radio",
+        "station_data":{
+            "format": "Classic Rock",
+            "program_director": "Wendy  Rollins",
+            "music_director": "Don Davis",
+            "phone_number": "214-866-8000"  
+        }
+    },
+    {
+        "image":"data/logos/involidble.jpg",
+        "id":11,
+        "name":"Inolvidable FM",
+        "station_data":{
+            "format": "Country",
+            "program_director": "MoShay LaRen",
+            "music_director": "Mark Phillips",
+            "phone_number": "214-526-2400"  
+        }
+    },
+    {
+        "image":"data/logos/kiss fm (radio club 25) - 95.5 fm.png",
+        "id":12,
+        "name":"Kiss FM Barcelona",
+        "station_data":{
+            "format": "Urban AC",
+            "program_director": "Eddie Fennell",
+            "music_director": "Michael Erickson",
+            "phone_number": "972-647-5000"  
+        }
+    },
+    {
+        "image":"data/logos/M80.jpg",
+        "id":13,
+        "name":"M-80 Barcelona",
+        "station_data":{
+            "format": "Country",
+            "program_director": "-",
+            "music_director": "-",
+            "phone_number": "817-640-1963"  
+        }
+    },
+    {
+        "image":"data/logos/maxima fm - 104.2 fm.png",
+        "id":14,
+        "name":"Maxima FM",
+        "station_data":{
+            "format": "Country",
+            "program_director": "-",
+            "music_director": "-",
+            "phone_number": "817-640-1963"  
+        }
+    },
+    {
+        "image":"data/logos/onda cero - barcelona (onda network) 93.5 fm.png",
+        "id":15,
+        "name":"Onda Cero",
+        "station_data":{
+            "format": "Country",
+            "program_director": "-",
+            "music_director": "-",
+            "phone_number": "817-640-1963"  
+        }
+    }
+]
+

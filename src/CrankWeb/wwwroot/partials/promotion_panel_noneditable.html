@@ -1,0 +1,280 @@
+﻿    <div class="promotion-wrapper" ng-class="{'module-active': isPromotionModuleMaximized}" ng-click="maximizePromotion($event)">
+        <div class="promotion">
+            <div class="promotion__actions">
+                <a href="" ng-click="minimizePromotion($event)"></a>
+                <a href=""></a>
+                <a href=""></a>
+            </div>
+
+            <div class="tile-content" ng-class="{'tile-content--visible': stationPanelInfoVisible, 'tile-content--hidden': !stationPanelInfoVisible}">
+                <ul>
+                    <li>
+                        <div class="station_panel_logo">
+                            <img ng-src="{{hoveredStation.imageUrl}}" alt="">
+                        </div>
+                    </li>
+                    <li>{{hoveredStation.callcode}}</li>
+                    <li>{{hoveredStation.frequency || hoveredStation.name}}</li>
+                    <li>{{hoveredStation.owner || hoveredStation.sType}}</li>
+                    <li>{{hoveredStation.format}}</li>
+                </ul>
+            </div>
+
+            <div class="promotion__side">
+                <a class="promotion__link promotion__link--side" ng-class="{'promotion__link--active': selectedEvent.hasTicket}" href="">
+                    <span><i class="fa fa-ticket" data-promotion="ticket"></i></span>
+                </a>
+                <a class="promotion__link promotion__link--side" ng-class="{'promotion__link--active': selectedEvent.hasMeetNGreet}" href="">
+                    <span><i class="fa fa-camera" data-promotion="meetngreet"></i></span>
+                </a>
+                <a class="promotion__link promotion__link--side" ng-class="{'promotion__link--active': selectedEvent.hasInterview}" href="">
+                    <span><i class="fa fa-microphone" data-promotion="interview"></i></span>
+                </a>
+                <a class="promotion__link promotion__link--side" ng-class="{'promotion__link--active': selectedEvent.hasAppearnce}" href="">
+                    <span><i class="fa fa-eye" data-promotion="appearance"></i></span>
+                </a>
+            </div>
+
+            <div class="promotion__main">
+                <div class="promotion__header">
+                    <h2 class="promotion__area">{{selectedEvent.venue || 'Select an Event'}}</h2>
+                    <!--<input class="promotion__title" value="CHICAGO, IL, USA">-->
+                    <span class="promotion__title" ng-click="selectMainMarket()">{{selectedEvent.market}}</span>
+
+
+                    <div class="promotion__places">
+                        <div class="promotion__place" ng-class="{'active': subMarket.selected} " ng-repeat="subMarket in selectedEvent.subMarkets.subMarketList" ng-click="selectSubMarket(subMarket)">
+                            {{subMarket.name}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="promotion_stations">
+                    <div id="promotion_stations_wrapper" class="promotion_stations_wrapper promotion__tiles" ng-iscroll="promotion_stations_wrapper" ng-iscroll-delay="500">
+                        <div class="promotion_stations_scroller grabcursor">
+                            <div class="tile fade" ng-class="{'tile--active':station.isSelected}"
+                                 ng-repeat="station in selectedEvent.activeStationsList">
+                                <div ng-click="selectPromoStation(station,$index)" ng-mouseover="showStationInfoPanel(station,$index)" ng-mouseleave="hideStationInfoPanel(station,$index)">
+                                    <img ng-src={{station.imageUrl}} alt="" ng-show="station.sType !='digital'" class="tile__img">
+                                    <img ng-src={{station.imageUrl}} alt="" ng-show="!station.hasImage &&station.sType =='digital'" ng-error="station.hasImage=false" class="tile__img">
+                                    <div class="tile-avatar-circle tile__img" ng-show="!station.hasImage && station.sType =='digital'">
+                                        <span class="tile-initials"><i class="fa fa-headphones"></i></span>
+                                    </div>
+                                </div>
+                                <div class="tile__dropdown-list">
+                                    <a ng-repeat="promotion in station.promotions" class="promotion__link"
+                                     ng-class="{'promotion__link--active': promotion.selected}"
+                                       ng-click="setActivePromotion(promotion)"
+                                       uib-popover-template="'promoDetails.html'"
+                                       popover-trigger="'mouseenter'"
+                                       popover-placement="auto top"
+                                       popover-popup-delay="1000"
+                                       popover-popup-close-delay="600"
+                                       popover-append-to-body="true"
+                                       popover-animation="false"
+                                       popover-title="Provider"
+                                       popover-class="promo-detail"><i class="fa {{promotion.promoClass}}"></i></a>
+                                </div>
+                            </div>
+                            <!--<div class="tile" data-tile-content="radio1">
+                                <img src="images/digital/X1.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list"></div>
+                            </div>
+                            <div class="tile" data-tile-content="radio2">
+                                <img src="images/digital/pandora.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list">
+                                    <a class="promotion__link" href=""><i class="fa fa-ticket"></i></a>
+                                    <a class="promotion__link" href=""><i class="fa fa-camera"></i></a>
+                                    <a class="promotion__link" href=""><i class="fa fa-microphone"></i></a>
+                                    <a class="promotion__link" href=""><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="tile" data-tile-content="radio3">
+                                <img src="images/digital/spotify.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list"></div>
+                            </div>
+                            <div class="tile" data-tile-content="radio4" ng-mouseenter="showCoverageMap('WDAS')" ng-mouseleave="hideCoverageMap('WDAS')" ng-click="toggleCoverageMap('WDAS')">
+                                <img src="images/radio/WDAS_thumb.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list">
+                                    <a class="promotion__link" href=""><i class="fa fa-microphone"></i></a>
+                                    <a class="promotion__link" href=""><i class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="tile" data-tile-content="radio5">
+                                <img src="images/radio/WDAS-AM_thumb.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list"></div>
+                            </div>
+                            <div class="tile" data-tile-content="radio6" ng-mouseenter="showCoverageMap('WIOQ')" ng-mouseleave="hideCoverageMap('WIOQ')" ng-click="toggleCoverageMap('WIOQ')">
+                                <img src="images/radio/WIOQ_thumb.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list"></div>
+                            </div>
+                            <div class="tile" data-tile-content="radio7" ng-mouseenter="showCoverageMap('WISX')" ng-mouseleave="hideCoverageMap('WISX')" ng-click="toggleCoverageMap('WISX')">
+                                <img src="images/radio/WISX_thumb.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list"></div>
+                            </div>
+                            <div class="tile" data-tile-content="radio8" ng-mouseenter="showCoverageMap('WRFF')" ng-mouseleave="hideCoverageMap('WRFF')" ng-click="toggleCoverageMap('WRFF')">
+                                <img src="images/radio/WRFF_thumb.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list"></div>
+                            </div>
+                            <div class="tile" data-tile-content="radio9">
+                                <img src="images/radio/WUSL_thumb.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list"></div>
+                            </div>
+                            <div class="tile" data-tile-content="radio10">
+                                <img src="images/radio/WXPN_thumb.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list"></div>
+                            </div>
+                            <div class="tile" data-tile-content="radio11">
+                                <img src="images/radio/WXTU_thumb.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list"></div>
+                            </div>
+                            <div class="tile" data-tile-content="radio12">
+                                <img src="images/radio/WBEB_thumb.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list"></div>
+                            </div>
+                            <div class="tile" data-tile-content="radio13">
+                                <img src="images/radio/WMMR_thumb.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list"></div>
+                            </div>
+                            <div class="tile" data-tile-content="radio14">
+                                <img src="images/radio/WWE_thumb.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list"></div>
+                            </div>
+                            <div class="tile" data-tile-content="radio15">
+                                <img src="images/radio/WRNB_thumb.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list"></div>
+                            </div>
+                            <div class="tile" data-tile-content="radio16">
+                                <img src="images/radio/WPHI_thumb.png" alt="" class="tile__img">
+                                <div class="tile__dropdown-list"></div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="promotion__bottom">
+                    <div class="promotion__bottom-left">
+                        <div class="promotion__counter">
+                            <input type="text" class="promotion__count"
+                                  readonly
+                                   ng-model="selectedEvent.activePromotion.selectedInstance.typeCount"
+                                  />
+                            <div class="promotion__count-caption">{{selectedEvent.activePromotion.name}}</div>
+                        </div>
+
+                        <div class="promotion__bottom-foot">
+                            <a class="promotion__btn-increase">+</a>
+                            <a class="promotion__btn-decrease">-</a>
+                        </div>
+
+                        <div class="promotion__variants">
+                            <div class="promotion__variants-row">
+                                <a>2</a>
+                                <a>4</a>
+                                <a>6</a>
+                                <a>8</a>
+                            </div>
+
+                            <div class="promotion__variants-row">
+                                <a>10</a>
+                                <a>12</a>
+                                <a>14</a>
+                                <a>16</a>
+                            </div>
+
+                            <div class="promotion__variants-row">
+                                <a>18</a>
+                                <a>20</a>
+                                <a>22</a>
+                                <a>24</a>
+                            </div>
+
+                            <div class="promotion__variants-row">
+                                <a>26</a>
+                                <a>28</a>
+                                <a>30</a>
+                                <a>clear</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="promotion__bottom-right">
+                        <a class="promotion__link promotion__link--active" href="">Details</a>
+                        <div class="promotion__line-through"></div>
+                        <div class="promotion__line-through"></div>
+                        <div class="promotion__line-through"></div>
+                        <a class="promotion__link promotion__link--active" href="">Save</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+
+
+    var tiles = document.querySelectorAll('.tile');
+    var tileContent = document.querySelector('.tile-content');
+
+    // show flayout block
+    for (var i = 0; i < tiles.length; i++)
+    {
+        tiles[i].addEventListener('mouseenter', function (e)
+        {
+            var tileItem = document.getElementById(this.getAttribute('data-tile-content'));
+
+            if (tileItem)
+            {
+                tileContent.classList.remove('tile-content--hidden');
+                tileContent.classList.add('tile-content--visible');
+
+                tileItem.classList.add('tile-content__item--visible');
+
+                this.addEventListener('mouseleave', function ()
+                {
+                    tileContent.classList.remove('tile-content--visible');
+                    tileContent.classList.add('tile-content--hidden');
+                    tileItem.classList.remove('tile-content__item--visible');
+                });
+            }
+        });
+
+        tiles[i].addEventListener('click', function ()
+        {
+            this.classList.toggle('tile--active');
+        });
+    }
+
+
+    // show expanded list
+    var promotionSide = document.querySelector('.promotion__side');
+    var promotionTiles = document.querySelector('.promotion__tiles');
+
+    promotionSide.addEventListener('mouseenter', function ()
+    {
+
+        promotionTiles.classList.add('promotion__tiles--expanded');
+    });
+
+    promotionSide.addEventListener('mouseleave', function ()
+    {
+        if (!this.classList.contains('tile-content--expanded'))
+        {
+            promotionTiles.classList.remove('promotion__tiles--expanded');
+        }
+    });
+
+    promotionSide.addEventListener('click', function ()
+    {
+        if (this.classList.contains('tile-content--expanded'))
+        {
+            this.classList.remove('tile-content--expanded');
+            promotionTiles.classList.remove('promotion__tiles--expanded');
+        } else
+        {
+            this.classList.add('tile-content--expanded');
+            promotionTiles.classList.add('promotion__tiles--expanded');
+        }
+    });
+
+</script>

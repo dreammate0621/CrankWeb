@@ -1,0 +1,180 @@
+﻿
+
+
+<div class="">
+    <ul class="account__controls">
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--underscore" ng-click="cancel()"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--clone"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--close popup__close" ng-click="cancel()"></a>
+        </li>
+    </ul>
+</div>
+<div class="account__main_wpteam">
+    
+        <form autocomplete="off" name="formUpdateCompanyInfo" class="form form-ajax form-validate" novalidate ng-submit="updateCompanyInfo(formUpdateCompanyInfo.$valid)">
+
+            <div class="register account__main_wpteam">
+                <div class="register-form">
+                    <div class="row account_info_main">
+                        <div class="col-md-9">
+                            <div class="form-group">
+
+                                <md-input-container class="md-block">
+                                    <label>Name</label>
+                                    <input class="" type="text" tabindex="1" name="company_Name" ng-model="companyInfo.name" required>
+
+                                </md-input-container>
+                            </div>
+                            <div class="form-group">
+
+
+                                <md-input-container class="md-block">
+                                    <label>EMAIL</label>
+                                    <input class="" type="email" tabindex="2" required="required" name="company_email" maxlength="50" ng-model="companyInfo.email">
+
+                                </md-input-container>
+                            </div>
+                            <div class="form-group">
+                                <label class="user__title__forms account_info_label" style="text-align:left">
+                                    Phone :-
+                                </label>
+                                <div class="row">
+                                    <div class="col-sm-4">
+
+                                        <md-input-container class="md-block">
+                                            <label> COUNTRY CODE </label>
+                                            <input class="" type="text" tabindex="3" ng-pattern="regex.numberOnly" required="required" name="country_code" maxlength="25" ng-model="companyInfo.phone.countryCode" />
+
+                                        </md-input-container>
+
+                                    </div>
+                                    <div class="col-sm-3">
+
+                                        <md-input-container class="md-block">
+                                            <label> AREA CODE </label>
+                                            <input class="" type="text" tabindex="4" ng-pattern="regex.numberOnly" required="required" name="area_code" maxlength="25" ng-model="companyInfo.phone.areaCode" />
+                                        </md-input-container>
+                                    </div>
+                                    <div class="col-sm-5">
+
+
+                                        <md-input-container class="md-block">
+                                            <label> NUMBER </label>
+                                            <input class="" type="text" tabindex="5" ng-pattern="regex.numberOnly" required="required" name="phone_number" ng-maxlength="10" ng-minlength="10" ng-model="companyInfo.phone.number" />
+                                        </md-input-container>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="user__title__forms account_info_label" style="text-align:left">
+                                    Address :-
+                                </label>
+                                <div class="row">
+                                    <div class="col-sm-6">
+
+                                        <md-input-container class="md-block">
+                                            <label> NUMBER </label>
+                                            <input class="" type="text" tabindex="6" ng-pattern="regex.numberOnly" required="required" name="address_number" ng-model="companyInfo.address.number">
+                                        </md-input-container>
+                                    </div>
+                                    <div class="col-sm-6" ng-class="{true: 'has-error'}[submitted && formUpdateCompanyInfo.address_landmark.$invalid]">
+
+                                        <md-input-container class="md-block">
+                                            <label> LANDMARK </label>
+                                            <input class="" type="text" tabindex="7" required="required" name="address_landmark" ng-model="companyInfo.address.landmark">
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4" ng-class="{true: 'has-error'}[submitted && formUpdateCompanyInfo.address_country.$invalid]">
+                                        <!--<label class="user__title_forms account_info_label" style="text-align:left">
+                                            COUNTRY
+                                        </label>
+                                        <select required tabindex="8" name="address_country" class="form-control input" style="height:35px" ng-model="companyInfo.address.country">
+                                            <option value="">SELECT COUNTRY</option>
+                                              <option ng-repeat="country in country_list" value="{{country.isoAlpha3}}">{{country.countryName}}</option>
+                                        </select>
+                                        <p ng-show="submitted && formUpdateCompanyInfo.address_country.$invalid" class="help-block">
+                                            <span ng-show="formUpdateCompanyInfo.address_country.$error.required"> Country is required.</span>
+                                        </p>-->
+
+                                        <md-input-container class="md-block">
+                                            <label>COUNTRY</label>
+                                            <input type="text" tabindex="6" typeahead-editable="false" required ng-model="$parent.user_company_country_name" uib-typeahead="country.countryName for country in filterCountriesForCompany($viewValue)"
+                                                   typeahead-on-select="addCountryToCompany($scope, $item, $model, $label)" typeahead-loading="loadingcountries" typeahead-no-results="noCountryResults">
+                                        </md-input-container>
+                                    </div>
+                                    <div class="col-sm-3" ng-class="{true: 'has-error'}[submitted && formUpdateCompanyInfo.addres_state.$invalid]">
+
+                                        <md-input-container class="md-block">
+                                            <label>STATE </label>
+                                            <input class="" type="text" tabindex="9" required="required" name="addres_state" ng-model="companyInfo.address.state">
+                                        </md-input-container>
+                                    </div>
+
+                                    <div class="col-sm-3" ng-class="{true: 'has-error'}[submitted && formUpdateCompanyInfo.address_city.$invalid]">
+
+                                        <md-input-container class="md-block">
+                                            <label>CITY </label>
+                                            <input class="" type="text" tabindex="10" required="required" name="address_city" ng-model="companyInfo.address.city">
+                                        </md-input-container>
+
+                                    </div>
+
+                                    <div class="col-sm-2" ng-class="{true: 'has-error'}[submitted && formUpdateCompanyInfo.address_zipcode.$invalid]">
+
+                                        <md-input-container class="md-block">
+                                            <label>ZIPCODE </label>
+                                            <input class="" type="text" tabindex="11" name="address_zipcode" required="required" ng-model="companyInfo.address.zipcode">
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="account__actions">
+                    <li class="account__action-item">
+                        <a href="" class="account__action-link">
+                            <i class="fa fa-share"></i>
+                        </a>
+                    </li>
+                    <li class="account__action-item">
+                        <a href="" class="account__action-link">
+                            <i class="fa fa-print"></i>
+                        </a>
+                    </li>
+                    <li class="account__action-item">
+                        <button type="submit" style="background-color:transparent;background:none;border:none;cursor:pointer;padding:0px;" class="account__action-link" ng-click="submitted=true"><i class="fa fa-save"></i></button>
+
+                    </li>
+                    <li class="account__action-item">
+                        <a href="" class="account__action-link">
+                            <i class="fa fa-share-alt"></i>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </form>
+    </div>
+
+
+
+<div class="account__side_wpteam account__side_wpteam--right">
+    <div class="account__frames account__frames_wpteam--side">
+        <div class="account__search search">
+
+        </div>
+    </div>
+</div>

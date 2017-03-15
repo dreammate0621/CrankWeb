@@ -1,0 +1,29 @@
+{
+    "id": 1, 
+    "artist_name": "Lorde", 
+    "venue": "Air Canada Centre",
+    "date" : "MAR 11 2013",
+    "picture": "img/lorde.jpg",
+    "actions": {
+        "meetngreet": [
+            {"name": "Eric Douglas", "type": "Winner", "qty": 3},
+            {"name": "Maynard Mitchell", "type": "Winner", "qty": 5},
+            {"name": "Kent Phillips", "type": "Winner", "qty": 1},
+            {"name": "Steve Shakes", "type": "Winner", "qty": 2},
+            {"name": "Eric Douglas", "type": "Winner", "qty": 4},
+            {"name": "Maynard Mitchell", "type": "Winner", "qty": 5},
+            {"name": "Kent Phillips", "type": "Winner", "qty": 6},
+            {"name": "Steve Shakes", "type": "Winner", "qty": 6}
+        ],
+        "tickets": [
+            {"name": "Eric Douglas", "type": "Winner", "qty": 5},
+            {"name": "Maynard Mitchell", "type": "Winner", "qty": 5},
+            {"name": "Kent Phillips", "type": "Winner", "qty": 6}
+        ],
+        "interview": [
+        ],
+        "appearance": [
+        ]
+
+    }
+}

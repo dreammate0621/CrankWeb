@@ -1,0 +1,158 @@
+{
+    "nodes":[
+        {
+            "name":"Columbia, SC",
+            "group":0,
+            "size":1,
+            "formats": [
+                {"name":"Top 40","group":1,"size":1},
+                {"name":"Country","group":1,"size":1},
+                {"name":"Rhytmic","group":1,"size":1},
+                {"name":"Hot AC","group":4,"size":1}
+            ]
+        },
+        {
+            "name":"Dayton",
+            "group":0,
+            "size":2,
+            "formats": [
+                {"name":"Top 40","group":1,"size":1},
+                {"name":"Country","group":2,"size":0.8},
+                {"name":"Rhytmic","group":3,"size":0.9},
+                {"name":"Hot AC","group":4,"size":0.6}
+            ]
+        },
+        {
+            "name":"Des Moines",
+            "group":0,
+            "size":0.5,
+            "formats": [
+                {"name":"Top 40","group":1,"size":0.5},
+                {"name":"Country","group":2,"size":0.3},
+                {"name":"Rhytmic","group":3,"size":0.8},
+                {"name":"Hot AC","group":4,"size":0.4}
+            ]
+        },
+        {
+            "name":"Boise, ID",
+            "group":0,
+            "size":0.8,
+            "formats": [
+                {"name":"Top 40","group":1,"size":0.5},
+                {"name":"Unbelievable","group":2,"size":1},
+                {"name":"Rhytmic","group":3,"size":0.7},
+                {"name":"Hot AC","group":4,"size":0.4}
+            ]
+        },
+        {
+            "name":"Buffalo",
+            "group":0,
+            "size":0.8,
+            "formats": [
+                {"name":"Top 40","group":1,"size":0.5},
+                {"name":"Unbelievable","group":2,"size":1},
+                {"name":"Rhytmic","group":3,"size":0.7},
+                {"name":"Hot AC","group":4,"size":0.4}
+            ]
+        },
+        {
+            "name":"Gainesville",
+            "group":0,
+            "size":0.8,
+            "formats": [
+                {"name":"Top 40","group":1,"size":0.5},
+                {"name":"Unbelievable","group":2,"size":1},
+                {"name":"Rhytmic","group":3,"size":0.7},
+                {"name":"Hot AC","group":4,"size":0.4}
+            ]
+        },
+        {
+            "name":"Dallas",
+            "group":0,
+            "size":0.8,
+            "formats": [
+                {"name":"Top 40","group":1,"size":0.5},
+                {"name":"Unbelievable","group":2,"size":1},
+                {"name":"Rhytmic","group":3,"size":0.7},
+                {"name":"Hot AC","group":4,"size":0.4}
+            ]
+        },
+        {
+            "name":"Sacramento",
+            "group":0,
+            "size":0.8,
+            "formats": [
+                {"name":"Top 40","group":1,"size":0.5},
+                {"name":"Unbelievable","group":2,"size":1},
+                {"name":"Rhytmic","group":3,"size":0.7},
+                {"name":"Hot AC","group":4,"size":0.4}
+            ]
+        },
+        {
+            "name":"Augusta, GA",
+            "group":0,
+            "size":0.8,
+            "formats": [
+                {"name":"Top 40","group":1,"size":0.5},
+                {"name":"Unbelievable","group":2,"size":1},
+                {"name":"Rhytmic","group":3,"size":0.7},
+                {"name":"Hot AC","group":4,"size":0.4}
+            ]
+        },
+        {
+            "name":"Rochester",
+            "group":0,
+            "size":0.8,
+            "formats": [
+                {"name":"Top 40","group":1,"size":0.5},
+                {"name":"Unbelievable","group":2,"size":1},
+                {"name":"Rhytmic","group":3,"size":0.7},
+                {"name":"Hot AC","group":4,"size":0.4}
+            ]
+        },
+        {
+            "name":"Fresno",
+            "group":0,
+            "size":0.8,
+            "formats": [
+                {"name":"Top 40","group":1,"size":0.5},
+                {"name":"Unbelievable","group":2,"size":1},
+                {"name":"Rhytmic","group":3,"size":0.7},
+                {"name":"Hot AC","group":4,"size":0.4}
+            ]
+        },
+        {
+            "name":"Colorado Springs",
+            "group":0,
+            "size":0.8,
+            "formats": [
+                {"name":"Top 40","group":1,"size":0.5},
+                {"name":"Unbelievable","group":2,"size":1},
+                {"name":"Rhytmic","group":3,"size":0.7},
+                {"name":"Hot AC","group":4,"size":0.4}
+            ]
+        },
+        {
+            "name":"Ft. Myers",
+            "group":0,
+            "size":0.8,
+            "formats": [
+                {"name":"Top 40","group":1,"size":0.5},
+                {"name":"Unbelievable","group":2,"size":1},
+                {"name":"Rhytmic","group":3,"size":0.7},
+                {"name":"Hot AC","group":4,"size":0.4}
+            ]
+        },
+        {
+            "name":"Spokane",
+            "group":0,
+            "size":0.8,
+            "formats": [
+                {"name":"Top 40","group":1,"size":0.5},
+                {"name":"Unbelievable","group":2,"size":1},
+                {"name":"Rhytmic","group":3,"size":0.7},
+                {"name":"Hot AC","group":4,"size":0.4}
+            ]
+        }
+    ]
+}

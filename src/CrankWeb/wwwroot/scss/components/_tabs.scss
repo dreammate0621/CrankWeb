@@ -1,0 +1,115 @@
+.tabs {
+  &__item,
+  &__controls {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(105%);
+    transition: all 0.4s;
+    
+    @media screen and (max-width: 960px) {
+      position: relative;
+      display: none;
+      transform: translateX(0);
+    }
+
+    &--active {
+      transform: translateX(0);
+      transition-delay: 0.4s;
+
+      @media screen and (max-width: 960px) {
+        display: flex;
+      }
+    }
+  }
+
+  &__controls {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__controls-item {
+    height: 57px;
+    width: 33.33%;
+    padding: 2px;
+  }
+
+  &__controls-link {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    transition: background-color 0.2s;
+
+    .tabs__controls-item:nth-child(1) & {
+      background: #d4d4ca;
+
+      &:hover {
+        background: darken(#d4d4ca, 20%);
+      }
+    }
+
+    .tabs__controls-item:nth-child(2) & {
+      background: #eed5c2;
+
+      &:hover {
+        background: darken(#eed5c2, 20%);
+      }
+    }
+
+    .tabs__controls-item:nth-child(3) & {
+      background: #d3dfe3;
+
+      &:hover {
+        background: darken(#d3dfe3, 20%);
+      }
+    }
+
+    .tabs__controls-item:nth-child(4) & {
+      background: #d6d4d5;
+
+      &:hover {
+        background: darken(#d6d4d5, 20%);
+      }
+    }
+
+    .tabs__controls-item:nth-child(5) & {
+      background: #b7b4b4;
+
+      &:hover {
+        background: darken(#b7b4b4, 20%);
+      }
+    }
+
+    .tabs__controls-item:nth-child(6) & {
+      background: #f0ecd1;
+
+      &:hover {
+        background: darken(#f0ecd1, 20%);
+      }
+    }
+  }
+
+  &__controls-link-text {
+    opacity: 0;
+    transition: opacity 0.2s;
+    text-transform: uppercase;
+    font-size: 14px;
+
+    @media screen and (max-width: 705px) {
+      opacity: 1;
+    }
+
+    .tabs__controls-link:hover & {
+      opacity: 1;
+    }
+  }
+}

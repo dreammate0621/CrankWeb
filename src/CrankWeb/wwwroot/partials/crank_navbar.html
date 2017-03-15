@@ -1,0 +1,78 @@
+<!-- $scope navBarCtrl -->
+
+<div class="navbar  header">
+    <div class="navbar-inner container">
+        <div class="header_logo">
+            <md-button class="md-fab md-raised logo-img" ng-click="doRefresh()">
+                <img src="images/logo-img.png" width="35px" height="36px" />
+            </md-button>
+            <img src="images/logo-txt.png" width="95px" height="36px" class="logo-txt" />
+        </div>
+
+        <div class="navbar-left col-sm-2 hidden-xs">
+            <a href="" ng-click="workpageModalOpen()">
+                <i class="fa fa-bars" style="margin-right:5px;vertical-align:middle;font-size:1.25em;margin-top:-3px;">
+                </i>
+            </a>
+            <span ng-click="clickCrank()" class="crank-login" style="text-transform: uppercase; font-size:14px; font-weight: bold;">
+                Welcome, {{current_user.firstName}}  {{current_user.lastName}}
+            </span>
+            <!--<div class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bars" style="margin-right:5px;vertical-align:middle;font-size:1.25em;margin-top:-3px;">
+                    </i>
+                </a>
+                <span ng-click="clickCrank()" class="crank-login" style="text-transform: uppercase; font-size:14px; font-weight: bold;">
+                    Welcome, {{current_user.firstName}}  {{current_user.lastName}}
+                </span>
+                <ul class="dropdown-menu dropdown-menu-custom-top-space">
+                    <form>
+                        <li><a href="" ng-click="workpageModalOpen()">Wroker Pages </a></li>
+                        <li>
+                            <div> Map Auto Navigate
+                            <br />
+                                <label class="switch">
+                                    <input type="checkbox" ng-click="$parnt.toggleAutoMapZoom()" ng-model="$parent.isAutoZoomOnMap">
+                                    <div class="slider round"></div>
+                                </label>
+                            </div>
+                        </li>
+                    </form>
+                </ul>
+            </div>-->
+            <!--<span ng-click="clickCrank()" class="brand">CRANK</span>-->
+        </div>
+
+        <div class="col-sm-3  col-lg-3">
+              
+                <input type="text" ng-model="$parent.$parent.nav_Bar_Search_Text" uib-typeahead="result.display for result in $parent.searchInRosterAndSourcePanel($viewValue)"
+                typeahead-loading="loadingNavBarSearchResults"  typeahead-on-select="$parent.selectSearchedEntity($scope, $item, $model, $label)" typeahead-no-results="noNavBarSearchResultsFound" class="navbar-search" placeholder="Search..">
+          <!--<span><i class="fa fa-search"></i></span>-->
+        </div>
+       
+        <!--typeahead-on-select="addSearchUserToDiv($scope, $item, $model, $label)"-->
+      
+    <!--
+    <div class="col-sm-2 col-lg-2">
+        <div id="add-new-artist-wrapper" class="add-new-artist-wrapper" ng-class="{active: add_new_artist_active}" tabindex="1">
+            <input class="search-artist form-control" ng-model="artist_to_add" ng-change="searchNewArtist(artist_to_add)" typeahead="artist.name for artist in artists | limitTo:3" typeahead-on-select="selectAddNewArtist($item)" ng-focus="onFocus()" ng-blur="onBlur()" ng-click="onFocus()" />
+            <div id="search-anim" ng-click="saveIfSelected(found_artist)" ng-bind-html-unsafe="search_icon"></div>
+        </div>
+    </div>
+    -->
+    <div class="col-sm-7 col-lg-7">
+        <ul class="navbar-right" style="margin-right:50px;">
+
+            <li>
+                <a href="#/" class="logout" style="text-transform: uppercase; font-size:14px; font-weight: bold;">
+                    <i class="fa fa-power-off" style="margin-right:5px;vertical-align:middle;font-size:1.25em;margin-top:-3px;">
+                    </i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+
+

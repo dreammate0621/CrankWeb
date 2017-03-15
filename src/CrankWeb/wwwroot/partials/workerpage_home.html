@@ -1,0 +1,245 @@
+<style>
+    .dragged {
+        position: absolute;
+        opacity: 0.5;
+        z-index: 2000;
+    }
+
+    .placeholder {
+        position: relative;
+        /** More li styles **/
+    }
+
+        .placeholder:before {
+            position: absolute;
+            /** Define arrowhead **/
+        }
+</style>
+
+<div ng-controller="workerPageCtrl" class="">
+    <!--<div class="modal-header modified-Header">
+        <a class="modal-close" ng-click="cancel()" href="">&#10005;</a>
+    </div>-->
+
+
+    <script type="text/ng-template" id="showMessage.html">
+        <div class="modal-header" id="modal-title">
+            <span>{{message.messageHeader}}</span>
+        </div>
+        <div class="modal-body" id="modal-body">
+            {{message.messageBody}}
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <!-- begin worker page navigation -->
+    <div class="account">
+        <div class="account__side account__side--left">
+
+            <!-- begin user information -->
+            <div class="user">
+                <h2 class="user__title">{{current_login_user.userType.replace('_', "  ")}}</h2>
+                <a href="javascript:void(0)" ng-click="setTab('changeavatar')" style="width: 75px; height: 75px; float: left; /*margin: -9px 0px 8px -8px;*/" uib-tooltip="Click to change avatar"
+                   tooltip-animation="false"
+                   tooltip-placement="right"
+                   tooltip-popup-delay="600"
+                   tooltip-popup-close-delay="400"
+                   tooltip-append-to-body="true">
+                    <img src="" alt="User Avatar" class="user__avatar" ng-show="isUserHasAvatar" ng-src="{{loggedInUserImage}}" ng-error="isUserHasAvatar=false" />
+                    <div class="avatar-circle" ng-show="!isUserHasAvatar">
+                        <span class="initials">{{current_login_user.firstName[0] |uppercase}}{{current_login_user.lastName[0] |uppercase}}</span>
+                    </div>
+
+                </a>
+                <a href="javascript:void(0)" ng-if="selectedTab('companyinfo')||selectedTab('companylogo')" ng-click="setTab('companylogo')" uib-tooltip="Click to change company logo"
+                   tooltip-animation="false"
+                   tooltip-placement="right"
+                   tooltip-popup-delay="600"
+                   tooltip-popup-close-delay="400"
+                   tooltip-append-to-body="true"><img src="" alt="CompanyLogo" class="user__avatar" ng-src="{{user_company_logo}}"></a>
+
+                <div class="user__name" ng-click="setTab('userSettings')">
+                    {{current_login_user.firstName}}  {{current_login_user.lastName}}
+
+                </div>
+
+                <ul class="user__nav">
+                    <li class="user__nav-item_wpteam" ng-show="isShowMenus('userSettings')" ng-class="{'user__nav-item_wpteam--active' : selectedTab('changepassword')}">
+                        <a class="user__nav-link_wpteam" href="" ng-click="setTab('changepassword','userSettings')">Change password</a>
+                    </li>
+                    <li class="user__nav-item_wpteam" ng-show="isShowMenus('userSettings')" ng-class="{'user__nav-item_wpteam--active' : selectedTab('billingMethods')}">
+                        <a class="user__nav-link_wpteam" href="" ng-click="setTab('billingMethods','userSettings')">Billing Methods</a>
+                    </li>
+
+                    <li class="user__nav-item_wpteam" ng-class="{'user__nav-item_wpteam--active' : selectedTab('accountinfo')}">
+                        <a class="user__nav-link_wpteam user__nav-link--lg" href="" ng-click="setTab('accountinfo')">ACCOUNT INFO</a>
+                    </li>
+                    <li class="user__nav-item_wpteam" ng-if="current_login_user_company_detail.isCompanyAdmin" ng-class="{'user__nav-item_wpteam--active' : selectedTab('companyinfo')}">
+                        <a class="user__nav-link_wpteam user__nav-link--lg" href="" ng-click="setTab('companyinfo')">COMPANY INFO</a>
+                    </li>
+                    <li class="user__nav-item_wpteam" ng-class="{'user__nav-item_wpteam--active_main_cat' :selectedTab('artists') || selectedTab('venues')||selectedTab('tracks')|| selectedTab('radios')}">
+                        <a class="user__nav-link_wpteam" href="" ng-click="setTab('artists','roster')"><i class="fa fa-star" style="margin-right: 14px;"></i>ROSTER</a>
+                        <ul class="user_inner_navbar_wpteam" ng-show="isShowMenus('roster')">
+                            <li class="user_inner_navbar_item_wpteam" ng-class="{'user__nav-item_wpteam--active' : selectedTab('venues')}">
+                                <a class="user__nav-link_wpteam user__nav-link--lg" href="" ng-click="setTab('venues','roster')">Venues</a>
+                            </li>
+                            <li class="user_inner_navbar_item_wpteam" ng-class="{'user__nav-item_wpteam--active' : selectedTab('tracks')}">
+                                <a class="user__nav-link_wpteam user__nav-link--lg" href="" ng-click="setTab('tracks','roster')">Tracks</a>
+                            </li>
+                            <li class="user_inner_navbar_item_wpteam" ng-class="{'user__nav-item_wpteam--active' : selectedTab('radios')}">
+                                <a class="user__nav-link_wpteam user__nav-link--lg" href="" ng-click="setTab('radios','roster')">Radio</a>
+                            </li>
+                            <li class="user_inner_navbar_item" ng-class="{'user__nav-item_wpteam--active' : selectedTab('artists')}" style="margin-top:10px;">
+                                <a class="user__nav-link_wpteam user__nav-link--lg" href="" ng-click="setTab('artists','roster')">Artists</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="user__nav-item_wpteam" ng-class="{'user__nav-item_wpteam--active' : selectedTab('shows'),'user__nav-item_wpteam--active_main_cat':selectedTab('addshow')}">
+                        <a class="user__nav-link_wpteam" href="" ng-click="setTab('shows','shows')"><i class="fa fa-th-large" style="margin-right: 14px;"></i>SHOWS</a>
+                        <ul class="user_inner_navbar_wpteam" ng-show="isShowMenus('shows')">
+                            <li class="user_inner_navbar_item_wpteam" ng-class="{'user__nav-item_wpteam--active' : selectedTab('addshow')}">
+                                <a class="user__nav-link_wpteam user__nav-link--lg" href="" ng-click="setTab('addshow','shows')">New Show</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="user__nav-item_wpteam" ng-class="{'user__nav-item_wpteam--active' : selectedTab('team')}">
+                        <a class="user__nav-link_wpteam" href="" ng-click="setTab('team')"><i class="fa fa-users" style="margin-right: 14px;"></i>TEAM</a>
+                    </li>
+
+                    <li class="user__nav-item_wpteam" ng-if="current_login_user.userType!='radio_manager'" ng-class="{'user__nav-item_wpteam--active' : selectedTab('digitals')}">
+                        <a class="user__nav-link_wpteam" href="" ng-click="setTab('digitals')"><i class="fa fa-file-movie-o" style="margin-right: 14px;"></i>DIGITALS</a>
+                    </li>
+
+                    <li class="user__nav-item_wpteam" ng-class="{'user__nav-item_wpteam--active' : selectedTab('modules') && currentSelectedModule=='','user__nav-item_wpteam--active_main_cat':currentSelectedModule!=''}">
+                        <a class="user__nav-link_wpteam" href="" ng-click="setTab('modules','modules')"><i class="fa fa-sliders" style="margin-right: 14px;"></i>MODULES</a>
+                        <ul class="user_inner_navbar_wpteam" ng-show="isShowMenus('modules')">
+                            <li class="user_inner_navbar_item_wpteam" ng-click="getSelectModule(inNetworkModule.name)" ng-class="{'user__nav-item_wpteam--active' : inNetworkModule.name==currentSelectedModule}" ng-repeat="inNetworkModule in InNetworkModulesList">
+                                <a class="user__nav-link_wpteam user__nav-link--lg" href="">{{inNetworkModule.name.replace('Module','')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- end user information -->
+        </div>
+
+        <div class="account__content_wpteam" ng-include="'partials/workerpage_changeavatar.html'" selectType="changeavatar"></div>
+        <!-- account info -->
+        <div class="account__content_wpteam" ng-include="'partials/workerpage_password.html'" selectType="changepassword"></div>
+        <div class="account__content_wpteam" ng-include="'partials/workerpage_accountinfo.html'" selectType="accountinfo"></div>
+
+        <div class="account__content_wpteam" ng-include="'partials/workerpage_billingmethods.html'" selectType="billingMethods"></div>
+
+        <!--company info-->
+        <div class="account__content_wpteam" ng-include="'partials/workerpage_companyinfo.html'" selectType="companyinfo"></div>
+        <!--Change company Logo-->
+        <div class="account__content_wpteam" ng-include="'partials/workerpage_changecompanylogo.html'" selectType="companylogo"></div>
+        <!-- Stations -->
+        <div class="account__content_wpteam" containerclass="account__content_wpteam" minimize-Maximize-Tiles frameclass="frame__workpageteam" framecontainerclass="account__frames" ng-include="'partials/workerpage_stations.html'" selectType="radios"></div>
+        <!-- Roster -->
+        <div class="account__content_wpteam" containerclass="account__content_wpteam" minimize-Maximize-Tiles frameclass="frame__workpageteam" framecontainerclass="account__frames" ng-include="'partials/workerpage_roster.html'" selectType="artists"></div>
+        <!--Venues-->
+        <div class="account__content_wpteam" containerclass="account__content_wpteam" minimize-Maximize-Tiles frameclass="frame__workpageteam" framecontainerclass="account__frames" ng-include="'partials/workerpage_venues.html'" selectType="venues"></div>
+
+        <!-- Tracks -->
+        <div class="account__content_wpteam" containerclass="account__content_wpteam" minimize-Maximize-Tiles frameclass="frame__workpageteam" framecontainerclass="account__frames" ng-include="'partials/workerpage_tracks.html'" selectType="tracks"></div>
+
+        <!-- shows -->
+        <div class="account__content_wpteam" containerclass="account__content_wpteam" on-Minimize="onShowTileMinimize()" minimize-Maximize-Tiles frameclass="frame__workpageteam" framecontainerclass="account__frames" ng-include="'partials/workerpage_shows.html'" selectType="shows"></div>
+
+        <div class="account__content_wpteam" ng-include="'partials/workerpage_add_show.html'" selectType="addshow"></div>
+
+        <!-- team -->
+        <div class="account__content_wpteam" containerclass="account__content_wpteam" minimize-Maximize-Tiles frameclass="frame__workpageteam" framecontainerclass="account__frames" ng-include="'partials/workerpage_team.html'" selectType="team"></div>
+
+        <!-- Digitals -->
+        <div class="account__content_wpteam" containerclass="account__content_wpteam" minimize-Maximize-Tiles frameclass="frame__workpageteam" on-Minimize="onDigitalTileMinimize()" framecontainerclass="account__frames" ng-include="'partials/workerpage_digitals.html'" selectType="digitals"></div>
+        <!-- Modules -->
+        <div class="account__content_wpteam" containerclass="account__content_wpteam" minimize-Maximize-Tiles frameclass="frame__workpageteam" framecontainerclass="account__frames" ng-include="'partials/workerpage_modules.html'" selectType="modules"></div>
+
+    </div>
+
+
+    <!-- Invite section for out of company users -->
+    <script type="text/ng-template" id="invite.html">
+        <div class="modal-header">
+            <span>Invite</span>
+            <a class="modal-close" style="float:right" ng-click="cancel()" href="">&#10005;</a>
+        </div>
+        <div class="register">
+            <div class="register-form pad">
+                <form ng-submit="SendInviteMail(inviteForm.$valid)" name="inviteForm" novalidate>
+                    <div class="from-group">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Invitee Name</label>
+                            <input type="text" tabindex="1" readonly id="invitee_name" value="{{user.firstName}} {{user.lastName}}">
+
+                        </md-input-container>
+
+                    </div>
+                    <div class="from-group">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Invitee Type</label>
+                            <select name="invitee_type" ng-model="user.userType">
+                                <option value="radio_manager">Radio</option>
+                                <option value="label">Label</option>
+                                <option value="promoter">Promoter</option>
+                                <option value="artist_manager">Artist Manager</option>
+                            </select>
+                        </md-input-container>
+
+                    </div>
+                    <div class="from-group" ng-class="{true: 'has-error'}[submitted && inviteForm.invitee_email.$invalid]">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Email</label>
+                            <input type="email" tabindex="2" required="required" name="invitee_email" id="invitee_email" ng-model="user.email">
+                        </md-input-container>
+                    </div>
+                    <div class="from-group">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Phone</label>
+                            <input type="text" tabindex="3" name="invitee_phone" id="invitee_phone" ng-model="user.phone">
+                        </md-input-container>
+                    </div>
+                    <button type="submit" tabindex="6" class="form-control input" ng-click="submitted = true">Send Invite</button>
+                </form>
+            </div>
+        </div>
+
+    </script>
+    <!-- End of invite section for out of company users -->
+    <!-- Invite digital section for out of company users -->
+    <script type="text/ng-template" id="inviteDigital.html">
+        <div class="modal-header">
+            <span>Invite</span>
+            <a class="modal-close" style="float:right" ng-click="cancel()" href="">&#10005;</a>
+        </div>
+        <div class="register">
+            <div class="register-form pad">
+                <form ng-submit="SendDigitalInviteMail(inviteDigitalForm.$valid)" name="inviteDigitalForm" novalidate>
+                    <!--<div class="from-group">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Name</label>
+                            <input type="text" tabindex="1" id="invitee_name" ng-model="name">
+                        </md-input-container>
+                    </div>-->
+                    <div class="from-group" >
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Email</label>
+                            <input type="email" tabindex="2" required="required" name="invitee_email" id="invitee_email" ng-model="email">
+                        </md-input-container>
+                    </div>
+                    <button type="submit" tabindex="6" class="form-control input auth__btn" ng-disabled="invite_in_progress" ng-click="submitted = true"> <i class="fa fa-spinner fa-spin fa-fw fa-lg" ng-class="{'login-progress':invite_in_progress}"></i>Send Invite</button>
+                </form>
+            </div>
+        </div>
+
+    </script>
+    <!-- End of invite section for out of company users -->
+</div>
+
+

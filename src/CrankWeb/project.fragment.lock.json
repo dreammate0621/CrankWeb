@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "exports": {
+    "Crankdata/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.6.1",
+      "compile": {
+        "bin/Debug/Crankdata.dll": {}
+      },
+      "runtime": {
+        "../packages/MongoDB.Bson.2.2.4/lib/net45/MongoDB.Bson.dll": {},
+        "../packages/MongoDB.Driver.2.2.4/lib/net45/MongoDB.Driver.dll": {},
+        "../packages/MongoDB.Driver.Core.2.2.4/lib/net45/MongoDB.Driver.Core.dll": {},
+        "../packages/NLog.4.4.1/lib/net45/NLog.dll": {},
+        "bin/Debug/Crankdata.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/Crankdata.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    }
+  }
+}

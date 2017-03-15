@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1390,
+    "call_code": "WDAS-FM",
+    "market": "Philadelphia, PA, USA",
+    "logo": "images/radio/WDAS.png"
+  },
+  {
+    "id": 1004,
+    "call_code": "WDAS-AM",
+    "market": "Philadelphia, PA, USA",
+    "logo": "images/radio/WDAS-am.png"
+  },
+  {
+    "id": 1561,
+    "call_code": "WIOQ-FM",
+    "market": "Philadelphia, PA, USA",
+    "logo": "images/radio/WIOQ.png"
+  },
+  {
+    "id": 1100,
+    "call_code": "WISX-FM",
+    "market": "Philadelphia, PA, USA",
+    "logo": "images/radio/WISX.png"
+  },
+  {
+    "id": 1461,
+    "call_code": "WRFF-FM",
+    "market": "Philadelphia, PA, USA",
+    "logo": "images/radio/WRFF.png"
+  },
+  {
+    "id": 1562,
+    "call_code": "WUSL-FM",
+    "market": "Philadelphia, PA, USA",
+    "logo": "images/radio/WUSL.png"
+  }
+]
+

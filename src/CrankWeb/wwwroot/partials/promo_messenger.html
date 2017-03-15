@@ -1,0 +1,130 @@
+   <!-- begin promotion messenger -->
+<div class="promotion">
+
+    <ul class="promotion__controls">
+        <li class="promotion__control-item">
+            <a href="" class="promotion__control-btn promotion__control-btn--underscore" ng-click="$parent.minimizeMessenger($event)"></a>
+        </li>
+        <li class="promotion__control-item">
+            <a href="" class="promotion__control-btn promotion__control-btn--clone"></a>
+        </li>
+        <li class="promotion__control-item">
+            <a href="" class="promotion__control-btn promotion__control-btn--close"></a>
+        </li>
+    </ul>
+
+    <div class="promotion__side">
+        <div class="promotion__messenger__links">
+            <ul class="messenger__links">
+                <li class="messenger__links-item">
+                    <a href="" class="messenger__links-link"><img src="images/ic-messenger-1.png" alt=""></a>
+                </li>
+
+                <li class="messenger__links-item">
+                    <a href="" class="messenger__links-link" ng-click="$parent.showAllConnectedUsersOnMessenger()"><img src="images/ic-messenger-2.png" alt=""></a>
+                </li>
+            </ul>
+        </div>
+        <!-- begin dialogs -->
+        <div class="messenger__dialogs dialogs">
+            <!--<div class="promotion__search search search--add">
+            <input type="search" class="promotion__search__field">
+            <span class="promotion__search__icon-search"><i class="fa fa-search" style="margin-left:5px;"></i></span>
+        </div>-->
+
+            <div class="dialogs__items-wrap" data-simplebar-direction="vertical" id="messengercontact">
+                <div class="dialogs__items" ng-show="$parent.isShowAllConnectedUsersOnMessenger">
+                    <div class="dialogs__item" data-drag="true" data-user-id="{{user.id}}" jqyoui-draggable data-jqyoui-options="{helper:'clone',scope:'userForChat',placeholder:true,animate:true,cursor:'-webkit-grab'}" ng-show="user.isShow" ng-repeat="user in connectedUsers">
+                        <!--<img class="dialogs__avatar" ng-src={{user.imageUrl}} alt=""/>-->
+                        <img ng-src={{user.imageUrl}} alt="" ng-show="user.hasImage" ng-error="user.hasImage=false" class="dialogs__avatar messenger-left-side-img-width" />
+                        <div class="tile-avatar-circle intial-dialogs__avatar" ng-show="!user.hasImage">
+                            <span class="tile-initials">{{user.firstName[0] |uppercase}}{{user.lastName[0] |uppercase}}</span>
+                        </div>
+                        <div class="dialogs__name">{{user.firstName}} {{user.lastName}}</div>
+                    </div>
+                    <!--<div class="dialogs__item dialogs__item--unread">
+                    <img class="dialogs__avatar" src="images/person-2.png" alt="">
+                    <div class="dialogs__name">JAY SON</div>
+                </div>-->
+                </div>
+            </div>
+        </div>
+        <!-- end dialogs -->
+
+    </div>
+    <div class="promotion__main">
+            
+        <div class="promotion__header" ng-class="{'promotion__header_visible':selectedEvent}">
+            <h2 class="promotion__area">{{selectedEvent.venue || 'Select an Event'}}</h2>
+            <!--<input class="promotion__title" value="CHICAGO, IL, USA">-->
+            <span class="promotion__title" ng-click="selectMainMarket()">{{selectedEvent.market}}</span>
+
+            <div class="promotion__field-add">
+
+                <input type="text" class="promotion__search__field__top"
+                       placeholder="Search Markets"
+                       ng-model="$parent.$parent.$parent.subMarketSearch"
+                       uib-typeahead="resMarket.name + ', ' + (resMarket.state ?  resMarket.state + ', ' : '') + resMarket.country for resMarket in searchMarkets($viewValue) | limitTo:20"
+                       typeahead-loading="loadingMarkets"
+                       ypeahead-wait-ms="400"
+                       typeahead-on-select="addSubMarketsToEvent($item, $model, $label)"
+                       typeahead-no-results="noMarketsFound"
+                       ng-disabled="!selectedEvent">
+                <span class="search__icon-search_top-editable"><i class="fa fa-search"></i></span>
+                <!--<a href="" class="promotion__btn-add"><i class="fa fa-plus"></i></a>-->
+
+            </div>
+
+            <div class="promotion__places">
+                <div class="promotion__place fade" ng-class="{'active': subMarket.selected} " ng-repeat="subMarket in selectedEvent.subMarkets.subMarketList" ng-click="selectSubMarket(subMarket)">
+                    {{subMarket.name}}
+                    <a class="promotion__btn-close"><i class="fa fa-close" ng-click="removeSubMarket(subMarket,$index)"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="messenger__content">
+
+           
+            <!-- begin history -->
+            <div class="messenger__history history">
+                <div class="history__messages-wrap">
+                    <div class="history__messages" data-simplebar-direction="vertical" id="messengermessages" jqyoui-droppable="{onDrop:'$parent.onUserDropForChat(event,ui)', }"
+                         data-jqyoui-options="{scope:'userForChat'}" data-drop="true">
+                        <div class="history__message" ng-repeat="user in $parent.usersInChat">
+                            <div class="history__remove" ng-click="$parent.removeUserFromChat(user.id)">×</div>
+                            <!--<img ng-src={{user.imageUrl}} class="history__avatar"/>-->
+                            <img ng-src={{user.imageUrl}} alt="" ng-show="user.hasImage" ng-error="user.hasImage=false" class="history__avatar history__avatar-widthx" />
+                            <div class="tile-avatar-circle history__avatar" ng-show="!user.hasImage">
+                                <span class="tile-initials">{{user.firstName[0] |uppercase}}{{user.lastName[0] |uppercase}}</span>
+                            </div>
+
+                            <div class="history__content">
+                                <div class="history__name">{{user.firstName}} {{user.lastName}} <span class="history__date">{{user.joinedTime |date: 'mm.dd.yyyy'}}</span></div>
+                                <div class="history__text">{{user.message.text}}{{user.message.time}} </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="history__send-block">
+                    <input class="history__input">
+                    <button class="history__button">send</button>
+                </div>
+            </div>
+            <!-- end history -->
+        </div>
+
+    </div>
+
+
+</div>
+<!-- end promotion messenger -->
+
+
+<script type="text/javascript">
+    $("#messengercontact").simplebar();
+    $("#messengermessages").simplebar();
+</script>
+

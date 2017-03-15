@@ -1,0 +1,322 @@
+[
+  {
+    "id": 9000,
+    "artist_name": "Adele",
+    "venue": "Wells Fargo Center",
+    "date": "09/18/2016",
+    "picture": "/data/images/adele.jpg",
+    "event_name": "Adelle 2016 Tour",
+    "radio_staions": [ "WIOQ-FM", "WISX-FM", "WDAS-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 2,
+      "tickets": 20,
+      "interview": 4,
+      "appearance": 7
+    }
+  },
+  {
+    "id": 9001,
+    "artist_name": "Twenty One Pilots",
+    "venue": "Citizens Bank Park",
+    "date": "09/10/2016",
+    "picture": "/data/images/twenty_one_pilots.png",
+    "event_name": "Twenty One Pilots 2016 Tour",
+    "radio_staions": [ "WRFF-FM", "WIOQ-FM", "WDAS-AM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 5,
+      "tickets": 16,
+      "interview": 7,
+      "appearance": 8
+    }
+  },
+  {
+    "id": 9002,
+    "artist_name": "Sam Hunt",
+    "venue": "Wells Fargo Center",
+    "date": "9/23/2016",
+    "picture": "/data/images/sam_hunt.jpg",
+    "event_name": "Sam Hunt 2016 Tour",
+    "radio_staions": [ "WUSL-FM", "WDAS-AM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 4,
+      "tickets": 22,
+      "interview": 6,
+      "appearance": 4
+    }
+  },
+  {
+    "id": 9003,
+    "artist_name": "New District",
+    "venue": "Flyers Skate Zone",
+    "date": "9/25/2016",
+    "picture": "/data/images//new_district.jpg",
+    "event_name": "New District 2016 Tour",
+    "radio_staions": [ "WIOQ-FM", "WDAS-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 2,
+      "tickets": 20,
+      "interview": 4,
+      "appearance": 7
+    }
+  },
+  {
+    "id": 9004,
+    "artist_name": "Pentatonix",
+    "venue": "The Liacouras Center",
+    "date": "09/14/2016",
+    "picture": "/data/images/pentatonix.jpg",
+    "event_name": "Pentatonix 2016 Tour",
+    "radio_staions": [ "WIOQ-FM", "WISX-FM", "WDAS-AM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 6,
+      "tickets": 10,
+      "interview": 6,
+      "appearance": 2
+    }
+  },
+  {
+    "id": 9005,
+    "artist_name": "Cage the Elephant",
+    "venue": "Citizens Bank Park",
+    "date": "09/17/2016",
+    "picture": "/data/images/cage_the_elephant.png",
+    "event_name": "Cage the Elephant 2016 Tour",
+    "radio_staions": [ "WRFF-FM", "WDAS-AM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 8,
+      "tickets": 26,
+      "interview": 8,
+      "appearance": 4
+    }
+  },
+  {
+    "id": 9006,
+    "artist_name": "Adele",
+    "venue": "Citizens Bank Park",
+    "date": "10/03/2016",
+    "picture": "/data/images/adele.jpg",
+    "event_name": "Adelle 2016 Tour",
+    "radio_staions": [ "WIOQ-FM", "WISX-FM", "WDAS-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 2,
+      "tickets": 20,
+      "interview": 4,
+      "appearance": 7
+    }
+  },
+  {
+    "id": 9010,
+    "artist_name": "Adele",
+    "venue": "Flyers Skate Zone",
+    "date": "10/12/2016",
+    "picture": "/data/images/adele.jpg",
+    "event_name": "Adelle 2016 Tour",
+    "radio_staions": [ "WIOQ-FM", "WISX-FM", "WDAS-AM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 2,
+      "tickets": 20,
+      "interview": 4,
+      "appearance": 7
+    }
+  },
+  {
+    "id": 9011,
+    "artist_name": "Twenty One Pilots",
+    "venue": "Wells Fargo Center",
+    "date": "10/01/2016",
+    "picture": "/data/images/twenty_one_pilots.png",
+    "event_name": "Twenty One Pilots 2016 Tour",
+    "radio_staions": [ "WRFF-FM", "WIOQ-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 5,
+      "tickets": 16,
+      "interview": 7,
+      "appearance": 8
+    }
+  },
+  {
+    "id": 9012,
+    "artist_name": "Sam Hunt",
+    "venue": "Citizens Bank Park",
+    "date": "10/05/2016",
+    "picture": "/data/images/sam_hunt.jpg",
+    "event_name": "Sam Hunt 2016 Tour",
+    "radio_staions": [ "WUSL-FM", "WDAS-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 4,
+      "tickets": 22,
+      "interview": 6,
+      "appearance": 4
+    }
+  },
+  {
+    "id": 9013,
+    "artist_name": "New District",
+    "venue": "The Liacouras Center",
+    "date": "10/09/2016",
+    "picture": "/data/images//new_district.jpg",
+    "event_name": "New District 2016 Tour",
+    "radio_staions": [ "WIOQ-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 2,
+      "tickets": 20,
+      "interview": 4,
+      "appearance": 7
+    }
+  },
+  {
+    "id": 9014,
+    "artist_name": "Pentatonix",
+    "venue": "Wells Fargo Center",
+    "date": "11/11/2016",
+    "picture": "/data/images/pentatonix.jpg",
+    "event_name": "Pentatonix 2016 Tour",
+    "radio_staions": [ "WIOQ-FM", "WISX-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 6,
+      "tickets": 10,
+      "interview": 6,
+      "appearance": 2
+    }
+  },
+  {
+    "id": 9015,
+    "artist_name": "Cage the Elephant",
+    "venue": "Wells Fargo Center",
+    "date": "11/22/2016",
+    "picture": "/data/images/cage_the_elephant.png",
+    "event_name": "Cage the Elephant 2016 Tour",
+    "radio_staions": [ "WRFF-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 8,
+      "tickets": 26,
+      "interview": 8,
+      "appearance": 4
+    }
+  },
+  {
+    "id": 9016,
+    "artist_name": "Adele",
+    "venue": "Wells Fargo Center",
+    "date": "11/18/2016",
+    "picture": "/data/images/adele.jpg",
+    "event_name": "Adelle 2016 Tour",
+    "radio_staions": [ "WIOQ-FM", "WISX-FM", "WDAS-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 2,
+      "tickets": 20,
+      "interview": 4,
+      "appearance": 7
+    }
+  },
+  {
+    "id": 9022,
+    "artist_name": "Adele",
+    "venue": "Wells Fargo Center",
+    "date": "09/30/2016",
+    "picture": "/data/images/adele.jpg",
+    "event_name": "Adelle 2016 Tour",
+    "radio_staions": [ "WIOQ-FM", "WISX-FM", "WDAS-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 2,
+      "tickets": 20,
+      "interview": 4,
+      "appearance": 7
+    }
+  },
+  {
+    "id": 9023,
+    "artist_name": "Twenty One Pilots",
+    "venue": "Flyers Skate Zone",
+    "date": "10/10/2016",
+    "picture": "/data/images/twenty_one_pilots.png",
+    "event_name": "Twenty One Pilots 2016 Tour",
+    "radio_staions": [ "WRFF-FM", "WIOQ-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 5,
+      "tickets": 16,
+      "interview": 7,
+      "appearance": 8
+    }
+  },
+  {
+    "id": 9024,
+    "artist_name": "Sam Hunt",
+    "venue": "Citizens Bank Park",
+    "date": "11/01/2016",
+    "picture": "/data/images/sam_hunt.jpg",
+    "event_name": "Sam Hunt 2016 Tour",
+    "radio_staions": [ "WUSL-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 4,
+      "tickets": 22,
+      "interview": 6,
+      "appearance": 4
+    }
+  },
+  {
+    "id": 9025,
+    "artist_name": "New District",
+    "venue": "Flyers Skate Zone",
+    "date": "10/17/2016",
+    "picture": "/data/images//new_district.jpg",
+    "event_name": "New District 2016 Tour",
+    "radio_staions": [ "WIOQ-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 2,
+      "tickets": 20,
+      "interview": 4,
+      "appearance": 7
+    }
+  },
+  {
+    "id": 9026,
+    "artist_name": "Pentatonix",
+    "venue": "The Liacouras Center",
+    "date": "09/26/2016",
+    "picture": "/data/images/pentatonix.jpg",
+    "event_name": "Pentatonix 2016 Tour",
+    "radio_staions": [ "WIOQ-FM", "WISX-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 6,
+      "tickets": 10,
+      "interview": 6,
+      "appearance": 2
+    }
+  },
+  {
+    "id": 9027,
+    "artist_name": "Cage the Elephant",
+    "venue": "Citizens Bank Park",
+    "date": "09/17/2016",
+    "picture": "/data/images/cage_the_elephant.png",
+    "event_name": "Cage the Elephant 2016 Tour",
+    "radio_staions": [ "WRFF-FM" ],
+    "market": "Philadelphia, PA, USA",
+    "actions": {
+      "meetngreet": 8,
+      "tickets": 26,
+      "interview": 8,
+      "appearance": 4
+    }
+  }
+]

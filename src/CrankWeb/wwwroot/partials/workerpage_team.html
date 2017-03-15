@@ -1,0 +1,249 @@
+<div class="">
+    <ul class="account__controls">
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--underscore" ng-click="cancel()"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--clone"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--close popup__close" ng-click="cancel()"></a>
+        </li>
+    </ul>
+</div>
+<div class="account__main_wpteam">
+    <!-- begin In network search -->
+    <div class="account__search search">
+        <input type="search" class="search__field" ng-model="searchInNetworkText">
+        <span class="search__icon-search"><i class="fa fa-search"></i></span>
+    </div>
+    <!--end In network search -->
+
+    <div class="account__frames" ng-sortable="sortableInNetworkUsers">
+        <!-- begin in network team member frame -->
+        <div class="frame__workpageteam"  ng-class="{'frame--active' : inNetworkUser.isTeamMember}" ng-animate="'animate'" ng-repeat="inNetworkUser in InNetworkTeamUsers  | filter:searchInNetworkText ">
+           
+            <ul class="frame__controls-left-side">
+                <li class="frame__control-item">
+                    <input color-picker class="frame__icon color__picker__field__style" color-me="true" ng-model="inNetworkUser.colorValueInline" />
+                  
+                </li>
+                <li class="frame__control-item">
+                    <a href="javascript:void(0)"  mwl-confirm class="frame__icon member-add-remove-icon add-icon"
+                       message="YOU ARE ADDING THIS MEMBER TO YOUR TEAM, NOTE THIS USER WILL SEE EVERYTHING YOU HAVE ON YOUR SCREEN AND CAN COMMIT THE SAME ACTIONS AS YOU"
+                      confirm-title="Confirm"
+                        on-confirm="addUserToTeam(inNetworkUser.id)"
+                       confirm-button-type="gunMetalBlue"
+                       confirm-text="Yes <i class='glyphicon glyphicon-ok'></i>"
+                       cancel-text="No <i class='glyphicon glyphicon-remove'></i>"
+                       ng-show="!inNetworkUser.isTeamMember"> <i class="fa fa-user-plus"></i></a>
+                    <a href="" uib-tooltip="REMOVE USER FROM TEAM"
+                   tooltip-animation="false"
+                   tooltip-append-to-body="true" ng-click="removeUserfromTeam(inNetworkUser.id)" ng-show="inNetworkUser.isTeamMember" class="frame__icon member-add-remove-icon remove-icon"><i class="fa fa-user-times"></i></a>
+
+                </li>
+            </ul>
+
+
+            <ul class="frame__controls">
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--underscore"></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="javascript:void(0)" class="frame__control-btn frame__control-btn--clone"><i class="fa fa-clone"></i></a>
+                </li>
+                <!--  open-on-dblclick="true"-->
+                <!--animation="true"-->
+                <li class="frame__control-item">
+                    <a href=""   uib-tooltip="REMOVE USER FROM NETWORK"
+                   tooltip-animation="false"
+                   tooltip-append-to-body="true" class="frame__control-btn frame__control-btn--remove" ng-click="moveUserOutOfTeam(inNetworkUser.id)"><i class="fa fa-close"></i></a>
+                </li>
+               
+            </ul>
+            <div class="frame__tabs tabs">
+                <ul class="tabs__controls">
+                    <li class="tabs__control-item tabs__control-item--active">
+                        <a class="tabs__control-link">
+                            <img ng-src="{{inNetworkUser.imageUrl}}" alt="" class="frame__pic"  ng-show="inNetworkUser.hasImage" ng-error="inNetworkUser.hasImage=false">
+                            <div class="tile-avatar-circle frame__pic" ng-show="!inNetworkUser.hasImage">
+                                <span class="tile-initials">{{inNetworkUser.firstName[0] |uppercase}}{{inNetworkUser.lastName[0] |uppercase}}</span>
+                            </div>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <div class="tabs__content">
+                    <div class="tabs__content-item tabs__content-item--active">
+                        <div class="frame__info">
+                            <div class="frame__title">{{inNetworkUser.firstName | uppercase }} {{inNetworkUser.lastName | uppercase}}</div>
+                            <div class="frame__executor capitalize">{{inNetworkUser.userType.replace('_' ,' ')}}</div>
+                            <div class="frame__executor">{{inNetworkUser.company}}</div>
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li>{{inNetworkUser.firstName | uppercase }} {{inNetworkUser.lastName | uppercase}}</li>
+                                <li class="capitalize">{{inNetworkUser.userType.replace('_' ,' ') }}</li>
+                                <li>{{inNetworkUser.company | uppercase}}</li>
+
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{inNetworkUser.firstName | uppercase }} {{inNetworkUser.lastName | uppercase}}</li>
+                                <li class="capitalize">{{inNetworkUser.userType.replace('_' ,' ')}}</li>
+                                <li>{{inNetworkUser.company | uppercase}}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div  class="tabs__content-item">
+                        <div class="frame__info">
+                            <div class="frame__title">{{inNetworkUser.firstName | uppercase }} {{inNetworkUser.lastName | uppercase}}</div>
+                            <div class="frame__executor capitalize">{{inNetworkUser.userType.replace('_' ,' ')}}</div>
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li>{{inNetworkUser.firstName | uppercase }} {{inNetworkUser.lastName | uppercase}}</li>
+                                <li class="capitalize">{{inNetworkUser.userType.replace('_' ,' ')}}</li>
+                                <li>{{inNetworkUser.company | uppercase}}</li>
+
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{inNetworkUser.firstName | uppercase }} {{inNetworkUser.lastName | uppercase}}</li>
+                                <li class="capitalize">{{inNetworkUser.userType.replace('_' ,' ')}}</li>
+                                <li>{{inNetworkUser.company | uppercase}}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<ul class="account__actions">
+        <li class="account__action-item">
+            <a href="" class="account__action-link">
+                <i class="fa fa-share"></i>
+            </a>
+        </li>
+        <li class="account__action-item">
+            <a href="" class="account__action-link">
+                <i class="fa fa-print"></i>
+            </a>
+        </li>
+        <li class="account__action-item">
+            <a href="" class="account__action-link" ng-click="SaveInNetworkUsers()"><i class="fa fa-save"></i></a>
+        </li>
+        <li class="account__action-item">
+            <a href="" class="account__action-link">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+    </ul>-->
+    <div id="cloned_items"></div>
+</div>
+
+<div class="account__side_wpteam account__side_wpteam--right">
+    <!-- begin out of network search -->
+    <div class="account__search search">
+        <input type="search" class="search__field_rightside" placeholder="Search..." ng-model="$parent.searchedOutOfNetworkUser" uib-typeahead="address.firstName + ' ' + address.lastName for address in getSearchedUser($viewValue)"
+               typeahead-on-select="addSearchUserToDiv($scope, $item, $model, $label)" typeahead-loading="loadingLocations" typeahead-no-results="noResults">
+        <span class="search__icon-search"><i class="fa fa-search"></i></span>
+    </div>
+    <!-- end out of network search -->
+    <div class="account__frames account__frames_wpteam--side" ng-sortable="sortableOutNetworkUsers">
+        <!-- begin out of network team members frame -->
+        <div ng-repeat="outOfNetworkUser in OutOfNetworkTeamUsers | filter:searchOutOfNetworkText"
+             class="frame__workpageteam frame__workpageteam_override right-side-frame" ng-class="{'frame__gray' : (outOfNetworkUser.isActive == false) }">
+            <!--<div class="frame__icon fa fa-square" color-Picker></div>-->
+            <ul class="frame__controls">
+                <li class="frame__control-item">
+                    <a href="#" class="frame__control-btn frame__control-btn--underscore"></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="javascript:void(0)" class="frame__control-btn frame__control-btn--clone"><i class="fa fa-clone"></i></a>
+                </li>
+                <!--<li class="frame__control-item">
+                    <a href="" ng-click="toggleconnectUserToLoginUser(outOfNetworkUser)" ng-show="outOfNetworkUser.isConnected" class="frame__control-btn frame__control-btn--add frame__control-btn--deactivate">-</a>
+                    <a href=""
+                       class="frame__control-btn frame__control-btn--add" ng-click="toggleconnectUserToLoginUser(outOfNetworkUser)" ng-show="!outOfNetworkUser.isConnected">
+                        +
+                    </a>
+                </li>-->
+            </ul>
+            <div class="frame__tabs tabs">
+                <ul class="tabs__controls">
+                    <li class="tabs__control-item tabs__control-item--active">
+                        <a class="tabs__control-link">
+                            <img ng-src="{{outOfNetworkUser.imageUrl}}" alt="" class="frame__pic" ng-error="outOfNetworkUser.hasImage=false" ng-show="outOfNetworkUser.hasImage">
+                            <div class="tile-avatar-circle" ng-show="!outOfNetworkUser.hasImage">
+                                <span class="tile-initials">{{outOfNetworkUser.firstName[0] |uppercase}}{{outOfNetworkUser.lastName[0] |uppercase}}</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tabs__content">
+                    <div id="" class="tabs__content-item tabs__content-item--active">
+                        <div class="frame__info">
+                            <div class="frame__title">{{outOfNetworkUser.firstName | uppercase }} {{outOfNetworkUser.lastName | uppercase}}</div>
+                            <div class="frame__executor capitalize">{{outOfNetworkUser.userType.replace('_' ,' ') }}</div>
+                            <div class="frame__executor">{{outOfNetworkUser.company}}</div> 
+                            <a href="" ng-show="{{outOfNetworkUser.isActive == false}}" ng-click="inviteModalOpen(outOfNetworkUser)" class="frame__control-btn--invite">
+                                INVITE
+                            </a>
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li>{{outOfNetworkUser.firstName | uppercase }} {{outOfNetworkUser.lastName | uppercase}}</li>
+                                <li class="capitalize">{{outOfNetworkUser.userType.replace('_' ,' ') | uppercase}}</li>
+                                <li>{{outOfNetworkUser.company | uppercase}}</li>
+
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{outOfNetworkUser.firstName | uppercase }} {{outOfNetworkUser.lastName | uppercase}}</li>
+                                <li class="capitalize">{{outOfNetworkUser.userType.replace('_' ,' ') }}</li>
+                                <li>{{outOfNetworkUser.company | uppercase}}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="frame2-2" class="tabs__content-item">
+                        <div class="frame__info">
+                            <div class="frame__title">{{outOfNetworkUser.firstName | uppercase }} {{outOfNetworkUser.lastName | uppercase}}</div>
+                            <div class="frame__executor capitalize">{{outOfNetworkUser.userType.replace('_' ,' ') }}</div>
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li>{{outOfNetworkUser.firstName | uppercase }} {{outOfNetworkUser.lastName | uppercase}}</li>
+                                <li class="capitalize">{{outOfNetworkUser.userType.replace('_' ,' ')}}</li>
+                                <li>{{outOfNetworkUser.company | uppercase}}</li>
+
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{outOfNetworkUser.firstName | uppercase }} {{outOfNetworkUser.lastName | uppercase}}</li>
+                                <li class="capitalize">{{outOfNetworkUser.userType.replace('_' ,' ') }}</li>
+                                <li>{{outOfNetworkUser.company | uppercase}}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+                <!--<img ng-src="{{outOfNetworkUser.imageUrl}}" alt="" class="frame__pic">
+                 <div class="frame_right">
+                     <span>{{outOfNetworkUser.firstName | uppercase }} {{outOfNetworkUser.lastName | uppercase}}</span>
+                     <span>{{outOfNetworkUser.userType | uppercase}}</span>
+                     <span>{{outOfNetworkUser.company | uppercase}}</span>
+                     <a href="" ng-show="{{outOfNetworkUser.isActive == false}}" ng-click="inviteModalOpen(outOfNetworkUser)" class="frame__control-btn--invite">
+                         INVITE
+                     </a>
+                 </div>-->
+        </div>
+        <!-- end out of network team members frame -->
+    </div>
+</div>
+
+
+

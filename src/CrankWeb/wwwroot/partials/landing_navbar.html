@@ -1,0 +1,15 @@
+<div class="navbar" >
+    <div class="navbar-inner container">
+        <div class="navbar-left col-sm-4 hidden-xs">
+            <span class="brand">CRANK</span>
+        </div>
+        <div class="navbar-right col-sm-8 col-xs-12" ng-show="current_view == 'signin'"> 
+            <span class="text">DON'T HAVE AN ACCOUNT?</span>
+            <a class="navbar-button show-layer" href="#/register">REGISTER</a>
+        </div>
+        <div class="navbar-right col-sm-8 col-xs-12" ng-show="current_view == 'register'">
+            <span class="text">ALREADY REGISTERED? </span>
+            <a class="navbar-button show-layer" href="#/signin">SIGN IN</a>
+        </div>
+    </div>
+</div>

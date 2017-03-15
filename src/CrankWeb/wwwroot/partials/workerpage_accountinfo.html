@@ -1,0 +1,98 @@
+
+<div class="">
+    <ul class="account__controls">
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--underscore" ng-click="cancel()"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--clone"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--close popup__close" ng-click="cancel()"></a>
+        </li>
+    </ul>
+</div>
+
+<div class="account__main_wpteam">
+   
+        <form autocomplete="off" id="register-form" class="form form-ajax form-validate" data-result=".register-result">
+            <div class="register-form">
+                <div class="row account_info_main">
+                    <div class="col-md-7">
+                        <div class="form-group">
+
+
+                            <md-input-container class="md-block">
+                                <label>User ID</label>
+                                <input type="email" tabindex="3" required="required" disabled maxlength="50" name="register_username" ng-model="accountinfo.userid">
+                            </md-input-container>
+                        </div>
+                        <div class="form-group">
+
+                            <md-input-container class="md-block">
+                                <label>First Name</label>
+                                <input class="" type="text" tabindex="2" required="required" maxlength="25" id="accountinfo_firstname" ng-model="accountinfo.firstName">
+                            </md-input-container>
+                        </div>
+                        <div class="form-group">
+
+                            <md-input-container class="md-block">
+                                <label> Last Name </label>
+                                <input class="" type="text" tabindex="3" required="required" maxlength="25" id="accountinfo_lastname" ng-model="accountinfo.lastName">
+                            </md-input-container>
+                        </div>
+                        <div class="form-group">
+
+                            <md-input-container class="md-block">
+                                <label> EMAIL </label>
+                                <input class="" type="email" tabindex="4" required="required" maxlength="50" id="accountinfo_email" ng-model="accountinfo.email">
+                            </md-input-container>
+
+                        </div>
+                        <disv class="form-group">
+                            <md-input-container class="md-block">
+                                <label>Company</label>
+                                <input type="text" tabindex="13" required typeahead-editable="true" ng-model="$parent.user_company_name" uib-typeahead="company.name for company in getSearchedForUserAccountCompanies($viewValue)"
+                                       typeahead-on-select="addCompanyToUser($scope, $item, $model, $label)" typeahead-loading="loadingcompanies" typeahead-no-results="noCompanyResults">
+                            </md-input-container>
+                        </disv>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <ul class="account__actions">
+                <li class="account__action-item">
+                    <a href="" class="account__action-link">
+                        <i class="fa fa-share"></i>
+                    </a>
+                </li>
+                <li class="account__action-item">
+                    <a href="" class="account__action-link">
+                        <i class="fa fa-print"></i>
+                    </a>
+                </li>
+                <li class="account__action-item">
+                    <a href="" tabindex="6" class="account__action-link" ng-click="updateAccountInfo()"><i class="fa fa-save"></i></a>
+                </li>
+                <li class="account__action-item">
+                    <a href="" class="account__action-link">
+                        <i class="fa fa-share-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </form>
+
+    </div>
+
+
+<div class="account__side_wpteam account__side_wpteam--right">
+    <div class="account__frames account__frames_wpteam--side">
+        <div class="account__search search">
+           
+        </div>
+    </div>
+</div>
+
+

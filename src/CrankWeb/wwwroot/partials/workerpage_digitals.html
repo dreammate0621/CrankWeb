@@ -1,0 +1,216 @@
+<div class="">
+    <ul class="account__controls">
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--underscore" ng-click="cancel()"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--clone"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--close popup__close" ng-click="cancel()"></a>
+        </li>
+    </ul>
+</div>
+<div class="account__main_wpteam">
+
+    <!-- begin In network search -->
+    <div class="account__search search">
+        <input type="search" class="search__field" ng-model="searchInNetworkStationText">
+        <span class="search__icon-search"><i class="fa fa-search"></i></span>
+    </div>
+    <!--end In network search -->
+
+    <div class="account__frames full-height-for-content-tab-in-tile" ng-sortable="sortableDigitalConfig">
+        <!-- begin in network team member frame -->
+        <div class="frame__workpageteam" ng-click="displayDigitalCountries(inNetworkStation.id,false)" ng-class="{'frame--active' : inNetworkStation.isActive == true}" ng-repeat="inNetworkStation in InNetworkStations  | filter:searchInNetworkStationText ">
+            <ul class="frame__controls-left-side">
+                <li class="frame__control-item">
+                    <input color-picker class="frame__icon color__picker__field__style" color-me="true" ng-model="inNetworkStation.colorValueInline" />
+                </li>
+                <li class="frame__control-item">
+                    <a href="javascript:void(0)" mwl-confirm class="frame__icon member-add-remove-icon add-icon"
+                       confirm-title="Confirm"
+                       message="YOU ARE CLAIMING THIS STATION AS YOUR OWN, NOTE THE OWNER OF THIS STATION WILL BE NOTIFIED THRU CRANK AND IT WILL NOT BE ADDED UNTIL THEY RESPOND TO YOUR REQUEST"
+                       on-confirm="inNetworkStation.isActive = true "
+                       confirm-button-type="gunMetalBlue"
+                       confirm-text="Yes <i class='glyphicon glyphicon-ok'></i>"
+                       cancel-text="No <i class='glyphicon glyphicon-remove'></i>"
+                       ng-show="!inNetworkStation.isActive"><i class="fa fa-calendar-plus-o"></i></a>
+                    <a href="" uib-tooltip="REMOVE STATION FROM YOUR OWN STATIONS"
+                       tooltip-animation="false"
+                       tooltip-append-to-body="true" ng-click="inNetworkStation.isActive= false" ng-show="inNetworkStation.isActive" class="frame__icon member-add-remove-icon remove-icon"><i class="fa fa-calendar-times-o"></i></a>
+
+                </li>
+                <li class="frame__control-item">
+                    <a href="" class="frame__icon_call_function member-add-remove-icon"  ng-click="displayDigitalCountries(inNetworkStation.id,true)"><i class="fa fa-globe"></i></a>
+                </li>
+                <li class="frame__control-item" ng-if="inNetworkStation.isShowInviteLink">
+                    <a class="frame__icon_call_function member-add-remove-icon digital-invite-link-icon" href="" ng-click="inviteDigitalModalOpen(inNetworkStation.companyId,inNetworkStation.companyAdmin)">
+                        <i class="fa fa-handshake-o"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="frame__controls">
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--underscore"></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--clone" ng-click="displayDigitalCountries(inNetworkStation.id,false)"><i class="fa fa-clone"></i></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="" uib-tooltip="REMOVE STATION FROM NETWORK"
+                       tooltip-animation="false"
+                       tooltip-append-to-body="true" ng-click="moveUserOutOfStation(inNetworkStation.id)" class="frame__control-btn frame__control-btn--remove"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="frame__tabs tabs">
+                <ul class="tabs__controls">
+                    <li class="tabs__control-item tabs__control-item--active">
+                        <a class="tabs__control-link">
+                            <img ng-src="{{inNetworkStation.imageUrl}}" alt="" class="frame__pic" ng-show="inNetworkStation.hasImage" ng-error="inNetworkUser.hasImage=false">
+                            <div class="tile-avatar-circle frame__pic" ng-show="!inNetworkStation.hasImage">
+                                <span class="tile-initials"><i class="fa fa-headphones"></i></span>
+                            </div>
+
+                        </a>
+                    </li>
+                   
+                </ul>
+
+              
+                <div class="tabs__content">
+
+                    <div id="" class="tabs__content-item tabs__content-item--active">
+                        <div class="frame__info">
+                            <div class="frame__title" ng-if="inNetworkStation.market=='Music Choice'">{{inNetworkStation.market | uppercase }}</div>
+                            <div class="frame__title capitalize" ng-if="inNetworkStation.market=='Music Choice'">{{inNetworkStation.format }}</div>
+
+                            <div class="frame__title" ng-if="inNetworkStation.market!='Music Choice'">{{inNetworkStation.name | uppercase }}</div>
+                            <div class="frame__executor" ng-if="inNetworkStation.market!='Music Choice'">{{inNetworkStation.market}}</div>
+
+                            <div class="frame__executor">{{inNetworkStation.sType}}</div>
+                        </div>
+
+                        <div class="frame__more row fade" ng-show="isShowCountriesList==inNetworkStation.id" >
+                            <div class="col-md-12 digital-station-countries-wrapper showonexpended">
+                                <div class="col-md-3 digital-station-country" ng-style="setLastCountryDivWidth($index,inNetworkStation.countries.length)" ng-repeat="coutry in inNetworkStation.countries">
+                                    <span>{{coutry}}</span>
+                                </div>
+
+                              
+                            </div>
+                            <!--ng-class="{'zero':setLastcountryDivWidth($index)==1,'one':setLastcountryDivWidth($index)==2,'three':setLastcountryDivWidth($index)==3}"-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end in network Station frame -->
+    </div>
+    <!--<ul class="account__actions">
+        <li class="account__action-item">
+            <a href="#" class="account__action-link">
+                <i class="fa fa-share"></i>
+            </a>
+        </li>
+        <li class="account__action-item">
+            <a href="#" class="account__action-link">
+                <i class="fa fa-print"></i>
+            </a>
+        </li>
+        <li class="account__action-item">
+            <a href="" class="account__action-link" ng-click="saveInNetworkStation()"><i class="fa fa-save"></i></a>
+        </li>
+        <li class="account__action-item">
+            <a href="#" class="account__action-link">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+    </ul>-->
+    <div id="cloned_items"></div>
+</div>
+
+<div class="account__side_wpteam account__side_wpteam--right">
+    <!-- begin out of network search -->
+    <div class="account__search search">
+        <input type="search" class="search__field_rightside"
+               ng-model="$parent.searchedOutOfNetworkStation"
+               placeholder="Search Digitals"
+               uib-typeahead="station.name for station in searchDigitalStaions($viewValue)"
+               typeahead-loading="loadingStations"
+               typeahead-wait-ms="400"
+               typeahead-on-select="addSearchStationToDiv($item, $model, $label)"
+               typeahead-no-results="noResults">
+        <span class="search__icon-search"><i class="fa fa-search"></i></span>
+    </div>
+    <!-- end out of network search -->
+    <div class="account__frames account__frames_wpteam--side" ng-sortable="sortableDigitalConfig">
+        <!-- begin out of network Module frame -->
+        <div class="frame__workpageteam  right-side-frame"
+             ng-repeat="outOfNetworkStation in OutOfNetworkStations">
+
+            <ul class="frame__controls-left-side">
+                <li class="frame__control-item">
+                    <a href="" class="frame__icon_call_function member-add-remove-icon" ng-click="displayDigitalCountries(outOfNetworkStation.id)"><i class="fa fa-globe"></i></a>
+                </li>
+                <li class="frame__control-item" ng-if="outOfNetworkStation.isShowInviteLink">
+                    <a class="frame__icon_call_function member-add-remove-icon digital-invite-link-icon" href="" ng-click="inviteDigitalModalOpen(outOfNetworkStation.companyId,outOfNetworkStation.companyAdmin)">
+                        <i class="fa fa-handshake-o"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="frame__controls">
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--underscore"></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--clone"><i class="fa fa-clone"></i></a>
+                </li>
+            </ul>
+
+            <div class="frame__tabs tabs">
+                <ul class="tabs__controls">
+                    <li class="tabs__control-item tabs__control-item--active">
+                        <a class="tabs__control-link">
+                            <img ng-src="{{outOfNetworkStation.imageUrl}}" alt="" class="frame__pic" ng-show="outOfNetworkStation.hasImage" ng-error="outOfNetworkStation.hasImage=false">
+                            <div class="tile-avatar-circle frame__pic" ng-show="!outOfNetworkStation.hasImage">
+                                <span class="tile-initials"><i class="fa fa-headphones"></i></span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tabs__content">
+                    <div id="" class="tabs__content-item tabs__content-item--active">
+                        <div class="frame__info">
+                            <div class="frame__title" ng-if="outOfNetworkStation.market=='Music Choice'">{{outOfNetworkStation.market | uppercase }}</div>
+                            <div class="frame__title capitalize" ng-if="outOfNetworkStation.market=='Music Choice'">{{outOfNetworkStation.format }}</div>
+
+                            <div class="frame__title" ng-if="outOfNetworkStation.market!='Music Choice'">{{outOfNetworkStation.name | uppercase }}</div>
+                            <div class="frame__executor" ng-if="outOfNetworkStation.market!='Music Choice'">{{outOfNetworkStation.market}}</div>
+                            <div class="frame__executor">{{outOfNetworkStation.sType}}</div>
+
+                        </div>
+
+                        <div class="frame__more row fade"  ng-show="isShowCountriesList==outOfNetworkStation.id">
+                            <div class="col-md-12 digital-station-countries-wrapper showonexpended">
+                                <div class="col-md-3  digital-station-country" ng-repeat="coutry in outOfNetworkStation.countries">
+                                    
+                                        <span>{{coutry}}</span>
+                                    
+                                </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end out of network Module frame -->
+        </div>
+    </div>
+
+
+
+
+

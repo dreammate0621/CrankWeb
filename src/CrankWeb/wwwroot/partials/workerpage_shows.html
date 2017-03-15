@@ -1,0 +1,206 @@
+<div class="">
+    <ul class="account__controls">
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--underscore" ng-click="cancel()"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--clone"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--close popup__close" ng-click="cancel()"></a>
+        </li>
+    </ul>
+</div>
+<div class="account__main_wpteam">
+
+    <div class="row" style="margin-left:17px">
+        <div class="col-lg-12">
+            <!-- begin date-bar -->
+            <div class="account__date-bar date-bar">
+                <div class="date-bar__icon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                <!--<h2 class="date-bar__month">{{currentMonthForScroller}}</h2>-->
+                <div class="date-bar__scroll" id="wp_dates_scroller" ng-iscroll="wp_dates_scroller" ng-iscroll-delay="500">
+                    <div class="date-bar__scroller">
+                        <div class="date-bar__items">
+                            <span class="date-bar__item" uib-tooltip="{{date.year +'-'+date.month+'-'+date.day}}"
+                                  tooltip-animation="false"
+                                  tooltip-popup-delay="0"
+                                  tooltip-popup-close-delay="0"
+                                  tooltip-append-to-body="true" ng-click="filterShowsByDate(date)" ng-repeat="date in dates"><span class="date-bar__item-text">{{date.day}}</span></span>
+                        </div>
+                    </div>
+                    <span class="date-bar__item date-bar__item--add"><span class="date-bar__item-text" ng-click="showAddNewShowTab()">add show</span></span>
+                </div>
+            </div>
+            <!-- begin date-picker -->
+            <div class="date-picker account__date-picker" on-Selected-Date="filterShowsByDate(date)" event-Dates="$parent.userShowsDates" openonclick=".date-bar__icon" crank-Datepicker></div>
+            <!-- end date-bar -->
+        </div>
+    </div>
+
+    <div class="row" style="margin-left:0px">
+        <!-- begin In shows search -->
+        <div class="account__search search">
+            <input type="search" class="search__field_rightside" ng-model="$parent.searchInShowsText">
+            <span class="search__icon-search" ng-click="$parent.searchInShowsText=''"><i class="fa fa-search" ng-if="$parent.searchInShowsText==''"></i><i style="cursor:pointer" ng-if="$parent.searchInShowsText !=''" class="fa fa-close"></i>  </span>
+        </div>
+        <!--end In shows search -->
+    </div>
+
+
+    <!--<div class="row">-->
+    <!--id="wp_shows_scroller" ng-iscroll="wp_shows_scroller" ng-iscroll-delay="500"-->
+    <!--<div class="account__frames_wpteam_wrapper" >-->
+    <div class="account__frames showframe full-height-for-content-tab-in-tile">
+        <!-- begin shows frame -->
+        <div class="frame__workpageteam" ng-animate="'animate'"  ng-if="show.isDisplay"  ng-repeat="show in $parent.userShows | filter:{$:$parent.searchInShowsText} | orderBy:'eventDate' ">
+            <ul class="frame__controls-left-side">
+                <li class="frame__control-item">
+                    <input color-picker class="frame__icon color__picker__field__style hide-picker-icon" color-me="true" ng-model="show.colorValueInline" />
+
+                </li>
+                <li class="frame__control-item" ng-if="current_login_user.userType=='promoter'|| current_login_user.userType=='label' ||current_login_user.userType=='artist_manager'">
+
+                    <a href="javascript:void(0)" class="frame__icon member-add-remove-icon" uib-tooltip="{{show.associations }} user are connected"
+                       tooltip-animation="false"
+                       tooltip-append-to-body="true"><i class="fa fa-user "></i></a>
+                </li>
+                <li class="frame__control-item" ng-show="show.weeklyPromotionHistory.length > 0">
+                    <a href="" class="frame__icon_call_function member-add-remove-icon" ng-click="displayTicketPromotionForShow(show.id)"><i class="fa fa-ticket"></i></a>
+                </li>
+            </ul>
+
+            <ul class="frame__controls">
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--underscore"></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="javascript:void(0)" class="frame__control-btn frame__control-btn--clone"><i class="fa fa-clone"></i></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="" uib-tooltip="REMOVE SHOW"
+                       tooltip-animation="false"
+                       tooltip-append-to-body="true" class="frame__control-btn  frame__control-btn--remove"><i class="fa fa-close"></i></a>
+                </li>
+
+            </ul>
+            <div class="frame__tabs tabs">
+                <ul class="tabs__controls">
+                    <li class="tabs__control-item tabs__control-item--active">
+                        <a class="tabs__control-link">
+                            <img ng-src="{{show.artistImage}}" alt="" class="frame__pic">
+
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="tabs__content">
+                    <div class="tabs__content-item tabs__content-item--active">
+                        <div class="frame__info">
+                            <div class="frame__title">{{show.artistName | uppercase }}</div>
+                            <div class="frame__executor capitalize">{{show.venue}}</div>
+                            <div class="frame__executor">{{show.eventDate |  date:'MM/dd/yyyy' : 'UTC'}}</div>
+                        </div>
+                        <div class="frame__more row" ng-show="isDisplayShowPromotionHistory==show.id" >
+                            <div class="promotion-history-wrapper showonexpended">
+                                <div class="row  show-promotion-history-row pull-right" ng-click="setPromotionRowExpened((show.id+weeklyPromotion.startWeekDate))"   ng-repeat="weeklyPromotion in show.weeklyPromotionHistory">
+                                    <div class="col-md-2 promotion-history-date"><span>{{weeklyPromotion.startWeekDate | date:'MM/dd/yyyy' : 'UTC'}}</span></div>
+                                    <div class="col-md-10">
+                                        <div class="promotion_stations">
+                                            <div class="promotion_stations_wrapper promotion__tiles  history-promotion" ng-class="{'promotion__tiles--expanded':expenedRow==(show.id+weeklyPromotion.startWeekDate) ||setexpenedRow==(show.id+weeklyPromotion.startWeekDate)}">
+                                                <div class="promotion_stations_scroller grabcursor">
+                                                    <div class="tile fade" ng-repeat="station in weeklyPromotion.pormotionStations">
+                                                        <div>
+                                                            <img ng-src={{'api/v1/stations/'+station.stationId+'/images/normal'}} alt="" class="tile__img">
+                                                        </div>
+                                                      
+                                                        <div class="tile__dropdown-list">
+                                                            <a class="promotion__link history-promotions promotion__link--active" uib-popover-template="'promoCount.html'"
+                                                               popover-trigger="'mouseenter'"
+                                                               popover-placement="auto top"
+                                                               popover-popup-delay="0"
+                                                               popover-popup-close-delay="0"
+                                                               popover-append-to-body="true"
+                                                               popover-animation="false"
+                                                               popover-class="promo-detail" ng-repeat="promotion in station.promotions">
+                                                                <i class="fa" ng-class="{'fa-eye' :promotion.type=='appearance','fa-ticket' :promotion.type=='ticket','fa-camera':promotion.type=='meetngreet','fa-microphone':promotion.type=='interview'}"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="col-md-3">
+                                            <div class="promotion_history_count_wrapper history-promotion" ng-class="{'promotion__tiles--expanded':expenedRow==(show.id+weeklyPromotion.startWeekDate) ||setexpenedRow==(show.id+weeklyPromotion.startWeekDate)}">
+                                                    <div class="promotion-count-column fade">
+                                                        <div class="tile__dropdown-list">
+                                                            <a class="promotion__link history-promotions weekly-promotion-count promotion__link--active">
+                                                                <i class="fa fa-eye"> </i> <span class="promotion-history-count">{{weeklyPromotion.appearancePromotionCount}}</span>
+                                                            </a>
+                                                            <a class="promotion__link history-promotions weekly-promotion-count promotion__link--active">
+                                                                <i class="fa  fa-ticket"></i><span class="promotion-history-count">{{weeklyPromotion.ticketPromotionCount}}</span>
+                                                            </a>
+
+                                                            <a class="promotion__link history-promotions weekly-promotion-count promotion__link--active">
+                                                                <i class="fa fa-camera"> </i><span class="promotion-history-count">{{weeklyPromotion.meetnGreetPromotionCount}}</span>
+                                                            </a>
+                                                            <a class="promotion__link history-promotions weekly-promotion-count promotion__link--active">
+                                                                <i class="fa  fa-microphone"></i><span class="promotion-history-count">{{weeklyPromotion.interviewPromotionCount}}</span>
+                                                            </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--</div>-->
+    <!--</div>-->
+    <!--<ul class="account__actions">
+        <li class="account__action-item">
+            <a href="" class="account__action-link">
+                <i class="fa fa-share"></i>
+            </a>
+        </li>
+        <li class="account__action-item">
+            <a href="" class="account__action-link">
+                <i class="fa fa-print"></i>
+            </a>
+        </li>
+        <li class="account__action-item">
+            <a href="" class="account__action-link" ><i class="fa fa-save"></i></a>
+        </li>
+        <li class="account__action-item">
+            <a href="" class="account__action-link">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+    </ul>-->
+</div>
+
+<div class="account__side_wpteam account__side_wpteam--right">
+    <!-- begin out of network search -->
+    <div class="account__search search">
+        <input type="search" class="search__field_rightside" placeholder="Search..." />
+        <span class="search__icon-search"><i class="fa fa-search"></i></span>
+    </div>
+    <!-- end out of network search -->
+    <div class="account__frames account__frames_wpteam--side">
+
+    </div>
+</div>
+
+
+
+

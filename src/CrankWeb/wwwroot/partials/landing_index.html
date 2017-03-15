@@ -1,0 +1,28 @@
+<div ng-include src="'partials/landing_navbar.html'"></div>
+
+<div class="container">
+    <!-- ADD AN ERROR FEEDBACK HERE -->
+
+    <div class="form-wrapper">
+        <div ng-include="current_form"></div>
+        <div style="clear:both;"></div>
+    </div>
+
+    <div class="message-wrapper center-horizontal">
+        <div uib-alert ng-repeat="message in messages" dismiss-on-timeout="16000" ng-class="'alert-' + (message.type || 'warning')" close="closeMessage($index)">
+            <span ng-bind-html="message.msg"></span>
+        </div>
+    </div>
+
+    <div class="row footer">
+        <p><a href="https://itunes.apple.com/us/app/id532411889?mt=8&src=af&ign-mpt=uo%3D6"><img src="images/apple-store-badge.png" alt="iphone app" /></a></p>
+        <p>
+            <a href="mailto:crankit@getcrank.com">Contact Crank MI</a> |
+            <a href="#" data-toggle="modal">Terms &amp; Conditions</a>	     |
+            <a href="#" data-toggle="modal">Privacy Policy</a>
+        </p>
+        <p>2016. &copy; CRANK MI. ALL RIGHTS RESERVED.</p>
+    </div>
+
+</div>
+

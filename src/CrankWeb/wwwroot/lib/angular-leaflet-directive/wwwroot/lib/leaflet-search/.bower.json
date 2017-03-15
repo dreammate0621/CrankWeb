@@ -1,0 +1,28 @@
+{
+  "name": "leaflet-search",
+  "version": "2.7.0",
+  "main": [
+    "dist/leaflet-search.src.js",
+    "dist/leaflet-search.src.css"
+  ],
+  "dependencies": {
+    "leaflet": ">=0.7"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "bower_components",
+    "examples"
+  ],
+  "homepage": "https://github.com/stefanocudini/leaflet-search",
+  "_release": "2.7.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.7.0",
+    "commit": "689c3deb30f1138d5e2a8a27610b6daf00df87d6"
+  },
+  "_source": "https://github.com/stefanocudini/leaflet-search.git",
+  "_target": "*",
+  "_originalSource": "leaflet-search"
+}

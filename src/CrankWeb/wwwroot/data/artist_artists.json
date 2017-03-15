@@ -1,0 +1,691 @@
+[
+  {
+    "id": 9000,
+    "artist_name": "Adele",
+    "artist_picture": "/data/images/adele.jpg"
+  },
+  {
+    "id": 9001,
+    "artist_name": "Twenty One Pilots",
+    "artist_picture": "/data/images/twenty_one_pilots.png"
+  },
+  {
+    "id": 9002,
+    "artist_name": "Sam Hunt",
+    "artist_picture": "/data/images/sam_hunt.jpg"
+  },
+  {
+    "id": 9003,
+    "artist_name": "New District",
+    "artist_picture": "/data/images/new_district.jpg"
+  },
+  {
+    "id": 9004,
+    "artist_name": "Pentatonix",
+    "artist_picture": "/data/images/pentatonix.jpg"
+  },
+  {
+    "id": 4654,
+    "artist_name": "Muse",
+    "artist_picture": "/data/images/muse.jpg",
+    "artist_bio": "Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass.",
+    "teams": [
+      {
+        "name": "ICM Los Angeles",
+        "logo": "images/team_logos/new_logos_18.png",
+        "is_record_company": true
+      },
+      {
+        "name": "The Agency Group UK",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Warner US",
+        "logo": "images/team_logos/new_logos_17.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Warner Australia",
+        "logo": "images/team_logos/new_logos_17.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Mediabase US",
+        "logo": "images/team_logos/new_logos_04.png"
+      },
+      {
+        "name": "Amazon US",
+        "logo": "images/team_logos/new_logos_01.png"
+      },
+      {
+        "name": "Itunes Radio US",
+        "logo": "images/team_logos/new_logos_12.png"
+      },
+      {
+        "name": "Google Play",
+        "logo": "images/team_logos/new_logos_10.png"
+      },
+      {
+        "name": "Bmat International",
+        "logo": "images/team_logos/new_logos_09.png"
+      },
+      {
+        "name": "Spotify US",
+        "logo": "images/team_logos/new_logos_03.png"
+      },
+      {
+        "name": "Itunes US",
+        "logo": "images/team_logos/new_logos_13.png"
+      }
+    ]
+  },
+  {
+    "id": 4715,
+    "artist_name": "The Black Keys",
+    "artist_picture": "/data/images/black_keys.jpg",
+    "artist_bio": "Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass.",
+    "teams": [
+      {
+        "name": "The Agency Group UK",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Creative Artist Agency",
+        "logo": "images/team_logos/new_logos_21.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Nonesuch US",
+        "logo": "images/team_logos/new_logos_22.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Warner Australia",
+        "logo": "images/team_logos/new_logos_17.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Mediabase US",
+        "logo": "images/team_logos/new_logos_04.png"
+      },
+      {
+        "name": "Amazon US",
+        "logo": "images/team_logos/new_logos_01.png"
+      },
+      {
+        "name": "Itunes Radio US",
+        "logo": "images/team_logos/new_logos_12.png"
+      },
+      {
+        "name": "Google Play",
+        "logo": "images/team_logos/new_logos_10.png"
+      },
+      {
+        "name": "Spotify US",
+        "logo": "images/team_logos/new_logos_03.png"
+      },
+      {
+        "name": "Itunes US",
+        "logo": "images/team_logos/new_logos_13.png"
+      },
+      {
+        "name": "Slacker US",
+        "logo": "images/team_logos/new_logos_02.png"
+      }
+    ]
+  },
+  {
+    "id": 4503,
+    "artist_name": "Cage the Elephant",
+    "artist_picture": "/data/images/cage_the_elephant.png",
+    "artist_bio": "Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass.",
+    "teams": [
+      {
+        "name": "ICM Los Angeles",
+        "logo": "images/team_logos/new_logos_18.png",
+        "is_record_company": true
+      },
+      {
+        "name": "The Agency Group UK",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "RCA US",
+        "logo": "images/team_logos/new_logos_25.png",
+        "is_record_company": true
+      },
+      {
+        "name": "VirginEmi UK",
+        "logo": "images/team_logos/new_logos_24.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Mediabase US",
+        "logo": "images/team_logos/new_logos_04.png"
+      },
+      {
+        "name": "Amazon US",
+        "logo": "images/team_logos/new_logos_01.png"
+      },
+      {
+        "name": "Itunes Radio US",
+        "logo": "images/team_logos/new_logos_12.png"
+      },
+      {
+        "name": "Google Play",
+        "logo": "images/team_logos/new_logos_10.png"
+      },
+      {
+        "name": "Bmat International",
+        "logo": "images/team_logos/new_logos_09.png"
+      },
+      {
+        "name": "Spotify US",
+        "logo": "images/team_logos/new_logos_03.png"
+      },
+      {
+        "name": "Itunes US",
+        "logo": "images/team_logos/new_logos_13.png"
+      }
+    ]
+  },
+  {
+    "id": 5410,
+    "artist_name": "Foals",
+    "artist_picture": "/data/images/foals.png",
+    "artist_bio": "Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass.",
+    "teams": [
+      {
+        "name": "The Agency Group US",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "The Agency Group UK",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Warner US",
+        "logo": "images/team_logos/new_logos_17.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Warner Australia",
+        "logo": "images/team_logos/new_logos_17.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Google Play",
+        "logo": "images/team_logos/new_logos_10.png"
+      },
+      {
+        "name": "Pandora Australia",
+        "logo": "images/team_logos/new_logos_07.png"
+      },
+      {
+        "name": "Bmat International",
+        "logo": "images/team_logos/new_logos_09.png"
+      },
+      {
+        "name": "Spotify US",
+        "logo": "images/team_logos/new_logos_03.png"
+      },
+      {
+        "name": "Itunes US",
+        "logo": "images/team_logos/new_logos_13.png"
+      },
+      {
+        "name": "Beats US",
+        "logo": "images/team_logos/new_logos_16.png"
+      }
+    ]
+  },
+  {
+    "id": 4737,
+    "artist_name": "Bear Hands",
+    "artist_picture": "/data/images/bear_hands.jpg",
+    "artist_bio": "Bear Hands is a post-punk/experimental/indie rock act hailing from Brooklyn, New York. Forming in 2006, the band consists of Dylan Rau, Ted Feldman, Val Loper and TJ Orscher. The band recently released a 4 song EP called Golden EP. Tracks include Golden, Long and Lean, Sickly Brunette and Bad Blood.   In 2009 Bear Hands joined the Too Pure Singles club and released \"What a Drag\" on a limited edition 7\" vinyl.",
+    "teams": [
+      {
+        "name": "The Agency Group UK",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Creative Artist Agency",
+        "logo": "images/team_logos/new_logos_21.png",
+        "is_record_company": true
+      },
+      {
+        "name": "ICM Los Angeles",
+        "logo": "images/team_logos/new_logos_18.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Warner US",
+        "logo": "images/team_logos/new_logos_17.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Mediabase US",
+        "logo": "images/team_logos/new_logos_04.png"
+      },
+      {
+        "name": "Amazon US",
+        "logo": "images/team_logos/new_logos_01.png"
+      },
+      {
+        "name": "Google Play",
+        "logo": "images/team_logos/new_logos_10.png"
+      },
+      {
+        "name": "Bmat International",
+        "logo": "images/team_logos/new_logos_09.png"
+      },
+      {
+        "name": "Spotify US",
+        "logo": "images/team_logos/new_logos_03.png"
+      },
+      {
+        "name": "Itunes US",
+        "logo": "images/team_logos/new_logos_13.png"
+      }
+    ]
+  },
+  {
+    "id": 5479,
+    "artist_name": "Eric Church",
+    "artist_picture": "/data/images/eric_church.png",
+    "artist_bio": "Eric Church is a country music singer and songwriter who released his third studio album, Chief on July 26, 2011, debuting at #1 on both Top Country Albums and the Billboard 200. The Homeboy Songfacts explains that the album's title refers to a nickname of not only the singer's grandfather, but also Church's own pet name among friends and family.   Eric grew up in Granite Falls, N.C., in an area known as one of the world's furniture capitals.",
+    "teams": [
+      {
+        "name": "The Agency Group US",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "The Agency Group UK",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Warner US",
+        "logo": "images/team_logos/new_logos_17.png",
+        "is_record_company": true
+      },
+      {
+        "name": "VirginEmi UK",
+        "logo": "images/team_logos/new_logos_24.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Itunes Radio US",
+        "logo": "images/team_logos/new_logos_12.png"
+      },
+      {
+        "name": "Google Play",
+        "logo": "images/team_logos/new_logos_10.png"
+      },
+      {
+        "name": "Pandora Australia",
+        "logo": "images/team_logos/new_logos_07.png"
+      },
+      {
+        "name": "Bmat International",
+        "logo": "images/team_logos/new_logos_09.png"
+      },
+      {
+        "name": "Spotify US",
+        "logo": "images/team_logos/new_logos_03.png"
+      },
+      {
+        "name": "Itunes US",
+        "logo": "images/team_logos/new_logos_13.png"
+      },
+      {
+        "name": "Beats US",
+        "logo": "images/team_logos/new_logos_16.png"
+      }
+    ]
+  },
+  {
+    "id": 4924,
+    "artist_name": "Mona",
+    "artist_picture": "/data/images/mona.jpg",
+    "artist_bio": "For the Algerian singer Mona, change your tags to: mona boutchebak  There are a number of artists called Mona.  1. Mona are an indie rock band originally from Dayton, Ohio, now located in Nashville, Tennessee.  They play romantic rock n' roll songs for the 'city folk'. Their single ‘Listen To Your Love’ was recorded in their basement and was released on their own Zion Noiz recordings which came out in the United Kingdom on September 13th 2010. The band comprise of Nick Brown (vocals, guitar, keyboards), Vince Gard (drums), Zach Lindsey (bass), Jordan Young (guitar).",
+    "teams": [
+      {
+        "name": "ICM Los Angeles",
+        "logo": "images/team_logos/new_logos_18.png",
+        "is_record_company": true
+      },
+      {
+        "name": "The Agency Group UK",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "RCA US",
+        "logo": "images/team_logos/new_logos_25.png",
+        "is_record_company": true
+      },
+      {
+        "name": "VirginEmi UK",
+        "logo": "images/team_logos/new_logos_24.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Mediabase US",
+        "logo": "images/team_logos/new_logos_04.png"
+      },
+      {
+        "name": "Amazon US",
+        "logo": "images/team_logos/new_logos_01.png"
+      },
+      {
+        "name": "Itunes Radio US",
+        "logo": "images/team_logos/new_logos_12.png"
+      },
+      {
+        "name": "Google Play",
+        "logo": "images/team_logos/new_logos_10.png"
+      },
+      {
+        "name": "Bmat International",
+        "logo": "images/team_logos/new_logos_09.png"
+      },
+      {
+        "name": "Spotify US",
+        "logo": "images/team_logos/new_logos_03.png"
+      },
+      {
+        "name": "Beats US",
+        "logo": "images/team_logos/new_logos_16.png"
+      }
+    ]
+  },
+  {
+    "id": 4977,
+    "artist_name": "Nickel Creek",
+    "artist_picture": "/data/images/nickel_creek.jpg",
+    "artist_bio": "Nickel Creek is an American progressive acoustic music trio consisting of Chris Thile (mandolin),  Sara Watkins (fiddle) and Sean Watkins (guitar). The band was founded in 1989 and released six albums between 1993 and 2006, winning a 2003 Grammy Award for Best Contemporary Folk Album. Nickel Creek disbanded in 2007. Nickel Creek reunited in 2014 with the announcement of a forthcoming album, A Dotted Line, to be released on April 1st, 2014.  ",
+    "teams": [
+      {
+        "name": "ICM Los Angeles",
+        "logo": "images/team_logos/new_logos_18.png",
+        "is_record_company": true
+      },
+      {
+        "name": "The Agency Group UK",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Warner US",
+        "logo": "images/team_logos/new_logos_17.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Warner Australia",
+        "logo": "images/team_logos/new_logos_17.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Mediabase US",
+        "logo": "images/team_logos/new_logos_04.png"
+      },
+      {
+        "name": "Amazon US",
+        "logo": "images/team_logos/new_logos_01.png"
+      },
+      {
+        "name": "Itunes Radio US",
+        "logo": "images/team_logos/new_logos_12.png"
+      },
+      {
+        "name": "Google Play",
+        "logo": "images/team_logos/new_logos_10.png"
+      },
+      {
+        "name": "Bmat International",
+        "logo": "images/team_logos/new_logos_09.png"
+      },
+      {
+        "name": "Spotify US",
+        "logo": "images/team_logos/new_logos_03.png"
+      },
+      {
+        "name": "Itunes US",
+        "logo": "images/team_logos/new_logos_13.png"
+      }
+    ]
+  },
+  {
+    "id": 4717,
+    "artist_name": "Silversun Pickups",
+    "artist_picture": "/data/images/silversun_pickups.jpg",
+    "artist_bio": "Silversun Pickups is a Grammy-nominated American indie rock band which formed in Los Angeles, California, United States in 2005. The band consists of Brian Aubert (vocals, guitar), Nikki Monninger (bass, vocals), Joe Lester (keyboards) and Christopher Guanlao (drums).  The band members are friends who had played together previously or in mutual friends' bands. The Bloody Mary (Nerve Endings) Songfacts explains that the name Silversun Pickups refers to a liquor store across the road L.A. rock-scene hang Silverlake Lounge.",
+    "teams": [
+      {
+        "name": "ICM Los Angeles",
+        "logo": "images/team_logos/new_logos_18.png",
+        "is_record_company": true
+      },
+      {
+        "name": "The Agency Group UK",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Warner Australia",
+        "logo": "images/team_logos/new_logos_17.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Warner US",
+        "logo": "images/team_logos/new_logos_17.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Mediabase US",
+        "logo": "images/team_logos/new_logos_04.png"
+      },
+      {
+        "name": "Amazon US",
+        "logo": "images/team_logos/new_logos_01.png"
+      },
+      {
+        "name": "Itunes Radio US",
+        "logo": "images/team_logos/new_logos_12.png"
+      },
+      {
+        "name": "Google Play",
+        "logo": "images/team_logos/new_logos_10.png"
+      },
+      {
+        "name": "Bmat International",
+        "logo": "images/team_logos/new_logos_09.png"
+      },
+      {
+        "name": "Spotify US",
+        "logo": "images/team_logos/new_logos_03.png"
+      },
+      {
+        "name": "Itunes US",
+        "logo": "images/team_logos/new_logos_13.png"
+      }
+    ]
+  },
+  {
+    "id": 4461,
+    "artist_name": "Three Days Grace",
+    "artist_picture": "/data/images/three_days_grace.jpg",
+    "artist_bio": "Three Days Grace is a Canadian rock band, formed under the name Groundswell in Norwood, Ontario, Canada in 1992. After a breakup in 1995, the band reformed in 1997 under its current name and with a line-up consisting of guitarist and lead vocalist Adam Gontier, drummer and backing vocalist Neil Sanderson, and bassist Brad Walst. In 2003, Barry Stock was recruited as the band's lead guitarist.  After signing to Jive Records, Three Days Grace released two studio albums...",
+    "teams": [
+      {
+        "name": "The Agency Group US",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "The Agency Group UK",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Warner US",
+        "logo": "images/team_logos/new_logos_17.png",
+        "is_record_company": true
+      },
+      {
+        "name": "VirginEmi UK",
+        "logo": "images/team_logos/new_logos_24.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Itunes Radio US",
+        "logo": "images/team_logos/new_logos_12.png"
+      },
+      {
+        "name": "Google Play",
+        "logo": "images/team_logos/new_logos_10.png"
+      },
+      {
+        "name": "Pandora Australia",
+        "logo": "images/team_logos/new_logos_07.png"
+      },
+      {
+        "name": "Bmat International",
+        "logo": "images/team_logos/new_logos_09.png"
+      },
+      {
+        "name": "Spotify US",
+        "logo": "images/team_logos/new_logos_03.png"
+      },
+      {
+        "name": "Itunes US",
+        "logo": "images/team_logos/new_logos_13.png"
+      },
+      {
+        "name": "Beats US",
+        "logo": "images/team_logos/new_logos_16.png"
+      }
+    ]
+  },
+  {
+    "id": 0,
+    "artist_name": "Red Hot Chili Peppers",
+    "artist_picture": "/data/images/red_hot.jpg",
+    "artist_bio": "",
+    "teams": [
+      {
+        "name": "The Agency Group UK",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Creative Artist Agency",
+        "logo": "images/team_logos/new_logos_21.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Nonesuch US",
+        "logo": "images/team_logos/new_logos_22.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Warner Australia",
+        "logo": "images/team_logos/new_logos_17.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Mediabase US",
+        "logo": "images/team_logos/new_logos_04.png"
+      },
+      {
+        "name": "Amazon US",
+        "logo": "images/team_logos/new_logos_01.png"
+      },
+      {
+        "name": "Itunes Radio US",
+        "logo": "images/team_logos/new_logos_12.png"
+      },
+      {
+        "name": "Google Play",
+        "logo": "images/team_logos/new_logos_10.png"
+      },
+      {
+        "name": "Bmat International",
+        "logo": "images/team_logos/new_logos_09.png"
+      },
+      {
+        "name": "Spotify US",
+        "logo": "images/team_logos/new_logos_03.png"
+      },
+      {
+        "name": "Itunes US",
+        "logo": "images/team_logos/new_logos_13.png"
+      }
+    ]
+  },
+  {
+    "id": 0,
+    "artist_name": "Metallica",
+    "artist_picture": "/data/images/metallica.jpg",
+    "artist_bio": "",
+    "teams": [
+      {
+        "name": "ICM Los Angeles",
+        "logo": "images/team_logos/new_logos_18.png",
+        "is_record_company": true
+      },
+      {
+        "name": "The Agency Group UK",
+        "logo": "images/team_logos/new_logos_19.png",
+        "is_record_company": true
+      },
+      {
+        "name": "RCA US",
+        "logo": "images/team_logos/new_logos_25.png",
+        "is_record_company": true
+      },
+      {
+        "name": "VirginEmi UK",
+        "logo": "images/team_logos/new_logos_24.png",
+        "is_record_company": true
+      },
+      {
+        "name": "Mediabase US",
+        "logo": "images/team_logos/new_logos_04.png"
+      },
+      {
+        "name": "Amazon US",
+        "logo": "images/team_logos/new_logos_01.png"
+      },
+      {
+        "name": "Itunes Radio US",
+        "logo": "images/team_logos/new_logos_12.png"
+      },
+      {
+        "name": "Google Play",
+        "logo": "images/team_logos/new_logos_10.png"
+      },
+      {
+        "name": "Bmat International",
+        "logo": "images/team_logos/new_logos_09.png"
+      },
+      {
+        "name": "Spotify US",
+        "logo": "images/team_logos/new_logos_03.png"
+      },
+      {
+        "name": "Itunes US",
+        "logo": "images/team_logos/new_logos_13.png"
+      }
+    ]
+  }
+]

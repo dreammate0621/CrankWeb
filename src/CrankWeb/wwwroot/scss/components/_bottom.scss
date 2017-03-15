@@ -1,0 +1,35 @@
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 10px 10px 5px;
+  background: #fff;
+  max-width: 960px;
+
+  @media screen and (max-width: 705px) {
+    padding-left: 10px;
+    flex-direction: column;
+  }
+
+  &__left {
+    position: relative;
+    flex: 1 0 394px;
+    margin-right: 11px;
+    max-width: 650px;
+    overflow: hidden;
+
+    @media screen and (max-width: 705px) {
+      max-width: 100%;
+      flex-basis: 0%;
+      order: 1;
+      margin-top: 10px;
+    }
+  }
+
+  &__right {
+    position: relative;
+    z-index: 1;
+    width: 284px;
+    align-content: flex-start;
+    background: #fff;
+  }
+}

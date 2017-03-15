@@ -1,0 +1,120 @@
+<div class="register">
+    <h1 class="auth__brand">Crank</h1>
+    <div class="register-form user-reg">
+        <form name="$parent.registerform" autocomplete="off" id="register-form" class="form-inline form-ajax form-validate" data-result=".register-result" ng-submit="submitRegister(registerform.$valid)">
+
+            <div class="row ">
+                <div class="col-sm-4">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>FIRST NAME</label>
+                        <input type="text" tabindex="1" required="required" maxlength="25" name="register_first_name" id="register_first_name" ng-model="$parent.register_first_name">
+
+                    </md-input-container>
+                </div>
+                <div class="col-sm-4" >
+                    <md-input-container class="md-block">
+                        <label>LAST NAME</label>
+                        <input type="text" tabindex="2" required="required" maxlength="25" name="register_last_name" id="register_last_name" ng-model="$parent.register_last_name">
+                    </md-input-container>
+                </div>
+                <div class="col-sm-4">
+                    <md-input-container class="md-block">
+                        <label>YOUR EMAIL</label>
+                        <input type="email" tabindex="3" required="required" maxlength="50" name="register_username" id="register_username" ng-model="$parent.register_username">
+                    </md-input-container>
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="col-sm-4">
+                    <md-input-container class="md-block">
+                        <label>PASSWORD</label>
+                        <input type="password" tabindex="4" required="required" name="password" id="register_password" ng-model="$parent.register_password">
+                    </md-input-container>
+                </div>
+                <div class="col-sm-4">
+                    <md-input-container class="md-block">
+                        <label>RETYPE PASSWORD</label>
+                        <input type="password" tabindex="5" required="required" name="repeat_password" id="repeat_password" ng-model="$parent.repeat_password">
+                    </md-input-container>
+                </div>
+                <div class="col-sm-4">
+                    <md-input-container class="md-block">
+                        <label>TYPE COUNTRY NAME</label>
+                        <input type="text" tabindex="6" typeahead-editable="false" required  ng-model="$parent.register_selected_country_typeHead"  uib-typeahead="country.countryName for country in filterCountries($viewValue)"
+                               typeahead-on-select="addCountryToUser($scope, $item, $model, $label)" typeahead-loading="loadingcountries" typeahead-no-results="noCountryResults">
+                    </md-input-container>                                     
+                </div>
+            </div>
+
+            <div class="row ">
+
+                <div class="col-sm-4">
+                    <md-input-container class="md-block">
+                        <label>AS A</label>
+                        <md-select ng-model="$parent.register_user_type" ng-required="true">
+                           
+                            <md-option ng-repeat="userType in $parent.userTypes" ng-value="userType.value" >
+                               {{userType.text}}
+                            </md-option>
+                            
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+               
+
+                <!--<div class="col-sm-8">
+                    <div class="checkbox-block" ng-class="{active: $parent.register_user_type == 'artist_manager'}">
+                        <input name="register_user_type" tabindex="7" type="radio" value="artist_manager" id="artist_manager" selected class="pushup" ng-model="$parent.register_user_type">
+                        <label for="artist_manager">ARTIST MANAGER</label>
+                    </div>
+                    <div class="checkbox-block" ng-class="{active: $parent.register_user_type == 'radio_manager'}">
+                        <input name="register_user_type" tabindex="8" type="radio" value="radio_manager" id="radio_manager" class="pushup" ng-model="$parent.register_user_type">
+                        <label for="radio_manager">RADIO MANAGER</label>
+                    </div>
+                    <div class="checkbox-block" ng-class="{active: $parent.register_user_type == 'agent'}">
+                        <input name="register_user_type" tabindex="9" type="radio" value="agent" id="agent" selected class="pushup" ng-model="$parent.register_user_type">
+                        <label for="agent">AGENT</label>
+                    </div>
+                    <div class="checkbox-block" ng-class="{active: $parent.register_user_type == 'promoter'}">
+                        <input name="register_user_type" tabindex="10" type="radio" value="promoter" id="promoter" selected class="pushup" ng-model="$parent.register_user_type">
+                        <label for="promoter">PROMOTER</label>
+                    </div>
+                    <div class="checkbox-block" ng-class="{active: $parent.register_user_type == 'label'}">
+                        <input name="register_user_type" tabindex="11" type="radio" value="label" id="label" selected class="pushup" ng-model="$parent.register_user_type">
+                        <label for="label">LABEL</label>
+                    </div>
+                    <div class="checkbox-block" ng-class="{active: $parent.register_user_type == 'digital'}">
+                        <input name="register_user_type" tabindex="12" type="radio" value="digital" id="digital" class="pushup" ng-model="$parent.register_user_type">
+                        <label for="digital">DIGITAL</label>
+                    </div>
+                </div>-->
+                <div class="col-sm-4" ng-if="$parent.register_user_type == 'radio_manager'">
+                    <md-input-container class="md-block">
+                        <label>TYPE STATION CALLCODE</label>
+                        <input type="text"  tabindex="13" ng-required="$parent.register_user_type == 'radio_manager'" typeahead-editable="false"  ng-model="$parent.$parent.register_radio_Station"  uib-typeahead="station.callcode +' , ' + station.city +' , ' + station.country for station in getSearchedStations($viewValue)"
+                               typeahead-on-select="selectedRadioStation($scope, $item, $model, $label)" typeahead-loading="loadingLocations" typeahead-no-results="noResults">
+                    </md-input-container>
+                </div>
+                <div class="col-sm-4" ng-if="$parent.register_user_type != 'radio_manager'">
+                    <md-input-container class="md-block">
+                        <label>TYPE COMPANY NAME</label>
+                        <input type="text" tabindex="13" required typeahead-editable="true"  ng-model="$parent.$parent.register_company_name"  uib-typeahead="company.name for company in getSearchedCompanies($viewValue)"
+                               typeahead-on-select="selectedCompany($scope, $item, $model, $label)" typeahead-loading="loadingcompanies" typeahead-no-results="noCompanyResults">
+                    </md-input-container>
+                    
+                </div>
+
+                <div class="col-sm-4">
+                    <button type="submit" tabindex="14" class="input register-button">Register</button>
+                </div>
+              
+            </div>
+           
+        </form>
+
+    </div>
+</div>
+
+

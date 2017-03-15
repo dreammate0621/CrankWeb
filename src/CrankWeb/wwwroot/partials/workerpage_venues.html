@@ -1,0 +1,269 @@
+﻿<div class="">
+    <ul class="account__controls">
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--underscore" ng-click="cancel()"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--clone"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--close popup__close" ng-click="cancel()"></a>
+        </li>
+    </ul>
+</div>
+<div class="account__main_wpteam">
+
+    <!-- begin In network search -->
+    <div class="account__search search">
+        <input type="search" class="search__field" ng-model="searchInNetworkVenueText">
+        <span class="search__icon-search"><i class="fa fa-search"></i></span>
+    </div>
+    <!--end In network search -->
+
+    <div class="account__frames" ng-sortable="sortableVenueConfig">
+        <!-- begin in network team member frame -->
+        <div class="frame__workpageteam"  ng-class="{'frame--active':InNetworkVenue.isActive==true}" ng-repeat="InNetworkVenue in InNetworkVenues  | filter:searchInNetworkVenueText ">
+            <ul class="frame__controls-left-side">
+                <li class="frame__control-item" >
+                    <input color-picker class="frame__icon color__picker__field__style" color-me="true" ng-model="InNetworkVenue.colorValueInline" />
+
+                </li>
+                <li class="frame__control-item">
+                    <a href="javascript:void(0)" mwl-confirm class="frame__icon member-add-remove-icon add-icon"
+                       confirm-title="Confirm"
+                       message="YOU ARE CLAIMING RESPONSIBILITY FOR THIS VENUE YOU MUST HAVE THE AUTHORITY OR WILL BE SUBJECT TO ACTION BY THE OWNER OF THIS FACILITY, WOULD YOU LIKE TO CONTINUE"
+                       on-confirm="InNetworkVenue.isActive = true "
+                       confirm-button-type="gunMetalBlue"
+                       confirm-text="Yes <i class='glyphicon glyphicon-ok'></i>"
+                       cancel-text="No <i class='glyphicon glyphicon-remove'></i>"
+                       ng-show="!InNetworkVenue.isActive"><i class="fa fa-lock"></i></a>
+                    <a href=""  uib-tooltip="REMOVE VENUE FROM YOUR OWN VENUES"
+                   tooltip-animation="false"
+                   tooltip-append-to-body="true" ng-click="InNetworkVenue.isActive= false" ng-show="InNetworkVenue.isActive" class="frame__icon member-add-remove-icon remove-icon"><i class="fa fa-unlock"></i></a>
+
+                </li>
+            </ul>
+             <ul class="frame__controls">
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--underscore"></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--clone"><i class="fa fa-clone"></i></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="" uib-tooltip="REMOVE VENUE FROM NETWORK"
+                   tooltip-animation="false"
+                   tooltip-append-to-body="true" ng-click="moveVenueOutOfVenues(InNetworkVenue.id)" class="frame__control-btn frame__control-btn--remove"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="frame__tabs tabs">
+                <ul class="tabs__controls">
+                    <li class="tabs__control-item tabs__control-item--active">
+                        <a class="tabs__control-link">
+                            <img ng-src="{{InNetworkVenue.imageUrl}}"  ng-show="InNetworkVenue.hasImage" ng-error="InNetworkVenue.hasImage=false" alt="" class="frame__pic">
+                            <i class="fa fa-picture-o fa-2x" ng-show="!InNetworkVenue.hasImage" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tabs__content">
+                    <div class="tabs__content-item tabs__content-item--active">
+                        <div class="frame__info">
+                            <div class="frame__title" ng-class="{'showonexpended':InNetworkVenue.name.length>30}">{{InNetworkVenue.name | uppercase }}</div>
+                            <div class="frame__title hideonexpended" uib-tooltip="{{InNetworkVenue.name}}"
+                                 tooltip-animation="false"
+                                 tooltip-append-to-body="true" ng-if="InNetworkVenue.name.length>30">{{InNetworkVenue.name| uppercase | limitTo:27 }}...</div>
+                            <div class="frame__executor capitalize">{{InNetworkVenue.city}}</div>
+                            <div class="frame__executor"  uib-tooltip="Capacity"
+                                 tooltip-animation="false"
+                                 tooltip-append-to-body="true"> {{InNetworkVenue.capacity}}</div>
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li><div class="frame__title">{{InNetworkVenue.name | uppercase }}</div></li>
+                                <li class="capitalize">{{InNetworkVenue.country}},{{InNetworkVenue.state}},{{InNetworkVenue.city}},{{InNetworkVenue.street}}</li>
+                                <li  uib-tooltip="Capacity"
+                                 tooltip-animation="false"
+                                 tooltip-append-to-body="true">{{InNetworkVenue.capacity}}</li>
+
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{InNetworkVenue.name | uppercase }}</li>
+                                <li class="capitalize">{{InNetworkVenue.country}},{{InNetworkVenue.state}},{{InNetworkVenue.city}},{{InNetworkVenue.street}}</li>
+                                <li  uib-tooltip="Capacity"
+                                 tooltip-animation="false"
+                                 tooltip-append-to-body="true">{{InNetworkVenue.capacity}}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tabs__content-item">
+                        <div class="frame__info">
+                            <div class="frame__title">{{InNetworkVenue.name | uppercase }}</div>
+                            <div class="frame__executor capitalize">{{InNetworkVenue.country}},{{InNetworkVenue.state}},{{InNetworkVenue.city}},{{InNetworkVenue.street}}</div>
+                            <div class="frame__executor"  uib-tooltip="Capacity"
+                                 tooltip-animation="false"
+                                 tooltip-append-to-body="true">{{InNetworkVenue.capacity}}</div>
+
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li>{{InNetworkVenue.name | uppercase }}</li>
+                                <li class="capitalize">{{InNetworkVenue.country}},{{InNetworkVenue.state}},{{InNetworkVenue.city}},{{InNetworkVenue.street}}</li>
+                                <li  uib-tooltip="Capacity"
+                                 tooltip-animation="false"
+                                 tooltip-append-to-body="true">{{InNetworkVenue.capacity}}</li>
+
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{InNetworkVenue.name | uppercase }}</li>
+                                <li class="capitalize"> {{InNetworkVenue.country}},{{InNetworkVenue.state}},{{InNetworkVenue.city}},{{InNetworkVenue.street}}</li>
+                                <li  uib-tooltip="Capacity"
+                                 tooltip-animation="false"
+                                 tooltip-append-to-body="true">{{InNetworkVenue.capacity}}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<img ng-src="{{InNetworkVenue.imageUrl}}" alt="#" class="frame__pic">
+            <div class="frame_right">
+                <span>{{InNetworkVenue.name}}</span>
+                           </div>-->
+        </div>
+        <!-- end in network Station frame -->
+    </div>
+    <!--<ul class="account__actions">
+        <li class="account__action-item">
+            <a href="#" class="account__action-link">
+                <i class="fa fa-share"></i>
+            </a>
+        </li>
+        <li class="account__action-item">
+            <a href="#" class="account__action-link">
+                <i class="fa fa-print"></i>
+            </a>
+        </li>
+        <li class="account__action-item">
+            <a href="" class="account__action-link" ng-click="saveInNetworkVenues()"><i class="fa fa-save"></i></a>
+        </li>
+        <li class="account__action-item">
+            <a href="#" class="account__action-link">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+    </ul>-->
+    <div id="cloned_items"></div>
+</div>
+
+<div class="account__side_wpteam account__side_wpteam--right">
+    <!-- begin out of network search -->
+    <div class="account__search search">
+        <input type="search" class="search__field_rightside"
+               ng-model="$parent.searchedOutOfNetworkVenues"
+               placeholder="Search Venue"
+               uib-typeahead="venue.name for venue in searchVenuesByName($viewValue)"
+               typeahead-loading="loadingVenues"
+               typeahead-wait-ms="400"
+               typeahead-on-select="addSearchVenueToDiv($item, $model, $label)"
+               typeahead-no-results="noResults">
+        <span class="search__icon-search"><i class="fa fa-search"></i></span>
+    </div>
+    <!-- end out of network search -->
+    <div class="account__frames account__frames_wpteam--side" ng-sortable="sortableVenueConfig">
+        <!-- begin out of network Module frame -->
+        <div class="frame__workpageteam right-side-frame"
+             ng-repeat="outOfNetworkVenue in OutOfNetworkVenues ">
+            <ul class="frame__controls">
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--underscore"></a>
+                </li>
+                <li class="frame__control-item">
+                    <a href="" class="frame__control-btn frame__control-btn--clone"><i class="fa fa-clone"></i></a>
+                </li>
+            </ul>
+            <div class="frame__tabs tabs">
+                <ul class="tabs__controls">
+                    <li class="tabs__control-item tabs__control-item--active">
+                        <a class="tabs__control-link">
+                            <img ng-src="{{outOfNetworkVenue.imageUrl}}" ng-show="outOfNetworkVenue.hasImage" ng-error="outOfNetworkVenue.hasImage=false" alt="" class="frame__pic">
+                            <i class="fa fa-picture-o fa-2x" ng-show="!outOfNetworkVenue.hasImage" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tabs__content">
+                    <div class="tabs__content-item tabs__content-item--active">
+                        <div class="frame__info"> 
+                            
+                            <div class="frame__title" ng-class="{'showonexpended':outOfNetworkVenue.name.length>23}">{{outOfNetworkVenue.name | uppercase }}</div>
+                            <div class="frame__title hideonexpended" uib-tooltip="{{outOfNetworkVenue.name}}"
+                                 tooltip-animation="false"
+                                 tooltip-append-to-body="true" ng-if="outOfNetworkVenue.name.length>23">{{outOfNetworkVenue.name| uppercase | limitTo:20 }}...</div>
+                            <div class="frame__executor capitalize" ng-if="outOfNetworkVenue.city">
+                                {{outOfNetworkVenue.city}}
+                            </div>
+                            <div class="frame__executor"  uib-tooltip="Capacity"
+                                 tooltip-animation="false"
+                                 tooltip-append-to-body="true" ng-if="outOfNetworkVenue.capacity">{{outOfNetworkVenue.capacity}}</div>
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li><div class="frame__title">{{outOfNetworkVenue.name | uppercase }}</div></li>
+                                <li class="capitalize">{{outOfNetworkVenue.country}},{{outOfNetworkVenue.state}},{{outOfNetworkVenue.city}},{{outOfNetworkVenue.street}}</li>
+                                <li ng-if="outOfNetworkVenue.capacity"  uib-tooltip="Capacity"
+                                 tooltip-animation="false"
+                                 tooltip-append-to-body="true">{{outOfNetworkVenue.capacity}}</li>
+
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{outOfNetworkVenue.name | uppercase }}</li>
+
+                                <li class="capitalize">{{outOfNetworkVenue.country}},{{outOfNetworkVenue.state}},{{outOfNetworkVenue.city}},{{outOfNetworkVenue.street}}</li>
+                                <li ng-if="outOfNetworkVenue.capacity"  uib-tooltip="Capacity"
+                                 tooltip-animation="false"
+                                 tooltip-append-to-body="true">{{outOfNetworkVenue.capacity}}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tabs__content-item">
+                        <div class="frame__info">
+                            <div class="frame__title">{{outOfNetworkVenue.name | uppercase }}</div>
+                            <div class="frame__executor capitalize">{{outOfNetworkVenue.country}},{{outOfNetworkVenue.state}},{{outOfNetworkVenue.city}},{{outOfNetworkVenue.street}}</div>
+                            <div ng-if="outOfNetworkVenue.capacity" class="frame__executor"  uib-tooltip="Capacity"
+                                 tooltip-animation="false"
+                                 tooltip-append-to-body="true">{{outOfNetworkVenue.capacity}}</div>
+
+                        </div>
+                        <div class="frame__more">
+                            <ul class="frame__more-team">
+                                <li>{{outOfNetworkVenue.name | uppercase }}</li>
+                                <li class="capitalize">{{outOfNetworkVenue.country}},{{outOfNetworkVenue.state}},{{outOfNetworkVenue.city}},{{outOfNetworkVenue.street}}</li>
+                                <li ng-if="outOfNetworkVenue.capacity"  uib-tooltip="Capacity"
+                                 tooltip-animation="false"
+                                 tooltip-append-to-body="true">{{outOfNetworkVenue.capacity}}</li>
+
+                            </ul>
+                            <ul class="frame__more-info">
+                                <li>{{outOfNetworkVenue.name | uppercase }}</li>
+                                <li class="capitalize"> {{outOfNetworkVenue.country}},{{outOfNetworkVenue.state}},{{outOfNetworkVenue.city}},{{outOfNetworkVenue.street}}</li>
+                                <li ng-if="outOfNetworkVenue.capacity"  uib-tooltip="Capacity"
+                                 tooltip-animation="false"
+                                 tooltip-append-to-body="true">{{outOfNetworkVenue.capacity}}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<img ng-src="{{outOfNetworkVenue.imageUrl}}" alt="#" class="frame__pic">
+            <div class="frame_right">
+                <span>{{outOfNetworkVenue.name}}</span>
+            </div>-->
+        </div>
+        <!-- end out of network Module frame -->
+    </div>
+</div>
+
+
+

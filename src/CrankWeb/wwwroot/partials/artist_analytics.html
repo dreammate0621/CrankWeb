@@ -1,0 +1,135 @@
+<!-- $parent artistCtrl -->
+<div ng-controller="analyticsCtrl" class="analytics">
+    <div class="row">
+        <div class="visualization-wrapper col col-md-6">
+            <svg class="visualization">
+            <!--
+                <defs>
+                    <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#ddd" stroke-width="0.5" />
+                    </pattern>
+                    <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+                        <rect width="100" height="100" fill="url(#smallGrid)" />
+                        <path d="M 100 0 L 0 0 0 100" fill="none" stroke="gray" stroke-width="1" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#smallGrid)" />
+                -->
+            </svg>
+        
+            <div  class="station-info-panel animate-hide" ng-show="shown_station_info_panel">
+                <div class="inner">
+                    <h3>{{hovered_station.call_code}}</h3>
+                    <hr/>
+                    <div id="station-pie-chart"></div>
+                    <p>Format: Country</p>
+                    <p>Spins: 132</p>
+                    <p>Added: 12/09/13</p>
+                    <p>Peak: 23</p>
+                </div>
+            </div>
+
+        </div>
+        
+
+        <div class="panel-wrapper col col-md-6">
+            <!-- Tour edit panel, including the Tour Smart -->
+            <div class="row" >
+<!--
+                <div class="heading-wrapper action-selector">
+                    <h2class="heading ">
+                        {{ selected_market_node.name || 'Tour Smart'}}
+                        </h2>
+
+                        <p>&nbsp;</p>
+
+                        <div ng-hide="selected_market_node" ng-click="setDate('starting')" class="tour-dates starting-date" ng-bind-html="renderDate(tour_starting_date)"></div>
+                        <div ng-hide="selected_market_node" ng-click="setDate('ending')" class="tour-dates ending-date" ng-bind-html="renderDate(tour_ending_date)"></div>
+                        <div ng-show="selected_market_node" ng-click="setDate('venue')" class="tour-dates venue-date" ng-bind-html="renderDate(tour_venue_date)"></div>
+                </div>
+
+                <div ng-show="!!datepicker_editing" class="animate-hide datepicker-wrapper">
+                    <div class="datepicker-panel col-md-11">
+                        <h4>{{ datepicker_editing_caption }}</h4>
+                        <div style="display:inline-block; min-height:290px;">
+                            <div class="well well-sm" ng-model="datepicker_date" ng-change="isSetDate()">
+                                <datepicker min="minDate" show-weeks="showWeeks"></datepicker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
+
+                <!-- ZOL move from under tour-editor-smart-wrapper div -->
+                <div class="action-bar col col-md-2">  
+                    <div class="actions">
+                        <a ng-click="selectAction('tickets',$event)" href="" ng-class="{'activated-action': activated_actions.tickets, 'has-values': !!watermarks.tickets}">
+                            <i ui-draggable="true" drag="'tickets'" ui-drag-channel="action_on_station" class="fa fa-ticket" draggable="true"></i>
+                        </a>
+                        <a ng-click="selectAction('meetngreet',$event)" href="" ng-class="{'activated-action': activated_actions.meetngreet, 'has-values': !!watermarks.meetngreet}" class="activated-action">
+                            <i ui-draggable="true" drag="'meetngreet'" ui-drag-channel="action_on_station" class="fa fa-camera" draggable="true"></i> <!-- ZOL change from fa-camera-retro to fa-camera -->
+                        </a>
+                        <a ng-click="selectAction('interview',$event)" href="" ng-class="{'activated-action': activated_actions.interview, 'has-values': !!watermarks.interview}" class="activated-action">
+                            <i ui-draggable="true" drag="'interview'" ui-drag-channel="action_on_station" class="fa fa-microphone" draggable="true"></i>
+                        </a>
+                        <a ng-click="selectAction('appearance',$event)" href="" ng-class="{'activated-action': activated_actions.appearance, 'has-values': !!watermarks.appearance}">
+                            <i ui-draggable="true" drag="'appearance'" ui-drag-channel="action_on_station" class="fa fa-eye" draggable="true"></i> <!-- ZOL change from fa-eye to fa-male -->
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row col col-md-10" > <!-- ZOL add col col-md-10 styles -->
+                    <div class="heading-wrapper action-selector">
+                        <h3 class="heading" >
+                            <input type="text" ng-show="selected_market_node" ng-model="search_market" typeahead="market for market in getMarkets($viewValue)" typeahead-on-select="confirmMarket($item)" class="market-search-box" select-on-click></input>
+                            <span ng-hide="selected_market_node" ng-bind="'Tour Smart'"></span> <!-- ZOL change from h2 to h3 -->
+                            <img class="tour-panel-close" src="images/artist_escape.png" width="15px" height="14px" />
+                        </h3>
+                        <h5 class="tour-name" > <!-- ZOL add -->
+                            Winter Tour 2014
+                        </h5>
+                        <div ng-hide="selected_market_node" ng-click="setDate('starting')" class="tour-dates starting-date" ng-bind-html="renderDate(tour_starting_date)"></div>
+                        <div ng-hide="selected_market_node" ng-click="setDate('ending')" class="tour-dates ending-date" ng-bind-html="renderDate(tour_ending_date)"></div>
+                        <div ng-show="selected_market_node" ng-click="setDate('venue')" class="tour-dates venue-date" ng-bind-html="renderDate(tour_venue_date)"></div>
+                    </div>
+
+                    <div ng-show="!!datepicker_editing" class="animate-hide datepicker-wrapper">
+                        <div class="datepicker-panel col-md-11">
+                            <h4>{{ datepicker_editing_caption }}</h4>
+                            <div style="display:inline-block; min-height:290px;">
+                                <div class="well well-sm" ng-model="datepicker_date" ng-change="isSetDate()">
+                                    <datepicker min="minDate" show-weeks="showWeeks"></datepicker>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tour-editor-smart-wrapper">
+                        <div ng-hide="selected_market_node" class="animate-slide" ng-include src="'partials/artist_analytics_tour_smart.html'"></div>
+                        <div ng-show="selected_market_node" class="animate-slide" ng-include src="'partials/artist_analytics_tour_panel.html'" class="ng-animate"></div>
+                    </div>
+
+
+                <div class="row">
+                    <div  ng-include src="'partials/artist_analytics_edit_tour_panel.html'"></div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+
+</div>
+
+<!-- Linear regression modal -->
+<script type="text/ng-template" id="linearModal.html">
+    <div class="modal-header">
+        <a class="modal-close" ng-click="cancel()" href="">&#10005;</a>
+    </div>
+
+    <div class="modal-body">
+        <img style="margin: auto; display: block" src="images/linear.png" /> 
+    </div>
+</script>

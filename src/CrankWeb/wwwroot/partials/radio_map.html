@@ -1,0 +1,1197 @@
+
+<div ng-leaflet="$parent.map" map-options="$parent.map_options" id="radiomap" ng-click="hideAllPanels();">
+</div>
+
+<div id="events" class="events" ng-class="{'events-minimize': !isEventsPanelMaximized}" ng-click="maximizeEvents()">
+    <div id="events-scroller-wrapper" class="events-scroller-wrapper" ng-iscroll="events_wrapper" ng-iscroll-delay="100">
+        <div id="events__scroller" class="events__scroller grabcursor">
+            <div ng-repeat="show in shows  | filter:showsFilter | orderBy:'eventDate'" class="events__item event">
+                <ul class="event__controls">
+                    <li class="event__control-item">
+                        <a href="#" class="event__control-btn">
+                            <i class="fa fa-close"></i>
+                        </a>
+                    </li>
+                </ul>
+                <h2 class="event__title">{{show.artist_name}}</h2>
+                <img class="event__pic" src="{{show.picture}}" alt="" ng-click="selectEvent(show)">
+                <div class="event__body">
+                    <div class="event__date">{{show.date}}</div>
+                    <div class="event__place">{{show.venue}} </div>
+                    <div class="event__location">{{ show.market || show.venue }}</div>
+                    <ul class="event__actions">
+                        <li class="event__action-item">
+                            <a href="#" class="event__action-link">
+                                <i class="fa fa-ticket"></i>
+                            </a>
+                        </li>
+                        <li class="event__action-item">
+                            <a href="#" class="event__action-link">
+                                <i class="fa fa-camera"></i>
+                            </a>
+                        </li>
+                        <li class="event__action-item">
+                            <a href="#" class="event__action-link">
+                                <i class="fa fa-microphone"></i>
+                            </a>
+                        </li>
+                        <li class="event__action-item">
+                            <a href="#" class="event__action-link"><i class="fa fa-eye"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+</div>
+
+<div class="promotion-wrapper" ng-class="{'module-active': isPromotionModuleMaximized}" ng-click="maximizePromotion()">
+    <div class="promotion">
+        <div class="promotion__actions">
+            <a href="" ng-click="minimizePromotion($event)"></a>
+            <a href=""></a>
+            <a href=""></a>
+        </div>
+
+        <div class="tile-content tile-content--hidden">
+            <div id="radio1" class="tile-content__item">
+                <ul>
+                    <li>1</li>
+                    <li>X1</li>
+                    <li>X1 Digital</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+
+            <div id="radio2" class="tile-content__item">
+                <ul>
+                    <li>2</li>
+                    <li>Pandora</li>
+                    <li>Pandora Digital</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+
+            <div id="radio3" class="tile-content__item">
+                <ul>
+                    <li>3</li>
+                    <li>Spotifiy</li>
+                    <li>Spotify Digital</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+
+            <div id="radio4" class="tile-content__item">
+                <ul>
+                    <li>4</li>
+                    <li>WDAS</li>
+                    <li>WDAS RADIO</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+
+            <div id="radio5" class="tile-content__item">
+                <ul>
+                    <li>5</li>
+                    <li>WDAS-AM</li>
+                    <li>WDAS-AM RADIO</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+
+            <div id="radio6" class="tile-content__item">
+                <ul>
+                    <li>6</li>
+                    <li>WIOQ</li>
+                    <li>WIOQ RADIO</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+
+            <div id="radio7" class="tile-content__item">
+                <ul>
+                    <li>7</li>
+                    <li>WISX</li>
+                    <li>WISX RADIO</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+
+            <div id="radio8" class="tile-content__item">
+                <ul>
+                    <li>8</li>
+                    <li>WRFF</li>
+                    <li>WRFF RADIO</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+
+            <div id="radio9" class="tile-content__item">
+                <ul>
+                    <li>9</li>
+                    <li>WUSL</li>
+                    <li>WUSL RADIO</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+
+            <div id="radio10" class="tile-content__item">
+                <ul>
+                    <li>10</li>
+                    <li>WXPN</li>
+                    <li>WXPN RADIO</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+
+            <div id="radio11" class="tile-content__item">
+                <ul>
+                    <li>11</li>
+                    <li>WXTU</li>
+                    <li>WXTU RADIO</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+
+            <div id="radio12" class="tile-content__item">
+                <ul>
+                    <li>12</li>
+                    <li>WBEB</li>
+                    <li>WBEB RADIO</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+
+            <div id="radio13" class="tile-content__item">
+                <ul>
+                    <li>13</li>
+                    <li>WMMR</li>
+                    <li>WMMR RADIO</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+
+            <div id="radio14" class="tile-content__item">
+                <ul>
+                    <li>14</li>
+                    <li>WWE</li>
+                    <li>WWE RADIO</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+
+            <div id="radio15" class="tile-content__item">
+                <ul>
+                    <li>15</li>
+                    <li>WRNB</li>
+                    <li>WRNB RADIO</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+            <div id="radio16" class="tile-content__item">
+                <ul>
+                    <li>15</li>
+                    <li>WPHI</li>
+                    <li>WPHI RADIO</li>
+                    <li>TOP 40</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="promotion__side">
+            <a class="promotion__link promotion__link--side promotion__link--active" href=""><i class="fa fa-ticket  promotion-tickets-active"></i></a>
+            <a class="promotion__link promotion__link--side" href=""><i class="promotion-meetngreet-active fa fa-camera"></i></a>
+            <a class="promotion__link promotion__link--side" href=""><i class="fa fa-microphone  promotion-interview-active"></i></a>
+            <a class="promotion__link promotion__link--side" href=""><i class="fa fa-eye  promotion-appearance-active"></i></a>
+        </div>
+
+        <div class="promotion__main">
+            <div class="promotion__header">
+                <h2 class="promotion__area">{{selectedEvent.venue}}</h2>
+                <!--<input class="promotion__title" value="CHICAGO, IL, USA">-->
+                <span class="promotion__title">{{selectedEvent.market}}</span>
+
+                <div class="promotion__field-add">
+                    <i class="fa fa-search"></i>
+                    <input type="text">
+                    <a href="#" class="promotion__btn-add"><i class="fa fa-plus"></i></a>
+                </div>
+
+                <div class="promotion__places">
+                    <div class="promotion__place">
+                        MILWAUKEE
+                        <a href="#" class="promotion__btn-close"><i class="fa fa-close"></i></a>
+                    </div>
+                    <div class="promotion__place">
+                        DAVENPORT
+                        <a href="#" class="promotion__btn-close"><i class="fa fa-close"></i></a>
+                    </div>
+                    <div class="promotion__place">
+                        GRAND RAPIDS
+                        <a href="#" class="promotion__btn-close"><i class="fa fa-close"></i></a>
+                    </div>
+                    <div class="promotion__place">
+                        MADISON
+                        <a href="#" class="promotion__btn-close"><i class="fa fa-close"></i></a>
+                    </div>
+                    <div class="promotion__place">
+                        INDIANAPOLIS
+                        <a href="#" class="promotion__btn-close"><i class="fa fa-close"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="promotion__tiles">
+                <div class="tile" data-tile-content="radio1">
+                    <img src="images/digital/X1.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list"></div>
+                </div>
+                <div class="tile" data-tile-content="radio2">
+                    <img src="images/digital/pandora.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list">
+                        <a class="promotion__link" href=""><i class="fa fa-ticket"></i></a>
+                        <a class="promotion__link" href=""><i class="fa fa-camera"></i></a>
+                        <a class="promotion__link" href=""><i class="fa fa-microphone"></i></a>
+                        <a class="promotion__link" href=""><i class="fa fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="tile" data-tile-content="radio3">
+                    <img src="images/digital/spotify.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list"></div>
+                </div>
+                <div class="tile" data-tile-content="radio4" ng-mouseenter="showCoverageMap('WDAS')" ng-mouseleave="hideCoverageMap('WDAS')" ng-click="toggleCoverageMap('WDAS')">
+                    <img src="images/radio/WDAS_thumb.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list">
+                        <a class="promotion__link" href=""><i class="fa fa-microphone"></i></a>
+                        <a class="promotion__link" href=""><i class="fa fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="tile" data-tile-content="radio5">
+                    <img src="images/radio/WDAS-AM_thumb.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list"></div>
+                </div>
+                <div class="tile" data-tile-content="radio6" ng-mouseenter="showCoverageMap('WIOQ')" ng-mouseleave="hideCoverageMap('WIOQ')" ng-click="toggleCoverageMap('WIOQ')">
+                    <img src="images/radio/WIOQ_thumb.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list"></div>
+                </div>
+                <div class="tile" data-tile-content="radio7" ng-mouseenter="showCoverageMap('WISX')" ng-mouseleave="hideCoverageMap('WISX')" ng-click="toggleCoverageMap('WISX')">
+                    <img src="images/radio/WISX_thumb.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list"></div>
+                </div>
+                <div class="tile" data-tile-content="radio8" ng-mouseenter="showCoverageMap('WRFF')" ng-mouseleave="hideCoverageMap('WRFF')" ng-click="toggleCoverageMap('WRFF')">
+                    <img src="images/radio/WRFF_thumb.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list"></div>
+                </div>
+                <div class="tile" data-tile-content="radio9">
+                    <img src="images/radio/WUSL_thumb.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list"></div>
+                </div>
+                <div class="tile" data-tile-content="radio10">
+                    <img src="images/radio/WXPN_thumb.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list"></div>
+                </div>
+                <div class="tile" data-tile-content="radio11">
+                    <img src="images/radio/WXTU_thumb.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list"></div>
+                </div>
+                <div class="tile" data-tile-content="radio12">
+                    <img src="images/radio/WBEB_thumb.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list"></div>
+                </div>
+                <div class="tile" data-tile-content="radio13">
+                    <img src="images/radio/WMMR_thumb.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list"></div>
+                </div>
+                <div class="tile" data-tile-content="radio14">
+                    <img src="images/radio/WWE_thumb.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list"></div>
+                </div>
+                <div class="tile" data-tile-content="radio15">
+                    <img src="images/radio/WRNB_thumb.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list"></div>
+                </div>
+                <div class="tile" data-tile-content="radio16">
+                    <img src="images/radio/WPHI_thumb.png" alt="" class="tile__img">
+                    <div class="tile__dropdown-list"></div>
+                </div>
+            </div>
+
+            <div class="promotion__bottom">
+                <div class="promotion__bottom-left">
+                    <div class="promotion__counter">
+                        <div class="promotion__count">2</div>
+                        <div class="promotion__count-caption">Tickets</div>
+                    </div>
+
+                    <div class="promotion__bottom-foot">
+                        <a class="promotion__btn-increase" href="#">+</a>
+                        <a class="promotion__btn-decrease" href="#">-</a>
+                    </div>
+
+                    <div class="promotion__variants">
+                        <div class="promotion__variants-row">
+                            <a href="#">2</a>
+                            <a href="#">4</a>
+                            <a href="#">6</a>
+                            <a href="#">8</a>
+                        </div>
+
+                        <div class="promotion__variants-row">
+                            <a href="#">10</a>
+                            <a href="#">12</a>
+                            <a href="#">14</a>
+                            <a href="#">16</a>
+                        </div>
+
+                        <div class="promotion__variants-row">
+                            <a href="#">18</a>
+                            <a href="#">20</a>
+                            <a href="#">22</a>
+                            <a href="#">24</a>
+                        </div>
+
+                        <div class="promotion__variants-row">
+                            <a href="#">26</a>
+                            <a href="#">28</a>
+                            <a href="#">30</a>
+                            <a href="#">clear</a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="promotion__bottom-right">
+                    <a class="promotion__link promotion__link--active" href="#">Details</a>
+                    <div class="promotion__line-through"></div>
+                    <div class="promotion__line-through"></div>
+                    <div class="promotion__line-through"></div>
+                    <a class="promotion__link promotion__link--active" href="#">Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="charting-wrapper" ng-class="{'module-active': isChartingModuleMaximized}"  ng-click="maximizeCharting()">
+    <!-- begin charting -->
+    <div class="promotion promotion--charting" id="charting">
+
+        <ul class="promotion__controls">
+            <li class="promotion__control-item" ng-click="minimizeCharting($event)">
+                <a href="" class="promotion__control-btn promotion__control-btn--underscore"></a>
+            </li>
+            <li class="promotion__control-item">
+                <a href="" class="promotion__control-btn promotion__control-btn--clone"></a>
+            </li>
+            <li class="promotion__control-item">
+                <a href="" class="promotion__control-btn promotion__control-btn--close"></a>
+            </li>
+        </ul>
+
+        <div class="promotion__side js-sort-links">
+            <a class="promotion__link promotion__link--active" href="" data-sort-value="global" data-title="">
+                <i class="fa fa-globe promotion__icon promotion__icon--global"></i>
+                global
+            </a>
+            <a class="promotion__link" href="" data-sort-value="continent" data-title="Africa">
+                <i class="fa fa-globe promotion__icon promotion__icon--continent"></i>
+                continent
+            </a>
+            <a class="promotion__link" href="" data-sort-value="region" data-title="Africa, South Africa">
+                <i class="fa fa-globe promotion__icon promotion__icon--region"></i>
+                region
+            </a>
+            <a class="promotion__link" href="" data-sort-value="local" data-title="Africa, South Africa, Johannesburg">
+                <i class="fa fa-globe promotion__icon promotion__icon--local"></i>
+                local
+            </a>
+        </div>
+
+        <div class="promotion__main">
+            <div class="promotion__header">
+
+                <div class="promotion__title-wrap">
+                    <h2 class="promotion__title"></h2>
+                </div>
+
+                <div class="promotion__search search search--add">
+                    <input type="search" class="search__field">
+                    <span class="search__icon-search"><i class="fa fa-search"></i></span>
+                    <a href="#" class="search__btn"><i class="fa fa-plus"></i></a>
+                </div>
+
+                <div class="promotion__places">
+                    <div class="promotion__place">
+                        JOHANNESBURG
+                        <a href="#" class="promotion__btn-close"><i class="fa fa-close"></i></a>
+                    </div>
+                    <div class="promotion__place">
+                        Cape town
+                        <a href="#" class="promotion__btn-close"><i class="fa fa-close"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- begin track-list -->
+            <div class="promotion__track-list track-list">
+
+                <div class="track-list__inner">
+
+                    <div class="track-list__row">
+
+                        <div class="track-list__counter  track-list__counter--moveup">
+                            <div class="track-list__count">1</div>
+                        </div>
+
+                        <!-- begin track -->
+                        <div class="track-list__track track"
+                             data-global-rank="1" data-continent-rank="2" data-region-rank="3" data-local-rank="4">
+
+                            <div class="track__artist">SIA</div>
+
+                            <div class="track__label">RCA</div>
+
+                            <div class="track__song-name">Cheap Thrills</div>
+
+                            <div class="track__info track__info--wks">
+                                <div class="track__info-heading">wks</div>
+                                <div class="track__info-text">52</div>
+                            </div>
+
+                            <div class="track__info track__info--tw">
+                                <div class="track__info-heading">tw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--lw">
+                                <div class="track__info-heading">lw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--spins">
+                                <div class="track__info-heading">spins</div>
+                                <div class="track__info-text">69377</div>
+                            </div>
+
+                            <div class="track__info track__info--move">
+                                <div class="track__info-heading">move</div>
+                                <div class="track__info-text">4</div>
+                            </div>
+                        </div>
+                        <!-- end track -->
+
+                    </div>
+
+                    <div class="track-list__row">
+
+                        <div class="track-list__counter">
+                            <div class="track-list__count">2</div>
+                        </div>
+
+                        <!-- begin track -->
+                        <div class="track-list__track track track--active"
+                             data-global-rank="2" data-continent-rank="3" data-region-rank="4" data-local-rank="5">
+
+                            <div class="track__artist">HARRIS, CALVIN</div>
+
+                            <div class="track__label">f/Rihanna	Columbia</div>
+
+                            <div class="track__song-name">This Is What You... f/Rihanna</div>
+
+                            <div class="track__info track__info--wks">
+                                <div class="track__info-heading">wks</div>
+                                <div class="track__info-text">34</div>
+                            </div>
+
+                            <div class="track__info track__info--tw">
+                                <div class="track__info-heading">tw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--lw">
+                                <div class="track__info-heading">lw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--spins">
+                                <div class="track__info-heading">spins</div>
+                                <div class="track__info-text">69377</div>
+                            </div>
+
+                            <div class="track__info track__info--move">
+                                <div class="track__info-heading">move</div>
+                                <div class="track__info-text">3</div>
+                            </div>
+                        </div>
+                        <!-- end track -->
+
+                    </div>
+
+                    <div class="track-list__row">
+
+                        <div class="track-list__counter">
+                            <div class="track-list__count">3</div>
+                        </div>
+
+                        <!-- begin track -->
+                        <div class="track-list__track track"
+                             data-global-rank="3" data-continent-rank="5" data-region-rank="1" data-local-rank="2">
+
+                            <div class="track__artist">TWENTY ONE PILOTS</div>
+
+                            <div class="track__label">Fueled By Ramen/RRP</div>
+
+                            <div class="track__song-name">Ride</div>
+
+                            <div class="track__info track__info--wks">
+                                <div class="track__info-heading">wks</div>
+                                <div class="track__info-text">52</div>
+                            </div>
+
+                            <div class="track__info track__info--tw">
+                                <div class="track__info-heading">tw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--lw">
+                                <div class="track__info-heading">lw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--spins">
+                                <div class="track__info-heading">spins</div>
+                                <div class="track__info-text">69377</div>
+                            </div>
+
+                            <div class="track__info track__info--move">
+                                <div class="track__info-heading">move</div>
+                                <div class="track__info-text">4</div>
+                            </div>
+                        </div>
+                        <!-- end track -->
+
+                    </div>
+
+                    <div class="track-list__row">
+
+                        <div class="track-list__counter">
+                            <div class="track-list__count">4</div>
+                        </div>
+
+                        <!-- begin track -->
+                        <div class="track-list__track track"
+                             data-global-rank="4" data-continent-rank="4" data-region-rank="5" data-local-rank="1">
+
+                            <div class="track__artist">THE CHAINSMOKERS</div>
+
+                            <div class="track__label">Disruptor / Columbia</div>
+
+                            <div class="track__song-name">Don't Let Me Down f/Daya</div>
+
+                            <div class="track__info track__info--wks">
+                                <div class="track__info-heading">wks</div>
+                                <div class="track__info-text">54</div>
+                            </div>
+
+                            <div class="track__info track__info--tw">
+                                <div class="track__info-heading">tw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--lw">
+                                <div class="track__info-heading">lw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--spins">
+                                <div class="track__info-heading">spins</div>
+                                <div class="track__info-text">69377</div>
+                            </div>
+
+                            <div class="track__info track__info--move">
+                                <div class="track__info-heading">move</div>
+                                <div class="track__info-text">7</div>
+                            </div>
+                        </div>
+                        <!-- end track -->
+
+                    </div>
+
+                    <div class="track-list__row">
+
+                        <div class="track-list__counter">
+                            <div class="track-list__count">5</div>
+                        </div>
+
+                        <!-- begin track -->
+                        <div class="track-list__track track"
+                             data-global-rank="5" data-continent-rank="5" data-region-rank="1" data-local-rank="2">
+
+                            <div class="track__artist">DRAKE</div>
+
+                            <div class="track__label">YMCMB / Republic</div>
+
+                            <div class="track__song-name">One Dance f/Wizkid & Kyla</div>
+
+                            <div class="track__info track__info--wks">
+                                <div class="track__info-heading">wks</div>
+                                <div class="track__info-text">52</div>
+                            </div>
+
+                            <div class="track__info track__info--tw">
+                                <div class="track__info-heading">tw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--lw">
+                                <div class="track__info-heading">lw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--spins">
+                                <div class="track__info-heading">spins</div>
+                                <div class="track__info-text">69377</div>
+                            </div>
+
+                            <div class="track__info track__info--move">
+                                <div class="track__info-heading">move</div>
+                                <div class="track__info-text">4</div>
+                            </div>
+                        </div>
+                        <!-- end track -->
+
+                    </div>
+
+                    <div class="track-list__row">
+
+                        <div class="track-list__counter">
+                            <div class="track-list__count">6</div>
+                        </div>
+
+                        <!-- begin track -->
+                        <div class="track-list__track track"
+                             data-global-rank="6" data-continent-rank="6" data-region-rank="5" data-local-rank="1">
+
+                            <div class="track__artist">ADELE</div>
+
+                            <div class="track__label">XL/Columbia</div>
+
+                            <div class="track__song-name">Send My Love (To Your New...</div>
+
+                            <div class="track__info track__info--wks">
+                                <div class="track__info-heading">wks</div>
+                                <div class="track__info-text">562</div>
+                            </div>
+
+                            <div class="track__info track__info--tw">
+                                <div class="track__info-heading">tw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--lw">
+                                <div class="track__info-heading">lw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--spins">
+                                <div class="track__info-heading">spins</div>
+                                <div class="track__info-text">69377</div>
+                            </div>
+
+                            <div class="track__info track__info--move">
+                                <div class="track__info-heading">move</div>
+                                <div class="track__info-text">5</div>
+                            </div>
+                        </div>
+                        <!-- end track -->
+
+                    </div>
+
+                    <div class="track-list__row">
+
+                        <div class="track-list__counter">
+                            <div class="track-list__count">7</div>
+                        </div>
+
+                        <!-- begin track -->
+                        <div class="track-list__track track"
+                             data-global-rank="7" data-continent-rank="1" data-region-rank="2" data-local-rank="3">
+
+                            <div class="track__artist">TIMBERLAKE, JUSTIN</div>
+
+                            <div class="track__label">RCA</div>
+
+                            <div class="track__song-name">Can't Stop The Feeling</div>
+
+                            <div class="track__info track__info--wks">
+                                <div class="track__info-heading">wks</div>
+                                <div class="track__info-text">1</div>
+                            </div>
+
+                            <div class="track__info track__info--tw">
+                                <div class="track__info-heading">tw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--lw">
+                                <div class="track__info-heading">lw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--spins">
+                                <div class="track__info-heading">spins</div>
+                                <div class="track__info-text">69377</div>
+                            </div>
+
+                            <div class="track__info track__info--move">
+                                <div class="track__info-heading">move</div>
+                                <div class="track__info-text">1</div>
+                            </div>
+                        </div>
+                        <!-- end track -->
+
+                    </div>
+
+                    <div class="track-list__row">
+
+                        <div class="track-list__counter">
+                            <div class="track-list__count">8</div>
+                        </div>
+
+                        <!-- begin track -->
+                        <div class="track-list__track track"
+                             data-global-rank="8" data-continent-rank="4" data-region-rank="5" data-local-rank="1">
+
+                            <div class="track__artist">MAJOR LAZER</div>
+
+                            <div class="track__label">Def Jam</div>
+
+                            <div class="track__song-name">Cold Water f/Justin Bieber, MØ</div>
+
+                            <div class="track__info track__info--wks">
+                                <div class="track__info-heading">wks</div>
+                                <div class="track__info-text">54</div>
+                            </div>
+
+                            <div class="track__info track__info--tw">
+                                <div class="track__info-heading">tw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--lw">
+                                <div class="track__info-heading">lw</div>
+                                <div class="track__info-text">R</div>
+                            </div>
+
+                            <div class="track__info track__info--spins">
+                                <div class="track__info-heading">spins</div>
+                                <div class="track__info-text">69377</div>
+                            </div>
+
+                            <div class="track__info track__info--move">
+                                <div class="track__info-heading">move</div>
+                                <div class="track__info-text">7</div>
+                            </div>
+                        </div>
+                        <!-- end track -->
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- end track-list -->
+
+        </div>
+
+    </div>
+    <!-- end charting -->
+</div>
+
+<div class="treemap-wrapper" ng-class="{'module-active': isTreemapModuleMaximized}" ng-click="maximizeTreemap()">
+    <div class="promotion promotion--treemap" id="treemap">
+
+        <ul class="promotion__controls">
+            <li class="promotion__control-item">
+                <a href="" class="promotion__control-btn promotion__control-btn--underscore" ng-click="minimizeTreemap($event)"></a>
+            </li>
+            <li class="promotion__control-item">
+                <a href="" class="promotion__control-btn promotion__control-btn--clone"></a>
+            </li>
+            <li class="promotion__control-item">
+                <a href="" class="promotion__control-btn promotion__control-btn--close"></a>
+            </li>
+        </ul>
+
+        <!-- begin flayout -->
+        <div class="promotion__flayout flayout">
+            <!--<div class="flayout__content">-->
+            <!--<div class="flayout__header">-->
+            <!--<div class="flayout__col">-->
+            <!--<h2 class="flayout__heading flayout__heading&#45;&#45;underlined">Daily</h2>-->
+            <!--</div>-->
+            <!--<div class="flayout__col">-->
+            <!--<h2 class="flayout__heading">08/22/16</h2>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="flayout__row">-->
+            <!--<div class="flayout__col"></div>-->
+            <!--<div class="flayout__col">-->
+            <!--<div class="flayout__col">-->
+            <!--<h3 class="flayout__title">total</h3>-->
+            <!--</div>-->
+            <!--<div class="flayout__col">-->
+            <!--<h3 class="flayout__title">sale</h3>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; begin event-info &ndash;&gt;-->
+            <!--<div class="flayout__event-info event-info">-->
+            <!--</div>-->
+            <!--&lt;!&ndash; end event-info &ndash;&gt;-->
+            <!--</div>-->
+
+        </div>
+        <!-- end flayout -->
+
+        <div class="promotion__side">
+            <a class="promotion__link promotion__link--side promotion__link--active" href="">
+                <i class="fa fa-ticket"></i>
+            </a>
+            <a class="promotion__link promotion__link--side" href=""><i class="fa fa-camera"></i></a>
+            <a class="promotion__link promotion__link--side" href=""><i class="fa fa-microphone"></i></a>
+            <a class="promotion__link promotion__link--side" href=""><i class="fa fa-eye"></i></a>
+        </div>
+
+        <div class="promotion__main">
+            <div class="promotion__header">
+
+                <div class="promotion__area-wrap">
+                    <h2 class="promotion__area">Wells Fargo Center</h2>
+                </div>
+
+                <div class="promotion__title-wrap">
+                    <h2 class="promotion__title">Philadelphia, US</h2>
+                </div>
+
+            </div>
+
+            <div class="promotion__treemap treemap"></div>
+
+            <div class="promotion__footer"></div>
+        </div>
+
+    </div>
+</div>
+
+<div class="dates row animate-fade" style="" ng-show="showTourDateScroller">
+    <div iscroll="dates_scroller" iscroll-opt="dates_scroller_opt" class="dates-wrapper">
+        <ul>
+            <li ng-repeat="date in dates" class="date" ng-class="{open: date.booked, closed: !date.booked, even: $even}">
+                <div class="info dragme" data-index="{{date.index}}" ng-dblclick="toggleOpen(date);">
+                    <span>{{date.day}}</span>
+                </div>
+                <div class="actions">
+                    <ul>
+                        <li>
+                            <a ng-show="date.market" ng-click="confirmMarket(date.market)" class="animate-fade" href="">{{ date.market || 'Market' }}</a>
+                        </li>
+                        <li>
+                            <a ng-show="date.venue" class="animate-fade" href="">{{ date.venue || 'Venue' }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+
+    var tiles = document.querySelectorAll('.tile');
+    var tileContent = document.querySelector('.tile-content');
+
+    // show flayout block
+    for (var i = 0; i < tiles.length; i++)
+    {
+        tiles[i].addEventListener('mouseenter', function (e)
+        {
+            var tileItem = document.getElementById(this.getAttribute('data-tile-content'));
+
+            if (tileItem)
+            {
+                tileContent.classList.remove('tile-content--hidden');
+                tileContent.classList.add('tile-content--visible');
+                tileItem.classList.add('tile-content__item--visible');
+
+                this.addEventListener('mouseleave', function ()
+                {
+                    tileContent.classList.remove('tile-content--visible');
+                    tileContent.classList.add('tile-content--hidden');
+                    tileItem.classList.remove('tile-content__item--visible');
+                });
+            }
+        });
+
+        tiles[i].addEventListener('click', function ()
+        {
+            this.classList.toggle('tile--active');
+        });
+    }
+
+
+    // show expanded list
+    var promotionSide = document.querySelector('.promotion__side');
+    var promotionTiles = document.querySelector('.promotion__tiles');
+
+    promotionSide.addEventListener('mouseenter', function ()
+    {
+        promotionTiles.classList.add('promotion__tiles--expanded');
+    });
+
+    promotionSide.addEventListener('mouseleave', function ()
+    {
+        if (!this.classList.contains('tile-content--expanded'))
+        {
+            promotionTiles.classList.remove('promotion__tiles--expanded');
+        }
+    });
+
+    promotionSide.addEventListener('click', function ()
+    {
+        if (this.classList.contains('tile-content--expanded'))
+        {
+            this.classList.remove('tile-content--expanded');
+            promotionTiles.classList.remove('promotion__tiles--expanded');
+        } else
+        {
+            this.classList.add('tile-content--expanded');
+            promotionTiles.classList.add('promotion__tiles--expanded');
+        }
+    });
+
+</script>
+
+
+<script type="text/javascript">
+
+    //Charting related code - Should be moved to angular controller later
+    var sortGroup = null;
+    var sideLinks = $('.js-sort-links .promotion__link');
+
+    var chartingWrapper = document.querySelector('#charting');
+    var promotionTitleWrap = chartingWrapper.querySelector('.promotion__title-wrap');
+    var promotionTitle = promotionTitleWrap.querySelector('.promotion__title');
+
+    sideLinks.on('click', function (e)
+    {
+        e.preventDefault();
+        sideLinks.removeClass('promotion__link--active');
+        $(this).addClass('promotion__link--active');
+
+        var sortValue = $(this).attr('data-sort-value');
+        sortGroup.isotope({ sortBy: sortValue });
+
+
+        promotionTitle.innerHTML = this.dataset.title;
+
+        if ($(window).width() >= 960)
+        {
+            promotionTitle.style.width = 0;
+
+            $(promotionTitle).stop().animate({
+                width: '100%'
+            }, 700);
+        }
+    });
+
+
+    sortGroup = $('.track-list').isotope({
+        itemSelector: '.track',
+        layoutMode: 'fitRows',
+        transitionDuration: '0.7s',
+        getSortData: {
+            global: '[data-global-rank]',
+            continent: '[data-continent-rank]',
+            region: '[data-region-rank]',
+            local: '[data-local-rank]'
+        }
+    });
+
+
+    var tracks = $('.track');
+    tracks.on('click', function ()
+    {
+        tracks.removeClass('track--active');
+        $(this).addClass('track--active');
+    });
+</script>
+
+<script type="text/javascript">
+
+    //Treemap related code
+    var treemapdiv = document.querySelector('#treemap');
+    var treemapTitle = treemapdiv.querySelector('.promotion__title');
+    var treemapArea = treemapdiv.querySelector('.promotion__area');
+
+    // treemap
+    var flayout = $(".flayout");
+
+    var w = 800,
+      h = 310,
+      x = d3.scale.linear().range([0, w]),
+      y = d3.scale.linear().range([0, h]),
+      color = d3.scale.category20c(),
+      root,
+      node;
+
+    var treemap = d3.layout.treemap()
+    .round(false)
+    .size([w, h])
+    .sticky(true)
+    .value(function (d) { return d.size; });
+
+    var svg = d3.select(".promotion__treemap")
+    .style("width", w + "px")
+    .style("height", h + "px")
+    .append("svg:svg")
+    .attr("width", w)
+    .attr("height", h)
+    .append("svg:g")
+    .attr("transform", "translate(.5,.5)");
+
+    d3.json("data/treemap_data.json", function (data)
+    {
+        node = root = data;
+
+        var nodes = treemap.nodes(root)
+        .filter(function (d) { return !d.children; });
+
+        var cell = svg.selectAll("g")
+        .data(nodes)
+        .enter().append("svg:g")
+        .attr("class", "cell")
+        .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
+        .on("click", function (d)
+        {
+            var eventInfo = $('.promotion__event-info');
+            eventInfo.html(' ');
+
+            if (d.city)
+            {
+                treemapTitle.innerHTML = d.city;
+            }
+
+            if (d.clubName)
+            {
+                treemapArea.innerHTML = d.clubName;
+            }
+
+            //if (d.data) { createEventInfoItem(d) }
+            //flayout.css('display', 'none');
+            //flayout.fadeIn(300);
+            //promotion.classList.add('promotion--expanded');
+
+            return zoom(node == d.parent ? root : d.parent);
+        })
+        cell.append("svg:rect")
+        .attr("width", function (d) { return d.dx - 1; })
+        .attr("height", function (d) { return d.dy - 1; })
+        .style("fill", function (d) { return color(d.parent.name); });
+
+        d3.select("select").on("change", function ()
+        {
+            treemap.value(this.value == "size" ? size : count).nodes(root);
+            zoom(node);
+        });
+    });
+
+
+    //$(window).on('click', function ()
+    //{
+    //    flayout.css('display', '');
+    //    promotion.classList.remove('promotion--expanded');
+    //});
+
+    function size(d)
+    {
+        return d.size;
+    }
+
+    function count(d)
+    {
+        return 1;
+    }
+
+    function zoom(d)
+    {
+        var kx = w / d.dx, ky = h / d.dy;
+        x.domain([d.x, d.x + d.dx]);
+        y.domain([d.y, d.y + d.dy]);
+
+        var t = svg.selectAll("g.cell").transition()
+        .duration(d3.event.altKey ? 7500 : 750)
+        .attr("transform", function (d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
+
+        t.select("rect")
+        .attr("width", function (d) { return kx * d.dx - 1; })
+        .attr("height", function (d) { return ky * d.dy - 1; })
+
+        t.select("text")
+        .attr("x", function (d) { return kx * d.dx / 2; })
+        .attr("y", function (d) { return ky * d.dy / 2; })
+        .style("opacity", function (d) { return kx * d.dx > d.w ? 1 : 0; });
+
+        node = d;
+        d3.event.stopPropagation();
+    }
+
+    //function createEventInfoItem(d) {
+    //  var eventInfo = $('.flayout__event-info');
+    //
+    //  for (var i = 0; i < d.data.length; i++) {
+    //    var data = d.data[i];
+    //
+    //    var eventInfoItem = $('<div class="event-info__item">');
+    //
+    //    var colLeft =
+    //      $('<div class="flayout__col flayout__col--column">' +
+    //          '<div class="event-info__level">' + data.level + '</div>' +
+    //        '</div>');
+    //
+    //    var colRight =
+    //      $('<div class="flayout__col">' +
+    //          '<div class="flayout__col">' +
+    //            '<div class="event-info__total">' + data.total + '</div>' +
+    //          '</div>' +
+    //          '<div class="flayout__col">' +
+    //            '<div class="event-info__cost">' + data.cost + '</div>' +
+    //          '</div>' +
+    //        '</div>');
+    //
+    //    for (var j = 0; j < data.type.length; j++) {
+    //      var type = $('<div class="event-info__type">' + data.type[j] + '</div>')
+    //      colLeft.append(type);
+    //    }
+    //
+    //    eventInfoItem.append(colLeft, colRight);
+    //    eventInfo.append(eventInfoItem);
+    //  }
+    //}
+
+    // scalable
+    //promotion.addEventListener('click', function ()
+    //{
+    //    this.classList.add('promotion--active');
+    //}, true);
+
+    //promotion.querySelector('.promotion__control-btn--underscore').addEventListener('click', function ()
+    //{
+    //    promotion.classList.remove('promotion--active');
+    //    return false;
+    //});
+</script>

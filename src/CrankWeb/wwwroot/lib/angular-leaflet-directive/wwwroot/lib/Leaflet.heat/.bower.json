@@ -1,0 +1,12 @@
+{
+  "name": "Leaflet.heat",
+  "_cacheHeaders": {
+    "ETag": "\"a7f07cb9ad866c984f563de9cc3a78e889618ddd\"",
+    "Content-Type": "application/x-gzip",
+    "Content-Disposition": "attachment; filename=Leaflet.heat-gh-pages.tar.gz"
+  },
+  "_release": "e-tag:a7f07cb9a",
+  "_source": "https://github.com/Leaflet/Leaflet.heat/archive/gh-pages.tar.gz",
+  "_target": "*",
+  "_originalSource": "https://github.com/Leaflet/Leaflet.heat/archive/gh-pages.tar.gz"
+}

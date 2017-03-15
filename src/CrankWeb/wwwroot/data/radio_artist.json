@@ -1,0 +1,121 @@
+{
+    "id": 1, 
+    "artist_name": "Lorde", 
+    "artist_picture": "img/lorde.jpg",
+    "artist_bio": "Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass.",
+    "artist_dates": [
+        {
+            "id": 1, 
+            "artist_name": "Lorde", 
+            "venue":    "The Cosmopolitan Of Las Vegas",
+            "location": "Las Vegas, NV",
+            "date" : "Wed 04/16/14",
+            "picture": "data/img/artist_tile_item_example.png",
+            "actions": {
+                "meetngreet":   0,
+                "tickets":      1,
+                "interview":    2,
+                "appearance":   0
+            }
+        },
+        {
+            "id": 2, 
+            "artist_name": "Lorde", 
+            "venue":    "Comerica Theatre",
+            "location": "Phoenix, AZ",
+            "date" : "Thu 04/17/14",
+            "picture": "data/img/artist_tile_item_example.png",
+            "actions": {
+                "meetngreet":   0,
+                "tickets":      1,
+                "interview":    0,
+                "appearance":   3
+            }
+        },
+        {
+            "id": 1, 
+            "artist_name": "Lorde", 
+            "venue":    "Empire Polo Club",
+            "location": "Indio, CA",
+            "date" : "Sat 04/19/14",
+            "picture": "data/img/artist_tile_item_example.png",
+            "actions": {
+                "meetngreet":   0,
+                "tickets":      1,
+                "interview":    2,
+                "appearance":   0
+            }
+        },
+        {
+            "id": 2, 
+            "artist_name": "Lorde", 
+            "venue":    "Festival Hall",
+            "location": "West Melbourne, Australia",
+            "date" : "Sat 04/24/14",
+            "picture": "data/img/artist_tile_item_example.png",
+            "actions": {
+                "meetngreet":   0,
+                "tickets":      1,
+                "interview":    0,
+                "appearance":   3
+            }
+        },
+        {
+            "id": 1, 
+            "artist_name": "Lorde", 
+            "venue":    " Festival Hall",
+            "location": "West Melbourne, Australia",
+            "date" : "Sat 04/26/14",
+            "picture": "data/img/artist_tile_item_example.png",
+            "actions": {
+                "meetngreet":   0,
+                "tickets":      1,
+                "interview":    2,
+                "appearance":   0
+            }
+        },
+        {
+            "id": 2, 
+            "artist_name": "Lorde", 
+            "venue":    "Adelaide Entertainment Centre",
+            "location": "Hindmarsh, Australia",
+            "date" : "Sun 04/27/14",
+            "picture": "data/img/artist_tile_item_example.png",
+            "actions": {
+                "meetngreet":   0,
+                "tickets":      1,
+                "interview":    0,
+                "appearance":   3
+            }
+        },
+        {
+            "id": 1, 
+            "artist_name": "Lorde", 
+            "venue":    "Challegne Stadium",
+            "location": "Perth, Australia",
+            "date" : "Tue 04/29/14",
+            "picture": "data/img/artist_tile_item_example.png",
+            "actions": {
+                "meetngreet":   0,
+                "tickets":      1,
+                "interview":    2,
+                "appearance":   0
+            }
+        },
+        {
+            "id": 2, 
+            "artist_name": "Lorde", 
+            "venue":    "Hordern Pavillion",
+            "location": "Moore Park, Australia",
+            "date" : "Fri 05/02/14",
+            "picture": "data/img/artist_tile_item_example.png",
+            "actions": {
+                "meetngreet":   0,
+                "tickets":      1,
+                "interview":    0,
+                "appearance":   3
+            }
+        }
+
+    ]
+}

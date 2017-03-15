@@ -1,0 +1,133 @@
+﻿<div class="">
+    <ul class="account__controls">
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--underscore" ng-click="cancel()"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--clone"></a>
+        </li>
+        <li class="account__control-item">
+            <a href="" class="account__control-btn account__control-btn--close popup__close" ng-click="cancel()"></a>
+        </li>
+    </ul>
+</div>
+<div class="account__main_wpteam">
+    <div class="row">
+        <div class="col-md-9 billing-header">
+
+            <h3>PAY WITH YOUR CREDIT CARD</h3>
+        </div>
+    </div>
+    <div class="row billing-controls">
+        <div class="col-md-9" style="top:30px">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <md-input-container class="md-block">
+                            <label>Credit Card Number</label>
+                            <input type="text" tabindex="6">
+                        </md-input-container>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <md-input-container class="md-block">
+                            <label>Expiry Date</label>
+                            <input type="text" tabindex="6">
+                        </md-input-container>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <md-input-container class="md-block">
+                            <label>CVV/CID</label>
+                            <input type="text" tabindex="6">
+                        </md-input-container>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <md-input-container class="md-block">
+                            <label>Card Holder Name</label>
+                            <input type="text" tabindex="6">
+                        </md-input-container>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <md-input-container class="md-block">
+                            <label></label>
+                            <input type="text" tabindex="6">
+                        </md-input-container>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <md-input-container class="md-block">
+                            <label>Email Address</label>
+                            <input type="email" tabindex="6">
+                        </md-input-container>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="other-payment-option">
+                    <h5>OTHER PAYMENT OPTIONS</h5>
+                    <br />
+                    <!--<ul>
+                        <li><i class="fa fa-paypal"></i></li>
+                        <li><i class="fa fa-paypal"></i></li>
+                        <li><i class="fa fa-paypal"></i></li>
+                        <li><i class="fa fa-paypal"></i></li>
+                    </ul>-->
+
+                    <img src="../images/paymentoptions.PNG" />
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<div class="account__side_wpteam account__side_wpteam--right">
+    <!-- begin out of network search -->
+    <div class="account__search search">
+     <h3>MODULES</h3>
+    </div>
+    <!-- end out of network search -->
+    <div class="account__frames account__frames_wpteam--side">
+    <div class="row  moudule-billing" ng-repeat="module in InNetworkModulesList">
+        <div class="col-sm-2"><i class="fa fa-cc-visa"></i></div>
+        <div class="col-sm-7">{{module.name}} </div>
+        <div class="col-sm-3">$25.00</div>
+
+    </div>
+       
+
+        <div class="row  total-bill-amount">
+         
+            <div class="col-sm-6"><span class="pull-right"> Total</span> </div>
+            <div class="col-sm-6"><span class="pull-right" style="margin-right:30px"> $225</span></div>
+
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,730 @@
+.artist {
+    position:absolute;
+
+    .thumb {
+        height:64px;
+    }
+    .name {
+        display:inline-block;  
+        vertical-align:middle;
+        text-transform:uppercase;
+        h1,p {
+            margin:0
+                }
+    }
+}
+
+/* Main overrides for the page */
+.viewport div.analytics {
+    background: url('../img/back_grid.png');
+    .row {
+        margin:0!important;
+    }
+
+}
+
+/* Animations */
+
+.animate-hide {
+    -webkit-transition: all linear 0.5s;
+	-moz-transition: all linear 0.5s; /* ZOL add */
+    transition: all linear 0.5s;
+    line-height: 20px;
+    opacity: 1;
+    display: block !important;
+    z-index: 9;
+}
+
+
+.animate-hide.ng-hide {
+    line-height: 0;
+    opacity: 0;
+    z-index: -1;
+}
+
+.animate-slide {
+    -webkit-transition: all linear 0.5s;
+	-moz-transition: all linear 0.5s; /* ZOL add */
+    transition: all linear 0.5s;
+    display: inherit;
+    display: block !important;
+    opacity: 1;
+    overflow: hidden;
+    position: absolute;
+	zoom: 0.9;
+}
+
+
+.animate-fade.ng-hide {
+    opacity:0;
+    pointer-events:none;
+}
+
+.animate-fade {
+    -webkit-transition: all linear 0.5s;
+	-moz-transition: all linear 0.5s; /* ZOL add */
+    transition: all linear 0.5s;
+    display: inherit;
+    display: block !important;
+    opacity: 1;
+	zoom: 0.9;
+}
+
+
+.animate-slide.ng-hide {
+    opacity:0;
+    pointer-events:none;
+}
+
+
+
+/* bootstrap overrides */
+.tooltip {
+    .tooltip-inner {
+        color: #000;
+        background-color: #fff;
+    }
+    .tooltip-arrow {
+        border-color:#fff!important;
+    }
+}
+
+.dates {
+    position: absolute;
+    margin: 0;
+    bottom: 0px;
+    white-space: nowrap;
+    width: 100%;
+    z-index: 9;
+
+    .dates-wrapper {
+        > ul {
+            display: block;
+            margin: 0;
+            padding: 0;
+            float: left
+                }
+    }
+
+    .date {
+        background: #fafafa;
+        text-align: center;
+        display: inline-block;
+        vertical-align: bottom;
+        height: 148px; /* ZOL change from 102px to 148px */
+        transition: width 0.5s;
+        -moz-transition: width 0.5s;
+        -webkit-transition: width 0.5s;
+		
+        &.even {
+            background: #e3e3e3;
+        }
+
+        .info {
+            margin-bottom: 1em;
+        }
+        .info span {
+            cursor: pointer;
+            font-weight: 400; /* ZOL change from bold to 400 */
+            color: #8c8c8c; /* ZOL change from #aaaaaa to #8c8c8c */
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+		
+		.info span:hover {
+            color: #1e1e1e; /* ZOL add */
+        }
+
+        .actions ul {
+            padding: 0;
+            list-style-type: none;
+
+            li > a {
+                width: 120px;
+                white-space: normal;
+                margin-bottom: 1em;
+                font-size: 0.9em;
+            }
+        } 
+        &.open {
+            width: 120px;
+            .info span {
+                color: #111;
+            }
+
+        }
+        &.closed {
+            width: 36px;
+            .info {
+                margin-top: 30px; /* ZOL change from 20px to 30px */
+                -webkit-transform: rotateZ(270deg); 
+            }
+            .actions {
+                display: none;
+            }
+        }
+
+    }
+
+}
+
+
+/* Graph Visualization */
+
+.visualization-wrapper {
+    padding: 0;
+} /* ZOL add style */
+
+.visualization {
+
+    width:100%;
+
+    .node_city,
+    .node_format {
+        stroke-width: 0;
+        fill: #d1d1d1;
+
+        &.top_40 {
+            fill: #f2eb37;
+        }
+        &.country {
+            fill: #a7f1c0;
+        }
+        &.rhytmic {
+            fill: #f2eb73;
+        }
+        &.hot_ac {
+            fill: #c4b2e3;
+        }
+    }
+
+    .link {
+        stroke: #999;
+        stroke-opacity: .6;
+    }
+
+    .node_city {
+        fill: #d1d1d1;
+    }
+
+    .node_format_name {
+        fill: #000;
+        font-size: 0.8em;
+        font-weight: bold;
+        pointer-events: none;
+    }
+
+    .node_city_name {
+        fill:#000;
+        font-size::1em;
+        font-weight:bold;
+        pointer-events:none;
+        -webkit-text-emphasis: transparent;
+        outline: 1px solid transparent;
+    }
+}
+
+/* Station info Panel */
+.station-info-panel {
+    position: fixed;
+    height: 415px; /* ZOL add */
+    top: 67px;
+    /* left: 0px; */ /* ZOL delete */
+    right: 50%; /* ZOL change from 0px to 50% */
+    /* bottom: 0px; */ /* ZOL delete */
+    background: #d3d3d3; /* ZOL change from rgba(250,250,250,0.5) to #d3d3d3 */
+    padding: 0px 30px;
+    text-align: right;
+
+    #station-pie-chart {
+        width:128px;
+        float:right;
+        margin-right: 10px;
+    }
+
+    &.animate-hide {
+        -webkit-transition: all linear 0.5s;
+        -moz-transition: all linear 0.5s; /* ZOL add */
+        transition: all linear 0.5s;
+        opacity: 1;
+        display: block !important;
+        z-index: 1;
+    }
+
+    &.animate-hide.ng-hide {
+        opacity: 0;
+        z-index: -1;
+    }
+
+}
+
+/* Right side panel */
+
+.panel-wrapper {
+    height: 410px; /* ZOL add */
+    padding: 0; /* ZOL add */
+    background: #fff;
+    .row {
+        padding: 0; /* ZOL add */
+        .keypad-panel {
+            margin: 3px 3px!important;
+        } /* ZOL add */
+    }
+
+    input.market-search-box {
+        border: 0;
+        outline: 0;
+        letter-spacing: 0.3em;
+        border-bottom: 1px solid #eee;
+        color: #1e1e1e;
+        text-transform: uppercase;
+        font-weight: 500;
+        width:100%;
+
+        &:focus {
+        box-shadow: none!important;
+        border: 0;
+        }
+    }
+    div.heading-wrapper {
+        position: relative;
+        margin-top: -10px; /* ZOL add */
+        padding-left: 10px; /* ZOL add */
+        padding-right: 100px; /* ZOL add */
+        h3.heading {
+            letter-spacing: 0.3em; /* ZOL change from 0.2em to 0.3em */
+            border-bottom: 1px solid #eee;
+            color: #1e1e1e; /* ZOL change from #aaa to #1e1e1e */
+            text-transform: uppercase; /* ZOL add */
+            font-weight: 500; /* ZOL add */
+            height: 32px;
+        }
+        h5.tour-name {
+            color: #8c8c8c; /* ZOL add */
+            text-transform: uppercase; /* ZOL add */
+            letter-spacing: 0.3em; /* ZOL change from 0.2em to 0.3em */
+            margin-left: 15px;
+        }
+        .tour-dates {
+            display: block;
+            border-radius: 50%;
+            height: 48px;
+            width: 48px;
+            line-height: 16px;
+            padding-top: 6px;
+            background: #f1f1f1; /* ZOL change from #fff to #f1f1f1 */
+            position: absolute;
+            top: 0px;
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+
+            &.starting-date {
+                right: 148px;    
+            }
+
+            &.ending-date {
+                right: 64px;
+            }
+
+            &.venue-date {
+                right: 64px;
+            }
+
+            input {
+                border: 0!important;
+                background: transparent;
+                outline: none!important;
+                box-shadow: none!important;
+            }
+        }
+
+        /* ZOL add */
+        .tour-panel-close {
+            position: absolute;
+            right: 28px;
+            top: 20px; 
+        }
+
+
+        /* ZOL add */
+        .edit-tour-panel {
+            height: 138px;
+        }
+    }
+
+    div.action-selector {
+        font-size: 2em;
+        .small {
+            font-size: 0.5em;
+        }
+        a {
+            color: inherit;
+            margin-right: 10px;
+            -webkit-transition: color 0.5s; /* ZOL add */
+            -moz-transition: color 0.5s; /* ZOL add */
+            transition: color 0.5s;
+        }
+        a:hover {color: inherit;}
+        a.active {
+            color: #aaa!important;
+        }
+        a.activated-action {
+            color: #2a0;
+        }
+        a.has-values {
+            color: #a20;
+        }
+    }
+
+    div.datepicker-wrapper {
+        position:relative;
+        .datepicker-panel {
+            text-align:center;
+            position:absolute;
+            background-color:rgba(250,250,250,0.8);
+        }
+    }
+
+    div.tour-editor-smart-wrapper {
+        position:relative;
+        height:200px;
+        > div {
+            width:100%;
+        }
+    }
+
+}
+
+
+/* Tour setup panel */
+
+.tour-setup-panel {
+
+    p.tour_name { 
+        letter-spacing: 0.2em; 
+    }
+
+    .stations-wrapper {
+        width:100%;
+        /* overflow-x:scroll; */ /* ZOL delete */
+        height:200px;
+        margin-left: 20px; /* ZOL add */
+        .stations-block {
+            float:left;
+            width:1024px;
+            position:relative;
+            margin-top: 20px; /* ZOL add */
+        }
+    }
+
+    .station-column {
+        position:absolute;
+        left:0px;
+        -webkit-transition: all 1s ease-in-out;
+        -moz-transition: all 1s ease-in-out;
+        transition: all 1s ease-in-out;
+
+
+        >* {
+            width:48px;
+            height:32px;
+            padding-right:10px;
+            line-height:32px;
+        }
+        >a {
+            display:inline-block;
+            margin-bottom:10px;
+
+            img {
+                padding-bottom:10px;
+                width:100%;
+            }
+        }
+        .action {
+            font-size: 22px;
+            color: #c4c4c4; /* ZOL change from #aaa to #c4c4c4 */
+            text-align: center;
+            .fa-camera {
+                font-size: 18px; /* ZOL add */
+            }
+            .fa-microphone {
+                font-size: 20px; /* ZOL add */
+            }
+            .fa-male {
+                font-size: 26px; /* ZOL add */
+            }
+        }
+        .ng-hide {
+            /*
+            display: inherit!important;
+            visibility: hidden;
+             */
+}
+    }
+
+}
+
+/* Tour Smart */
+
+.tour-smart {
+    color: #1e1e1e;
+    h4 {
+        border-bottom: 1px solid #eee;
+        color: #aaa;
+    }
+    #format-pie-chart {
+        .slice:hover {
+            fill: #d3d3d3; /* ZOL change from brown to #d3d3d3 */
+            //stroke-width:5px;
+        }
+    }
+    #songs-bar-chart {
+        .bar {
+            fill: steelblue;
+        }
+        .bar:hover {
+            fill: #d3d3d3; /* ZOL change from brown to #d3d3d3 */
+            cursor: pointer;
+        }
+        .axis {
+            font-size: 14px;
+        }
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+        .x.axis path {
+            display: none;
+        }
+    }
+
+    #historical-chart {
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+        .x.axis path {
+            display: none;
+        }
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 1.5px;
+        }
+    }
+}
+
+/* Tour setup keypad */
+
+.tour-setup-keyboard {
+    margin-top: -16px; /* ZOL add */
+    /* ZOL add */
+    .col-md-10 {
+        margin-top: 20px!important;
+    }
+    h2.heading {
+        letter-spacing: 0.2em;
+        border-bottom: 1px solid #eee;
+        color: #1e1e1e; /* ZOL change from #aaa to #1e1e1e */
+    }
+    >div {
+        color: #333;
+        text-align: center;
+        padding: 0;
+    }
+    div.action-indicator {
+        height: 117px; /* ZOL add */
+        background: #f1f1f1; /* ZOL add */
+        .action-number {
+            font-size: 4em; /* ZOL change from 4em to 6em */
+            font-weight: 400; /* ZOL add */
+        }
+        .action-type {
+            letter-spacing: 0.3em; /* ZOL add */
+            text-transform: uppercase; /* ZOL add */
+        }
+    }
+    div.action-keypad {
+        height: 117px; /* ZOL add */
+        padding-left: 3px!important; /* overrides bottstrap */ /* ZOL add */
+        padding-right: 0px!important; /* overrides bottstrap */ /* ZOL add */
+    }
+    div.action-keypad .numbers {
+        height: 117px; /* ZOL add */
+        .tr {
+            float: left;
+            width: 100%;
+            height: 25%; /* ZOL add */
+            .td {
+                display: block;
+                float: left;
+                font-size: 18px;
+                text-align: center;
+                vertical-align: middle; /* ZOL add */
+                line-height: 30px; /* ZOL add */
+                width: 25%;
+                height: 100%; /* ZOL add */
+                cursor: pointer;
+
+                /* ZOL add styles */
+                &:focus:focus {
+                    border: none!important;
+                    -webkit-box-shadow: none!important;
+                    -moz-box-shadow: none!important;
+                    box-shadow: none!important;
+                    outline: 0;
+                    background: #d3d3d3;
+                }
+
+                &.erase {
+                    color: #c15a26;
+                    font-size: 0.85em;
+                    letter-spacing: 0.1em;
+                    text-transform: uppercase;
+                }
+            }
+
+            /* ZOL add */
+            .numbers-grey-bg {
+                background: #f1f1f1;
+            }
+        }
+    }   
+    div.middle-row {
+        background: #d3d3d3; /* ZOL change from #eee to #d3d3d3 */
+        margin-right: 3px!important;
+        height: 36px;
+        line-height: 36px;
+        .time-length-location {
+            margin-left: -9%;
+            >div {
+                margin-left: 3%;
+                float: left;
+                width: 30%;
+                cursor: pointer;
+                color: #ffffff;
+                -webkit-transition: color 0.3s; /* ZOL change from 0.25s to 0.3 */
+                -moz-transition: color 0.3s; /* ZOL change from 0.25s to 0.3 */
+                transition: color 0.3s; /* ZOL change from 0.25s to 0.3 */
+                font-size: 0.85em; /* ZOL add */	
+                text-transform: uppercase; /* ZOL add */	
+
+                &:hover {
+                    color: #1e1e1e; /* ZOL change from #000 to #1e1e1e */
+                }
+
+                /* ZOL add */
+                i {
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        /* ZOL add */
+        .plus-minus {
+            a {
+                color: #1e1e1e;
+                font-size: 18px;
+                line-height: 18px;
+                text-decoration: none;
+            }
+        }
+
+    }
+
+    /* ZOL add */
+    .details {
+        height: 117px;
+        background: #d3d3d3;
+        font-size: 0.85em;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 14px!important; /* ZOL add */
+        h5 {
+            color: #1e1e1e;
+        }
+        p {
+            -webkit-transition: color 0.3s; /* zol add */
+            -moz-transition: color 0.3s; /* zol add */
+            transition: color 0.3s; /* zol add */
+            color: #ffffff;
+            cursor: pointer;
+            &:hover {
+                color: #1e1e1e;
+            }
+        }
+    }
+
+    .submit {
+        height:36px;
+        line-height:36px;
+
+        -webkit-transition: color 0.3s; /* zol add */
+        -moz-transition: color 0.3s; /* zol add */
+        transition: color 0.3s; /* zol add */
+
+        background: #d3d3d3;
+        color: #1e1e1e;
+        letter-spacing: 0.1em;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-top: 3px!important;
+        &:hover {
+            background: #1e1e1e;
+            color: #ffffff!important;
+            cursor: pointer;
+        }
+    }
+
+}
+
+/* Action Bar */
+
+.action-bar {
+    background: #d3d3d3; /* ZOL add */
+    height: 414px;
+    .actions {
+        font-size: 42px;
+        text-align: center;
+        a {
+            width: 100%;
+            margin-top: 33px;
+            margin-bottom: 20px;
+            display: block;
+            color: #ffffff; /* ZOL change from #aaa to #ffffff */
+            -webkit-transition: color 0.3s; /* ZOL add */
+            -moz-transition: color 0.3s; /* ZOL add */
+            transition: color 0.3s; /* ZOL add */
+
+            &.active{
+                color: #1e1e1e;
+            }
+
+            &.has-values {
+                color: #baa60a;
+            }
+
+            &.complete {
+                color: #c15a26;
+            }
+
+        }
+        a:hover {
+            color: #1e1e1e; /* ZOL add */
+        }
+        .fa-camera {
+            font-size: 36px; /* ZOL add */
+        }
+        .fa-microphone {
+            font-size: 38px; /* ZOL add */
+        }
+        .fa-male {
+            font-size: 46px; /* ZOL add */
+        }
+    }
+}

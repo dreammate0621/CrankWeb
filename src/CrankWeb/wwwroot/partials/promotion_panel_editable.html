@@ -1,0 +1,234 @@
+﻿
+<div class="promotion-wrapper" ng-class="{'module-active': isPromotionModuleMaximized}" ng-click="maximizePromotion($event)">
+    <div class="promotion">
+        <div class="promotion__actions">
+            <a href="" ng-click="minimizePromotion($event)"></a>
+            <a href=""></a>
+            <a href=""></a>
+        </div>
+
+        <div class="tile-content" ng-class="{'tile-content--visible': stationPanelInfoVisible, 'tile-content--hidden': !stationPanelInfoVisible}">
+            <ul>
+                <li>
+                    <div class="station_panel_logo">
+                        <img ng-src="{{hoveredStation.imageUrl}}" alt="">
+                    </div>
+                </li>
+                <li>{{hoveredStation.callcode}}</li>
+                <li>{{hoveredStation.frequency || hoveredStation.name}}</li>
+                <li>{{hoveredStation.owner || hoveredStation.sType}}</li>
+                <li>{{hoveredStation.format}}</li>
+            </ul>
+        </div>
+
+        <div class="promotion__side">
+            <a class="promotion__link promotion__link--side" ng-class="{'promotion__link--active': selectedEvent.hasTicket}" href="">
+                <span><i class="fa fa-ticket" data-drag="$parent.isEventForUser" data-promotion="ticket" jqyoui-draggable data-jqyoui-options="{helper:'clone', scope:'promotion'}"></i></span>
+            </a>
+            <a class="promotion__link promotion__link--side" ng-class="{'promotion__link--active': selectedEvent.hasMeetNGreet}" href="">
+                <span><i class="fa fa-camera" data-drag="$parent.isEventForUser" data-promotion="meetngreet" jqyoui-draggable data-jqyoui-options="{helper:'clone', scope:'promotion'}"></i></span>
+            </a>
+            <a class="promotion__link promotion__link--side" ng-class="{'promotion__link--active': selectedEvent.hasInterview}" href="">
+                <span><i class="fa fa-microphone" data-drag="$parent.isEventForUser" data-promotion="interview" jqyoui-draggable data-jqyoui-options="{helper:'clone', scope:'promotion'}"></i></span>
+            </a>
+            <a class="promotion__link promotion__link--side" ng-class="{'promotion__link--active': selectedEvent.hasAppearnce}" href="">
+                <span><i class="fa fa-eye" data-drag="$parent.isEventForUser" data-promotion="appearance" jqyoui-draggable data-jqyoui-options="{helper:'clone', scope:'promotion'}"></i></span>
+            </a>
+        </div>
+
+        <div class="promotion__main">
+            <div class="promotion__header">
+                <h2 class="promotion__area">{{selectedEvent.venue || 'Select an Event'}}</h2>
+                <!--<input class="promotion__title" value="CHICAGO, IL, USA">-->
+                <span class="promotion__title" ng-click="selectMainMarket()">{{selectedEvent.market}}</span>
+
+                <div class="promotion__field-add">
+                   
+                        <input type="text" class="promotion__search__field__top"
+                               placeholder="Search Markets"
+                               ng-model="$parent.$parent.$parent.subMarketSearch"
+                               uib-typeahead="resMarket.name + ', ' + (resMarket.state ?  resMarket.state + ', ' : '') + resMarket.country for resMarket in searchMarkets($viewValue) | limitTo:20"
+                               typeahead-loading="loadingMarkets"
+                               ypeahead-wait-ms="400"
+                               typeahead-on-select="addSubMarketsToEvent($item, $model, $label)"
+                               typeahead-no-results="noMarketsFound"
+                               ng-disabled="!selectedEvent">
+                        <span class="search__icon-search_top-editable"><i class="fa fa-search"></i></span>
+                            <!--<a href="" class="promotion__btn-add"><i class="fa fa-plus"></i></a>-->
+
+                </div>
+
+                <div class="promotion__places">
+                    <div class="promotion__place fade" ng-class="{'active': subMarket.selected} " ng-repeat="subMarket in selectedEvent.subMarkets.subMarketList" ng-click="selectSubMarket(subMarket)">
+                        {{subMarket.name}}
+                        <a class="promotion__btn-close"><i class="fa fa-close" ng-click="removeSubMarket(subMarket,$index)"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="promotion_stations">
+                <div id="promotion_stations_wrapper" class="promotion_stations_wrapper promotion__tiles" ng-iscroll="promotion_stations_wrapper" ng-iscroll-delay="500">
+                    <div class="promotion_stations_scroller grabcursor">
+                        <div class="tile fade" ng-class="{'tile--active':station.isSelected}"
+                             ng-repeat="station in selectedEvent.activeStationsList"
+                             jqyoui-droppable="{index:{{$index}},onDrop:'onPromotionDrop(station, $index)', }"
+                             data-jqyoui-options="{scope:'promotion'}" data-drop="true">
+                            <div ng-click="selectPromoStation(station,$index)" ng-mouseover="showStationInfoPanel(station,$index)" ng-mouseleave="hideStationInfoPanel(station,$index)">
+                                <img ng-src={{station.imageUrl}} alt="" ng-show="station.sType !='digital'" class="tile__img">
+                                <img ng-src={{station.imageUrl}} alt="" ng-show="!station.hasImage &&station.sType =='digital'" ng-error="station.hasImage=false" class="tile__img">
+                                <div class="tile-avatar-circle tile__img" ng-show="!station.hasImage && station.sType =='digital'">
+                                    <span class="tile-initials"><i class="fa fa-headphones"></i></span>
+                                </div>
+                            </div>
+                            <!--ng-dblclick="confirmRemovePromotion(promotion, station)"-->
+                            <div class="tile__dropdown-list">
+                                <a ng-repeat="promotion in station.promotions" class="promotion__link"
+                                   ng-class="{'promotion__link--active': promotion.selected}"
+                                   ng-click="setActivePromotion(promotion);isOpen=false"
+                                   uib-popover-template="'promoDetails.html'"
+                                   popover-trigger="'mouseenter'"
+                                   popover-placement="auto top"
+                                   popover-popup-delay="1000"
+                                   popover-popup-close-delay="600"
+                                   popover-append-to-body="true"
+                                   popover-animation="false"
+                                   popover-is-open="isOpen"
+                                   popover-title="Provider"
+                                   popover-class="promo-detail"
+                                   mwl-confirm
+                                   is-disabled="!$parent.isEventForUser"
+                                   confirm-title="Remove Promotion ?"
+                                   message="Are you sure you would like to remove this promotion ?"
+                                   on-confirm="removePromotionFromStation(promotion, station)"
+                                   confirm-button-type="gunMetalBlue"
+                                   confirm-text="Yes <i class='glyphicon glyphicon-ok'></i>"
+                                   cancel-text="No <i class='glyphicon glyphicon-remove'></i>"
+                                   open-on-dblclick="true"
+                                  ><i class="fa {{promotion.promoClass}}"></i></a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="promotion__bottom">
+                <div class="promotion__bottom-left">
+                    <div class="promotion__counter">
+                        <input type="number" class="promotion__count"
+                               ng-disabled="!selectedEvent.activePromotion"
+                               ng-model="selectedEvent.activePromotion.selectedInstance.typeCount"
+                               ng-change="processTypeCountChange()">
+                        <div class="promotion__count-caption">{{selectedEvent.activePromotion.name}}</div>
+                    </div>
+
+                    <div class="promotion__bottom-foot">
+                        <a class="promotion__btn-increase" ng-click="updatePromotionCount(1)">+</a>
+                        <a class="promotion__btn-decrease" ng-click="updatePromotionCount(-1)">-</a>
+                    </div>
+
+                    <div class="promotion__variants">
+                        <div class="promotion__variants-row">
+                            <a ng-click="updatePromotionCount(2)">2</a>
+                            <a ng-click="updatePromotionCount(4)">4</a>
+                            <a ng-click="updatePromotionCount(6)">6</a>
+                            <a ng-click="updatePromotionCount(8)">8</a>
+                        </div>
+
+                        <div class="promotion__variants-row">
+                            <a ng-click="updatePromotionCount(10)">10</a>
+                            <a ng-click="updatePromotionCount(12)">12</a>
+                            <a ng-click="updatePromotionCount(14)">14</a>
+                            <a ng-click="updatePromotionCount(16)">16</a>
+                        </div>
+
+                        <div class="promotion__variants-row">
+                            <a ng-click="updatePromotionCount(18)">18</a>
+                            <a ng-click="updatePromotionCount(20)">20</a>
+                            <a ng-click="updatePromotionCount(22)">22</a>
+                            <a ng-click="updatePromotionCount(24)">24</a>
+                        </div>
+
+                        <div class="promotion__variants-row">
+                            <a ng-click="updatePromotionCount(26)">26</a>
+                            <a ng-click="updatePromotionCount(28)">28</a>
+                            <a ng-click="updatePromotionCount(30)">30</a>
+                            <a ng-click="updatePromotionCount(0)">clear</a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="promotion__bottom-right">
+                    <a class="promotion__link promotion__link--active" href="">Details</a>
+                    <div class="promotion__line-through"></div>
+                    <div class="promotion__line-through"></div>
+                    <div class="promotion__line-through"></div>
+                    <a class="promotion__link promotion__link--active" href="">Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+    var tiles = document.querySelectorAll('.tile');
+    var tileContent = document.querySelector('.tile-content');
+
+    // show flayout block
+    for (var i = 0; i < tiles.length; i++) {
+        tiles[i].addEventListener('mouseenter', function (e) {
+          
+            var tileItem = document.getElementById(this.getAttribute('data-tile-content'));
+
+            if (tileItem) {
+                tileContent.classList.remove('tile-content--hidden');
+                tileContent.classList.add('tile-content--visible');
+
+                tileItem.classList.add('tile-content__item--visible');
+
+                this.addEventListener('mouseleave', function () {
+                    tileContent.classList.remove('tile-content--visible');
+                    tileContent.classList.add('tile-content--hidden');
+                    tileItem.classList.remove('tile-content__item--visible');
+                });
+            }
+        });
+
+        tiles[i].addEventListener('click', function () {
+           
+            this.classList.toggle('tile--active');
+        });
+    }
+
+
+    // show expanded list
+    var promotionSide = document.querySelector('.promotion__side');
+    var promotionTiles = document.querySelector('.promotion__tiles');
+
+    promotionSide.addEventListener('mouseenter', function () {
+    
+        promotionTiles.classList.add('promotion__tiles--expanded');
+    });
+
+    promotionSide.addEventListener('mouseleave', function () {
+       
+        if (!this.classList.contains('tile-content--expanded')) {
+            promotionTiles.classList.remove('promotion__tiles--expanded');
+        }
+    });
+
+    promotionSide.addEventListener('click', function () {
+     
+        if (this.classList.contains('tile-content--expanded')) {
+            this.classList.remove('tile-content--expanded');
+            promotionTiles.classList.remove('promotion__tiles--expanded');
+        } else {
+            this.classList.add('tile-content--expanded');
+            promotionTiles.classList.add('promotion__tiles--expanded');
+        }
+    });
+
+</script>
